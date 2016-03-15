@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="id">
+    <head>
+        <!-- <link href='http://fonts.googleapis.com/css?family=Roboto:700,400,400italic' rel='stylesheet' type='text/css'> -->
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" type="image/ico" href="<?php echo Yii::app()->createUrl('images/tut-wuri-icon.png');?>"></link>
+        <title>Bidikmisi - <?php echo CHtml::encode($this->pageTitle); ?></title>
+        
+        <?php $baseUrl = Yii::app()->theme->baseUrl; ?>
+        <!-- Bootstrap framework -->
+            <link rel="stylesheet" href="<?php echo $baseUrl; ?>/css/bootstrap.min.css" />
+            <link rel="stylesheet" href="<?php echo $baseUrl; ?>/css/bootstrap-responsive.min.css" />
+        <!-- chosen select & uniform form-->
+            <link rel="stylesheet" href="<?php echo $baseUrl; ?>/css/chosen/jquery.chosen.css" />
+            <link rel="stylesheet" href="<?php echo $baseUrl; ?>/css/uniform/css/uniform.default.min.css" />
+        <!-- form gawane yii -->
+            <link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl; ?>/css/form.css" />
+            <link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl; ?>/css/detailview/styles.css" />
+            <link rel="stylesheet" href="<?php echo $baseUrl; ?>/css/jquery.ui.css" />
+            <link rel="stylesheet" href="<?php echo $baseUrl; ?>/css/mystyle.css" />
+            <link rel="stylesheet" href="<?php echo $baseUrl; ?>/css/plugins.css" />
+        <!--[if lte IE 8]>
+            <link rel="stylesheet" href="<?php echo $baseUrl; ?>/css/ie.css" />
+            <script src="<?php echo $baseUrl; ?>/js/ie/html5.js"></script>
+			<script src="<?php echo $baseUrl; ?>/js/ie/respond.min.js"></script>
+        <![endif]-->
+        <?php
+        Yii::app()->clientScript->registerCoreScript('jquery');
+        ?>
+        <script src="<?php echo $baseUrl ?>/js/bootstrap.min.js"></script>
+        <script src="<?php echo $baseUrl ?>/js/jquery.ui.js"></script>
+        <script src="<?php echo $baseUrl ?>/js/jquery.tools.min.no.jquery.new.js"></script>
+        <script src="<?php echo $baseUrl ?>/css/chosen/chosen.jquery.min.js"></script>
+        <script src="<?php echo $baseUrl ?>/css/uniform/css/jquery.uniform.min.js"></script>
+        <script src="<?php echo $baseUrl ?>/js/jquery.fancybox.js"></script>
+        <script type="text/javascript">
+        /*buat open image dalam modal*/
+        function openModalImage(src,label)
+        {
+            $('#imageLabel').html(label);
+            $('#imagecontainer').html('<img src="'+src+'">');
+            $('#imageModal').modal();
+        }
+
+        $(document).ready(function(){
+            /*buat chosen select*/
+            $('.chzn-select').chosen();
+            $('input:radio,.uniform-select,.uniform-checkbox,.uniform').uniform();
+            //$("input").not(".skip-uniform").uniform();
+            //$('input[class!="skip-uniform"]').uniform();
+            $(".lightbox").fancybox({
+                'padding': 1
+            });
+
+            $("input[title],select[title],textarea[title]").tooltip({
+                position: "center right",
+                offset: [0, 10],
+                effect: 'fade',
+                tipClass: 'formtip',
+            });
+            $(".compactRadioGroup[title]").tooltip({
+                position: "center right",
+                offset: [0, -220],
+                effect: 'fade',
+                tipClass: 'formtip',
+            });
+
+            $(".tip").tooltip({
+                offset: [0,0],
+                effect: 'slide',
+                tipClass: 'tooltip-custom',
+            }).dynamic({ bottom: { direction: 'down', bounce: true } });
+
+            //buat datepicker
+            $( ".tanggal_lahir" ).datepicker({
+                dateFormat:'yy-mm-dd',
+                changeMonth: true,
+                changeYear: true,
+                yearRange: '-21,0'
+            });
+            
+            var int=self.setInterval(function(){clock()},1000);
+            function clock()
+            {
+                var d=new Date();
+                var t=d.toLocaleTimeString();
+                var jam=d.getHours();
+                var menit = d.getMinutes();
+                var detik = d.getSeconds();
+                if(jam<10)
+                    jam = '0'+jam;
+                if(menit<10)
+                    menit = '0'+menit;
+                if(detik<10)
+                    detik = '0'+detik;
+                var temp = jam+':'+menit+':'+detik+' WIB';
+                var options = {weekday: "long", year: "numeric", month: "long", day: "numeric"};
+                var tanggal = d.toLocaleDateString('ID',options);
+                $('#jam').html(temp);
+                $('#tanggal').html(tanggal);
+            }
+
+            $('#myCarousel').carousel({
+                interval: 3000
+            })
+        });
+        </script>
+    </head>
+    <body>
+        <div class="container">
+            <div class="row-fluid">
+                <div class="span6">
+                    <div>
+                        <?php echo CHtml::link(
+                            '<span class="icon-comment icon-white"></span> TANYA JAWAB',
+                            array('/petunjuk/index'),
+                            array('class'=>'faq')
+                        );?>
+                    </div>
+                    <!-- <div class="pull-left" style="margin-right:5px; margin-top:8px;">
+                        <img src="<?php echo Yii::app()->request->baseUrl?>/images/jam.png">
+                    </div>
+                    <div class="jam" style="min-height:40px;">
+                        <p style="font-size:14px; font-weight:bold; margin-bottom:0px" id="jam"></p>
+                        <p style="color:#999; font-weight:bold; margin-bottom:0px; font-size:11px" id="tanggal"></p>
+                    </div> -->
+                </div>
+                <div class="span6">
+                    <div class="pull-right" style="margin-top:8px;text-transform:uppercase;">
+                        <?php echo CHtml::link('Beranda',array('site/index'));?> 
+                        <?php
+                        if(!Yii::app()->user->isGuest && WebUser::isSekolah()){
+                            echo '&middot; ';
+                            echo CHtml::link(Yii::app()->user->nama,array('/sekolah/default/dashboard')).' - ';
+                            echo CHtml::link('Logout',array('/sekolah/default/logout'));
+                        }else if(!Yii::app()->user->isGuest && WebUser::isSiswa()){
+                            echo '&middot; ';
+                            echo CHtml::link(strstr(ucwords(strtolower(Yii::app()->user->nama.' ')),' ', true),array('/siswa/default/dashboard')).' - ';
+                            echo CHtml::link('Logout',array('/siswa/default/logout'));
+                        }else if(WebUser::isPelamar()){
+                            echo '&middot; ';
+                            echo CHtml::link(Yii::app()->user->getState('email'),array('/mahasiswa/apply/home')).' - ';
+                            echo CHtml::link('Logout',array('/mahasiswa/apply/logout'));
+                        }
+                        ?>
+                        <!-- <input type="text" name="search" id="search" placeholder="Pencarian..." style="font-size:11px; border-radius:0px;"/> -->
+                    </div>
+                </div>
+            </div>
+            <div class="mainheader">
+                <div class="row-fluid">
+                    <div class="span6">
+                        <div style="max-width:150px">
+                            <a href="<?php echo Yii::app()->createUrl('site/index')?>">
+                            <img src="<?php echo Yii::app()->request->baseUrl?>/images/logo.png" width="150px">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="span6" align="right">
+                        <div style="max-width:65px">
+                            <img src="<?php echo Yii::app()->request->baseUrl?>/images/tut-wuri.png" width="65px">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <?php //require_once('navigation.php');?>
+            <div style="min-height:400px;">
+                <?php echo $content;?>
+            </div>
+
+            <!-- footer -->
+            <div class="footer">
+                <div class="row-fluid">
+                    <div class="span3">
+                        <h5>Tentang Kami</h5>
+                        <p>
+                            <ul>
+                                <li><?php echo CHtml::link('Sejarah',array('#'));?></li>
+                                <li><?php echo CHtml::link('Visi & Misi',array('#'));?></li>
+                                <li><?php echo CHtml::link('Kebijakan',array('#'));?></li>
+                                <li><?php echo CHtml::link('Persyaratan',array('#'));?></li>
+                                <li><?php echo CHtml::link('Standar Pelayanan',array('#'));?></li>
+                                <li><?php echo CHtml::link('Prosedur',array('#'));?></li>
+                            </ul>
+                        </p>
+                    </div>
+                    <div class="span3">
+                        <h5>Unduh Aplikasi Bidikmisi</h5>
+                        <a href="http://gs.im/bidikmisi" target="_blank">
+                            <img src="<?php echo Yii::app()->request->baseUrl?>/images/google-play.png" width="120px">
+                        </a>
+                        <h5>Facebook</h5>
+                        <!-- facebook like -->
+                        <div id="fb-root"></div>
+                        <script> (function(d,s,id){
+                          var js, fjs = d.getElementsByTagName(s)[0];
+                          if(d.getElementById(id)) return;
+                          js = d.createElement(s); js.id = id;
+                          js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+                          fjs.parentNode.insertBefore(js,fjs);
+                        }(document,'script','facebook-jssdk'));
+                        </script>
+                        <div class="fb-like" data-href="http://facebook.com/program.bidik.misi" data-width="450" data-show-faces="true" data-send="true"></div>
+                    </div>
+                    <div class="span3">
+                        <h5>Bantuan</h5>
+                        <p>
+                            <ul>
+                                <li><?php echo CHtml::link('FAQ',array('/petunjuk/index'));?></li>
+                                <li><?php echo CHtml::link('Unduh Petunjuk Teknis','#petunjuk-teknis',array('data-toggle'=>'modal'));?></li>
+                                <li><?php echo CHtml::link('Jadwal Penting',array('/site/page','view'=>'jadwal-penting'));?></li>
+                                <li><?php echo CHtml::link('Hubungi kami',array('/site/page','view'=>'hubungi-kami'));?></li>
+                            </ul>
+                        </p>
+                    </div>
+                    <div class="span3">
+                        <h5>Kontak Resmi</h5>
+                        <p>Direktorat Pembelajaran dan Kemahasiswaan Ditjen Dikti Gedung D Lantai 7, Jalan Pintu 1 Senayan</p>
+                        <table style="width:100%">
+                            <tr><td>Email</td><td><a href="mailto:bidikmisi@kemdikbud.go.id">bidikmisi@kemdikbud.go.id</a></td></tr>
+                            <tr><td></td><td><a href="mailto:bidikmisi@dikti.go.id">bidikmisi@dikti.go.id</a></td></tr>
+                            <tr><td>Facebook</td><td><a href="http://fb.me/program.bidik.misi">fb.me/program.bidik.misi</a></td></tr>
+                            <tr><td>Twitter</td><td><a href="http://twitter.com/bidikmisi">twitter.com/bidikmisi</a></td></tr>
+                            <tr><td>Zendesk</td><td><a href="http://bidikmisi.zendesk.com">bidikmisi.zendesk.com</a></td></tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- end footer -->
+            <div class="text-right"><small><p><?php echo Yii::app()->name;?> &copy; 2013</p></small></div>
+        </div>
+    </body>
+</html>
+
+<!-- Modal -->
+<div id="imageModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="imageLabel"></h3>
+    </div>
+    <div class="modal-body">
+        <div id="imagecontainer"></div>
+    </div>
+</div>
+
+<div id="petunjuk-teknis" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 align="center">PETUNJUK TEKNIS</h3>
+    </div>
+    <div class="modal-body">
+        <div align="center">
+            <?php echo CHtml::link('Petunjuk Teknis Sekolah',array('/petunjuk/sekolah'),array('class'=>'btn btn-large btn-success'));?> 
+            <?php echo CHtml::link('Petunjuk Teknis Siswa',array('/petunjuk/siswa'),array('class'=>'btn btn-large btn-primary'));?>
+		<br><br>
+            <?php echo CHtml::link('Pedoman Bidikmisi 2014',array('/petunjuk/pedoman'),array('class'=>'btn btn-large btn-info'));?>
+        </div>
+    </div>
+    <div class="modal-footer">&nbsp;</div>
+</div>
+
+<!--Start of Zopim Live Chat Script-->
+<script type="text/javascript">
+window.$zopim||(function(d,s){var z=$zopim=function(c){z._.push(c)},$=z.s=
+d.createElement(s),e=d.getElementsByTagName(s)[0];z.set=function(o){z.set.
+_.push(o)};z._=[];z.set._=[];$.async=!0;$.setAttribute('charset','utf-8');
+$.src='//cdn.zopim.com/?oBr2he1WysId71jgxhsBkN6SogzGbH14';z.t=+new Date;$.
+type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
+</script>
+<!--End of Zopim Live Chat Script-->
+
+<!--<script type="text/javascript" src="//assets.zendesk.com/external/zenbox/v2.5/zenbox.js"></script>
+<style type="text/css" media="screen, projection">
+  @import url(//assets.zendesk.com/external/zenbox/v2.5/zenbox.css);
+</style>
+<script type="text/javascript">
+  if (typeof(Zenbox) !== "undefined") {
+    Zenbox.init({
+      dropboxID:   "20107991",
+      url:         "https://bidikmisi.zendesk.com",
+      tabID:       "Klik disini untuk bantuan informasi",
+      tabColor:    "blue",
+      tabPosition: "Right"
+    });
+  }
+</script>
+
+
+
+<script type="text/javascript" src="//assets.zendesk.com/external/zenbox/v2.6/zenbox.js"></script>
+<style type="text/css" media="screen, projection">
+  @import url(//assets.zendesk.com/external/zenbox/v2.6/zenbox.css);
+</style>
+<script type="text/javascript">
+  if (typeof(Zenbox) !== "undefined") {
+    Zenbox.init({
+      dropboxID:   "20117974",
+      url:         "https://bidikmisi.zendesk.com",
+      tabTooltip:  "Support",
+      tabImageURL: "https://assets.zendesk.com/external/zenbox/images/tab_support.png",
+      tabColor:    "black",
+      tabPosition: "Left"
+    });
+  }
+</script>-->
+
+<script type="text/javascript" src="//assets.zendesk.com/external/zenbox/v2.6/zenbox.js"></script>
+<style type="text/css" media="screen, projection">
+  @import url(//assets.zendesk.com/external/zenbox/v2.6/zenbox.css);
+</style>
+<script type="text/javascript">
+  if (typeof(Zenbox) !== "undefined") {
+    Zenbox.init({
+      dropboxID:   "20117994",
+      url:         "https://bidikmisi.zendesk.com",
+      tabTooltip:  "Bantuan",
+      tabImageURL: "https://assets.zendesk.com/external/zenbox/images/tab_support.png",
+      tabColor:    "#0088CC",
+      tabPosition: "Left"
+    });
+  }
+</script>
+
+</body>
+</html>
+<style type="text/css">
+.helpcontainer
+{
+	right:0px;
+	top:100px;
+	position:fixed;
+	padding:8px;
+	background-color:#06F;
+	color:#EEE;
+	cursor:pointer;
+}
+#zenbox_tab
+{
+	border:1px solid #FFF;
+}
+.faq{
+    padding: 5px;
+    box-shadow: 0px 0px 4px #DDD;
+    color: #FFF;
+    background: #ee5f5b;
+    font-size: 14px;
+    text-decoration: none !important;
+
+    position: fixed;
+    top: 0;
+}
+.faq:hover{
+    color: #FFF;
+    background: #bd362f;
+}
+</style>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-36867373-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+<!-- insidea -->
+<div id="ins_user_stat"></div>
+
+<script type="text/javascript" id="insidea-stat-bar">
+/* <![CDATA[ */
+(function() {
+    var insd_key = 2;
+    var insd = document.createElement('script'); insd.type = 'text/javascript';
+    insd.async = true;
+    insd.src = '//insidea.co/insidea' + '/asset/js/files/embed_stat_bar.js'+'?insd_key='+insd_key;
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(insd);
+})();
+/* ]]> */
+</script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-49083726-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+<!-- end of insidea -->

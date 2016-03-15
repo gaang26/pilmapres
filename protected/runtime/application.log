@@ -1,0 +1,112 @@
+2016/03/14 13:02:52 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "gii".' in /home/nusaraya/Projects/new.mawapres/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /home/nusaraya/Projects/new.mawapres/framework/web/CWebApplication.php(141): CWebApplication->runController('gii')
+#1 /home/nusaraya/Projects/new.mawapres/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /home/nusaraya/Projects/new.mawapres/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/new.mawapres/index.php?r=gii
+---
+2016/03/14 16:23:00 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "sim".' in /home/nusaraya/Projects/new.mawapres/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /home/nusaraya/Projects/new.mawapres/framework/web/CWebApplication.php(141): CWebApplication->runController('sim')
+#1 /home/nusaraya/Projects/new.mawapres/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /home/nusaraya/Projects/new.mawapres/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/new.mawapres/sim
+---
+2016/03/14 16:23:07 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "backend".' in /home/nusaraya/Projects/new.mawapres/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /home/nusaraya/Projects/new.mawapres/framework/web/CWebApplication.php(141): CWebApplication->runController('backend')
+#1 /home/nusaraya/Projects/new.mawapres/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /home/nusaraya/Projects/new.mawapres/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/new.mawapres/backend
+---
+2016/03/14 16:23:10 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "root".' in /home/nusaraya/Projects/new.mawapres/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /home/nusaraya/Projects/new.mawapres/framework/web/CWebApplication.php(141): CWebApplication->runController('root')
+#1 /home/nusaraya/Projects/new.mawapres/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /home/nusaraya/Projects/new.mawapres/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/new.mawapres/root
+---
+2016/03/14 16:23:13 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "sim".' in /home/nusaraya/Projects/new.mawapres/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /home/nusaraya/Projects/new.mawapres/framework/web/CWebApplication.php(141): CWebApplication->runController('sim')
+#1 /home/nusaraya/Projects/new.mawapres/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /home/nusaraya/Projects/new.mawapres/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/new.mawapres/sim
+---
+2016/03/14 16:33:35 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "sim".' in /home/nusaraya/Projects/new.mawapres/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /home/nusaraya/Projects/new.mawapres/framework/web/CWebApplication.php(141): CWebApplication->runController('sim')
+#1 /home/nusaraya/Projects/new.mawapres/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /home/nusaraya/Projects/new.mawapres/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/new.mawapres/sim
+HTTP_REFERER=http://localhost/new.mawapres/gii/module/index
+---
+2016/03/14 16:33:39 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "sim".' in /home/nusaraya/Projects/new.mawapres/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /home/nusaraya/Projects/new.mawapres/framework/web/CWebApplication.php(141): CWebApplication->runController('sim')
+#1 /home/nusaraya/Projects/new.mawapres/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /home/nusaraya/Projects/new.mawapres/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/new.mawapres/sim
+---
+2016/03/14 16:35:59 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/logo_2016.png".' in /home/nusaraya/Projects/new.mawapres/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /home/nusaraya/Projects/new.mawapres/framework/web/CWebApplication.php(141): CWebApplication->runController('images/logo_201...')
+#1 /home/nusaraya/Projects/new.mawapres/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /home/nusaraya/Projects/new.mawapres/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/new.mawapres/images/logo_2016.png
+HTTP_REFERER=http://localhost/new.mawapres/
+---
+2016/03/14 16:35:59 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/logo_2016.png".' in /home/nusaraya/Projects/new.mawapres/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /home/nusaraya/Projects/new.mawapres/framework/web/CWebApplication.php(141): CWebApplication->runController('images/logo_201...')
+#1 /home/nusaraya/Projects/new.mawapres/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /home/nusaraya/Projects/new.mawapres/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/new.mawapres/images/logo_2016.png
+HTTP_REFERER=http://localhost/new.mawapres/
+---
+2016/03/14 16:35:59 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/favicon.png".' in /home/nusaraya/Projects/new.mawapres/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /home/nusaraya/Projects/new.mawapres/framework/web/CWebApplication.php(141): CWebApplication->runController('images/favicon....')
+#1 /home/nusaraya/Projects/new.mawapres/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /home/nusaraya/Projects/new.mawapres/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/new.mawapres/images/favicon.png
+HTTP_REFERER=http://localhost/new.mawapres/
+---
+2016/03/14 16:54:22 [error] [php] include(SimUserIdentity.php): failed to open stream: No such file or directory (/home/nusaraya/Projects/new.mawapres/framework/YiiBase.php:421)
+Stack trace:
+#0 /home/nusaraya/Projects/new.mawapres/protected/models/SimLoginForm.php(51): spl_autoload_call()
+#1 /home/nusaraya/Projects/new.mawapres/framework/validators/CInlineValidator.php(42): SimLoginForm->authenticate()
+#2 /home/nusaraya/Projects/new.mawapres/framework/validators/CValidator.php(213): CInlineValidator->validateAttribute()
+#3 /home/nusaraya/Projects/new.mawapres/framework/base/CModel.php(159): CInlineValidator->validate()
+#4 /home/nusaraya/Projects/new.mawapres/protected/modules/sim/controllers/DefaultController.php(31): SimLoginForm->validate()
+#5 /home/nusaraya/Projects/new.mawapres/framework/web/actions/CInlineAction.php(49): DefaultController->actionLogin()
+#6 /home/nusaraya/Projects/new.mawapres/framework/web/CController.php(308): CInlineAction->runWithParams()
+#7 /home/nusaraya/Projects/new.mawapres/framework/web/CController.php(286): DefaultController->runAction()
+#8 /home/nusaraya/Projects/new.mawapres/framework/web/CController.php(265): DefaultController->runActionWithFilters()
+#9 /home/nusaraya/Projects/new.mawapres/framework/web/CWebApplication.php(282): DefaultController->run()
+#10 /home/nusaraya/Projects/new.mawapres/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#11 /home/nusaraya/Projects/new.mawapres/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#12 /home/nusaraya/Projects/new.mawapres/index.php(13): CWebApplication->run()
+REQUEST_URI=/new.mawapres/sim/default/login
+in /home/nusaraya/Projects/new.mawapres/protected/models/SimLoginForm.php (51)
+in /home/nusaraya/Projects/new.mawapres/protected/modules/sim/controllers/DefaultController.php (31)
+in /home/nusaraya/Projects/new.mawapres/index.php (13)
+2016/03/14 16:56:42 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "sim/biodata/ubahpassword".' in /home/nusaraya/Projects/new.mawapres/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /home/nusaraya/Projects/new.mawapres/framework/web/CWebApplication.php(141): CWebApplication->runController('sim/biodata/uba...')
+#1 /home/nusaraya/Projects/new.mawapres/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /home/nusaraya/Projects/new.mawapres/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/new.mawapres/sim/biodata/ubahpassword
+HTTP_REFERER=http://localhost/new.mawapres/sim/default/index
+---
