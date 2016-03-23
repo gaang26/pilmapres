@@ -36,6 +36,7 @@
     <!-- DATEPICKER -->
     <link rel="stylesheet" type="text/css" href="<?php echo $baseUrl;?>/assets/plugins/bootstrap-datepicker/css/datepicker3.css"/>
     <link rel="stylesheet" type="text/css" href="<?php echo $baseUrl;?>/assets/plugins/bootstrap-timepicker/css/bootstrap-timepicker.min.css"/>
+    <link rel="stylesheet" type="text/css" href="<?php echo $baseUrl;?>/assets/css/custom.css">
 </head>
 <!-- END HEAD -->
 

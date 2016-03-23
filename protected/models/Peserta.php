@@ -8,6 +8,7 @@
  * @property integer $ID_PT
  * @property integer $ROLE
  * @property string $PIN
+ * @property string $PASSWORD
  * @property string $TAHUN
  * @property string $NIM
  * @property string $NAMA
@@ -33,7 +34,7 @@
  * @property string $URL_FORLAP
  * @property string $KTM
  * @property integer $ID_USER
- * @property integer $ROLE_PENDAFTAR
+ * @property integer $ROLE_USER
  * @property string $TANGGAL_INPUT
  * @property string $TANGGAL_UPDATE
  * @property integer $TAHAP_AWAL
@@ -48,6 +49,8 @@
  */
 class Peserta extends CActiveRecord
 {
+	const SARJANA = 'SARJANA';
+	const DIPLOMA = 'DIPLOMA';
 	/**
 	 * @return string the associated database table name
 	 */
@@ -64,20 +67,20 @@ class Peserta extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('ID_PT, ROLE, PIN, TAHUN, NIM, NAMA, ID_PRODI, JENJANG, SEMESTER', 'required'),
-			array('ID_PT, ROLE, ID_PRODI, SEMESTER, ID_KOTA, ID_TOPIK, ID_USER, ROLE_PENDAFTAR, TAHAP_AWAL', 'numerical', 'integerOnly'=>true),
+			array('ID_PT, ROLE, PIN, TAHUN, NIM, NAMA, ID_PRODI, JENJANG, SEMESTER, EMAIL, PASSWORD', 'required','on'=>'daftar'),
+			array('ID_PT, ROLE, ID_PRODI, SEMESTER, ID_KOTA, ID_TOPIK, ID_USER, ROLE_USER, TAHAP_AWAL', 'numerical', 'integerOnly'=>true),
 			array('PIN, BIDANG', 'length', 'max'=>10),
 			array('TAHUN', 'length', 'max'=>4),
-			array('NIM, TEMPAT_LAHIR', 'length', 'max'=>50),
+			array('NIM, TEMPAT_LAHIR, PASSWORD', 'length', 'max'=>50),
 			array('NAMA, EMAIL, WEBSITE', 'length', 'max'=>100),
 			array('JENJANG', 'length', 'max'=>15),
-			array('IPK', 'length', 'max'=>2),
+			array('IPK', 'length', 'max'=>5),
 			array('HP', 'length', 'max'=>20),
 			array('PHOTO, JUDUL_KTI, VIDEO_RINGKASAN, VIDEO_KESEHARIAN, SURAT_PENGANTAR, URL_FORLAP, KTM', 'length', 'max'=>255),
 			array('TANGGAL_LAHIR, ALAMAT, RINGKASAN, TANGGAL_INPUT, TANGGAL_UPDATE', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('ID_PESERTA, ID_PT, ROLE, PIN, TAHUN, NIM, NAMA, ID_PRODI, JENJANG, SEMESTER, IPK, EMAIL, HP, TEMPAT_LAHIR, TANGGAL_LAHIR, ALAMAT, ID_KOTA, WEBSITE, PHOTO, JUDUL_KTI, ID_TOPIK, BIDANG, RINGKASAN, VIDEO_RINGKASAN, VIDEO_KESEHARIAN, SURAT_PENGANTAR, URL_FORLAP, KTM, ID_USER, ROLE_PENDAFTAR, TANGGAL_INPUT, TANGGAL_UPDATE, TAHAP_AWAL', 'safe', 'on'=>'search'),
+			array('ID_PESERTA, ID_PT, ROLE, PIN, TAHUN, NIM, NAMA, ID_PRODI, JENJANG, SEMESTER, IPK, EMAIL, HP, TEMPAT_LAHIR, TANGGAL_LAHIR, ALAMAT, ID_KOTA, WEBSITE, PHOTO, JUDUL_KTI, ID_TOPIK, BIDANG, RINGKASAN, VIDEO_RINGKASAN, VIDEO_KESEHARIAN, SURAT_PENGANTAR, URL_FORLAP, KTM, ID_USER, ROLE_USER, TANGGAL_INPUT, TANGGAL_UPDATE, TAHAP_AWAL', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -89,12 +92,12 @@ class Peserta extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'iDKOTA' => array(self::BELONGS_TO, 'MasterKota', 'ID_KOTA'),
-			'iDTOPIK' => array(self::BELONGS_TO, 'MasterTopik', 'ID_TOPIK'),
-			'iDPT' => array(self::BELONGS_TO, 'MasterPt', 'ID_PT'),
-			'iDPRODI' => array(self::BELONGS_TO, 'MasterProdi', 'ID_PRODI'),
-			'pesertaPrestasis' => array(self::HAS_MANY, 'PesertaPrestasi', 'ID_PESERTA'),
-			'masterSosialMedias' => array(self::MANY_MANY, 'MasterSosialMedia', 'peserta_sosial_media(ID_PESERTA, ID_SOSIAL_MEDIA)'),
+			'Kota' => array(self::BELONGS_TO, 'MasterKota', 'ID_KOTA'),
+			'Topik' => array(self::BELONGS_TO, 'MasterTopik', 'ID_TOPIK'),
+			'PT' => array(self::BELONGS_TO, 'MasterPT', 'ID_PT'),
+			'Prodi' => array(self::BELONGS_TO, 'MasterProdi', 'ID_PRODI'),
+			'Prestasi' => array(self::HAS_MANY, 'PesertaPrestasi', 'ID_PESERTA'),
+			'SosialMedia' => array(self::MANY_MANY, 'MasterSosialMedia', 'peserta_sosial_media(ID_PESERTA, ID_SOSIAL_MEDIA)'),
 		);
 	}
 
@@ -109,31 +112,31 @@ class Peserta extends CActiveRecord
 			'ROLE' => 'Role',
 			'PIN' => 'Pin',
 			'TAHUN' => 'Tahun',
-			'NIM' => 'Nim',
-			'NAMA' => 'Nama',
-			'ID_PRODI' => 'Id Prodi',
+			'NIM' => 'NIM/NPM',
+			'NAMA' => 'Nama Peserta',
+			'ID_PRODI' => 'Program Studi/Jurusan',
 			'JENJANG' => 'Jenjang',
 			'SEMESTER' => 'Semester',
-			'IPK' => 'Ipk',
-			'EMAIL' => 'Email',
-			'HP' => 'Hp',
+			'IPK' => 'IPK',
+			'EMAIL' => 'Email Peserta',
+			'HP' => 'HP',
 			'TEMPAT_LAHIR' => 'Tempat Lahir',
 			'TANGGAL_LAHIR' => 'Tanggal Lahir',
 			'ALAMAT' => 'Alamat',
-			'ID_KOTA' => 'Id Kota',
+			'ID_KOTA' => 'Kota',
 			'WEBSITE' => 'Website',
 			'PHOTO' => 'Photo',
-			'JUDUL_KTI' => 'Judul Kti',
-			'ID_TOPIK' => 'Id Topik',
+			'JUDUL_KTI' => 'Judul Karya Tulis Ilmiah',
+			'ID_TOPIK' => 'Topik',
 			'BIDANG' => 'Bidang',
 			'RINGKASAN' => 'Ringkasan',
 			'VIDEO_RINGKASAN' => 'Video Ringkasan',
 			'VIDEO_KESEHARIAN' => 'Video Keseharian',
 			'SURAT_PENGANTAR' => 'Surat Pengantar',
-			'URL_FORLAP' => 'Url Forlap',
-			'KTM' => 'Ktm',
-			'ID_USER' => 'Id User',
-			'ROLE_PENDAFTAR' => 'Role Pendaftar',
+			'URL_FORLAP' => 'URL Forlap',
+			'KTM' => 'Scan KTM',
+			'ID_USER' => 'User Pendaftar',
+			'ROLE_USER' => 'Role User Pendaftar',
 			'TANGGAL_INPUT' => 'Tanggal Input',
 			'TANGGAL_UPDATE' => 'Tanggal Update',
 			'TAHAP_AWAL' => 'Tahap Awal',
@@ -187,7 +190,7 @@ class Peserta extends CActiveRecord
 		$criteria->compare('URL_FORLAP',$this->URL_FORLAP,true);
 		$criteria->compare('KTM',$this->KTM,true);
 		$criteria->compare('ID_USER',$this->ID_USER);
-		$criteria->compare('ROLE_PENDAFTAR',$this->ROLE_PENDAFTAR);
+		$criteria->compare('ROLE_USER',$this->ROLE_USER);
 		$criteria->compare('TANGGAL_INPUT',$this->TANGGAL_INPUT,true);
 		$criteria->compare('TANGGAL_UPDATE',$this->TANGGAL_UPDATE,true);
 		$criteria->compare('TAHAP_AWAL',$this->TAHAP_AWAL);
@@ -207,4 +210,69 @@ class Peserta extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+
+	//
+	public static function getPeserta($user,$role_user,$jenjang){
+		$criteria = new CDbCriteria;
+		$criteria->condition = 'ID_USER=:user AND ROLE_USER=:role_user AND JENJANG=:jenjang AND TAHUN=:tahun';
+		$criteria->params = array(
+			':user'=>$user,
+			':role_user'=>$role_user,
+			':jenjang'=>$jenjang,
+			':tahun'=>Yii::app()->params['tahun']
+		);
+
+		$model = self::model()->find($criteria);
+		return $model;
+	}
+
+	public function generatePIN(){
+		$prefix = substr($this->TAHUN,2,2);
+		if($this->JENJANG==self::SARJANA){
+			$jenjang = '01';
+		}else{
+			$jenjang = '02';
+		}
+
+		$random = rand(1000,9999);
+
+		return $prefix.$jenjang.$random;
+	}
+	public function generatePassword(){
+		$prefix = substr($this->TAHUN,2,2);
+		if($this->JENJANG==self::SARJANA){
+			$jenjang = '01';
+		}else{
+			$jenjang = '02';
+		}
+
+		$random = rand(1000,9999);
+
+		$source = md5($random);
+		return substr($source, 5, 6);
+	}
+
+	public static function optionsSemester($jenjang){
+		$max = 8;
+		if($jenjang==self::DIPLOMA){
+			$max = 6;
+		}
+
+		$smt = [];
+		for($i=1;$i<=$max;$i++){
+			$smt[$i] = $i;
+		}
+		return $smt;
+	}
+
+	//
+	// public function getImage(){
+	// 	if($this->PHOTO==null || $this->PHOTO==''){
+	// 		return Yii::app()->request->baseUrl.'/images/profilethumb.png';
+	// 	}else{
+	// 		if(file_exists())
+	// 	}
+	// }
+
+	//
 }

@@ -99,4 +99,13 @@ class MasterProdi extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+
+	public static function optionsAll(){
+		$model = self::model()->findAll(array('order'=>'NAMA_PRODI ASC'));
+		$data = [];
+		foreach ($model as $res) {
+			$data[$res->KODE_PRODI] = $res->NAMA_PRODI;
+		}
+		return $data;
+	}
 }

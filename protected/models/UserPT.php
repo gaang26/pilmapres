@@ -61,8 +61,8 @@ class UserPT extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'vERIFIKATOR' => array(self::BELONGS_TO, 'User', 'VERIFIKATOR'),
-			'iDPT' => array(self::BELONGS_TO, 'MasterPt', 'ID_PT'),
+			'Verifikator' => array(self::BELONGS_TO, 'User', 'VERIFIKATOR'),
+			'PT' => array(self::BELONGS_TO, 'MasterPT', 'ID_PT'),
 		);
 	}
 

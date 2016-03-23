@@ -110,3 +110,372 @@ Stack trace:
 REQUEST_URI=/new.mawapres/sim/biodata/ubahpassword
 HTTP_REFERER=http://localhost/new.mawapres/sim/default/index
 ---
+2016/03/19 14:33:27 [error] [exception.CException] exception 'CException' with message 'Property "MasterProdi.ID_PRODI" is not defined.' in /home/cethol/Projects/new.mawapres/framework/base/CComponent.php:130
+Stack trace:
+#0 /home/cethol/Projects/new.mawapres/framework/db/ar/CActiveRecord.php(145): CComponent->__get('ID_PRODI')
+#1 /home/cethol/Projects/new.mawapres/protected/models/MasterProdi.php(107): CActiveRecord->__get('ID_PRODI')
+#2 /home/cethol/Projects/new.mawapres/protected/modules/pt/views/mahasiswa/_form.php(36): MasterProdi::optionsAll()
+#3 /home/cethol/Projects/new.mawapres/framework/web/CBaseController.php(126): require('/home/cethol/Pr...')
+#4 /home/cethol/Projects/new.mawapres/framework/web/CBaseController.php(95): CBaseController->renderInternal('/home/cethol/Pr...', Array, true)
+#5 /home/cethol/Projects/new.mawapres/framework/web/CController.php(869): CBaseController->renderFile('/home/cethol/Pr...', Array, true)
+#6 /home/cethol/Projects/new.mawapres/protected/modules/pt/views/mahasiswa/daftar.php(15): CController->renderPartial('_form', Array)
+#7 /home/cethol/Projects/new.mawapres/framework/web/CBaseController.php(126): require('/home/cethol/Pr...')
+#8 /home/cethol/Projects/new.mawapres/framework/web/CBaseController.php(95): CBaseController->renderInternal('/home/cethol/Pr...', Array, true)
+#9 /home/cethol/Projects/new.mawapres/framework/web/CController.php(869): CBaseController->renderFile('/home/cethol/Pr...', Array, true)
+#10 /home/cethol/Projects/new.mawapres/framework/web/CController.php(782): CController->renderPartial('daftar', Array, true)
+#11 /home/cethol/Projects/new.mawapres/protected/modules/pt/controllers/MahasiswaController.php(55): CController->render('daftar', Array)
+#12 [internal function]: MahasiswaController->actionDaftar('SARJANA')
+#13 /home/cethol/Projects/new.mawapres/framework/web/actions/CAction.php(108): ReflectionMethod->invokeArgs(Object(MahasiswaController), Array)
+#14 /home/cethol/Projects/new.mawapres/framework/web/actions/CInlineAction.php(47): CAction->runWithParamsInternal(Object(MahasiswaController), Object(ReflectionMethod), Array)
+#15 /home/cethol/Projects/new.mawapres/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#16 /home/cethol/Projects/new.mawapres/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#17 /home/cethol/Projects/new.mawapres/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#18 /home/cethol/Projects/new.mawapres/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#19 /home/cethol/Projects/new.mawapres/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#20 /home/cethol/Projects/new.mawapres/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#21 /home/cethol/Projects/new.mawapres/framework/web/CController.php(291): CFilterChain->run()
+#22 /home/cethol/Projects/new.mawapres/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#23 /home/cethol/Projects/new.mawapres/framework/web/CWebApplication.php(282): CController->run('daftar')
+#24 /home/cethol/Projects/new.mawapres/framework/web/CWebApplication.php(141): CWebApplication->runController('pt/mahasiswa/da...')
+#25 /home/cethol/Projects/new.mawapres/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#26 /home/cethol/Projects/new.mawapres/index.php(13): CApplication->run()
+#27 {main}
+REQUEST_URI=/new.mawapres/pt/mahasiswa/daftar/jenjang/SARJANA
+---
+2016/03/19 14:34:38 [error] [exception.CException] exception 'CException' with message 'Property "MasterProdi.NAMA" is not defined.' in /home/cethol/Projects/new.mawapres/framework/base/CComponent.php:130
+Stack trace:
+#0 /home/cethol/Projects/new.mawapres/framework/db/ar/CActiveRecord.php(145): CComponent->__get('NAMA')
+#1 /home/cethol/Projects/new.mawapres/protected/models/MasterProdi.php(107): CActiveRecord->__get('NAMA')
+#2 /home/cethol/Projects/new.mawapres/protected/modules/pt/views/mahasiswa/_form.php(36): MasterProdi::optionsAll()
+#3 /home/cethol/Projects/new.mawapres/framework/web/CBaseController.php(126): require('/home/cethol/Pr...')
+#4 /home/cethol/Projects/new.mawapres/framework/web/CBaseController.php(95): CBaseController->renderInternal('/home/cethol/Pr...', Array, true)
+#5 /home/cethol/Projects/new.mawapres/framework/web/CController.php(869): CBaseController->renderFile('/home/cethol/Pr...', Array, true)
+#6 /home/cethol/Projects/new.mawapres/protected/modules/pt/views/mahasiswa/daftar.php(15): CController->renderPartial('_form', Array)
+#7 /home/cethol/Projects/new.mawapres/framework/web/CBaseController.php(126): require('/home/cethol/Pr...')
+#8 /home/cethol/Projects/new.mawapres/framework/web/CBaseController.php(95): CBaseController->renderInternal('/home/cethol/Pr...', Array, true)
+#9 /home/cethol/Projects/new.mawapres/framework/web/CController.php(869): CBaseController->renderFile('/home/cethol/Pr...', Array, true)
+#10 /home/cethol/Projects/new.mawapres/framework/web/CController.php(782): CController->renderPartial('daftar', Array, true)
+#11 /home/cethol/Projects/new.mawapres/protected/modules/pt/controllers/MahasiswaController.php(55): CController->render('daftar', Array)
+#12 [internal function]: MahasiswaController->actionDaftar('SARJANA')
+#13 /home/cethol/Projects/new.mawapres/framework/web/actions/CAction.php(108): ReflectionMethod->invokeArgs(Object(MahasiswaController), Array)
+#14 /home/cethol/Projects/new.mawapres/framework/web/actions/CInlineAction.php(47): CAction->runWithParamsInternal(Object(MahasiswaController), Object(ReflectionMethod), Array)
+#15 /home/cethol/Projects/new.mawapres/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#16 /home/cethol/Projects/new.mawapres/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#17 /home/cethol/Projects/new.mawapres/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#18 /home/cethol/Projects/new.mawapres/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#19 /home/cethol/Projects/new.mawapres/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#20 /home/cethol/Projects/new.mawapres/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#21 /home/cethol/Projects/new.mawapres/framework/web/CController.php(291): CFilterChain->run()
+#22 /home/cethol/Projects/new.mawapres/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#23 /home/cethol/Projects/new.mawapres/framework/web/CWebApplication.php(282): CController->run('daftar')
+#24 /home/cethol/Projects/new.mawapres/framework/web/CWebApplication.php(141): CWebApplication->runController('pt/mahasiswa/da...')
+#25 /home/cethol/Projects/new.mawapres/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#26 /home/cethol/Projects/new.mawapres/index.php(13): CApplication->run()
+#27 {main}
+REQUEST_URI=/new.mawapres/pt/mahasiswa/daftar/jenjang/SARJANA
+---
+2016/03/19 15:17:29 [error] [php] include(MyFormatter.php): failed to open stream: No such file or directory (/home/cethol/Projects/new.mawapres/framework/YiiBase.php:421)
+Stack trace:
+#0 /home/cethol/Projects/new.mawapres/protected/modules/pt/controllers/MahasiswaController.php(59): spl_autoload_call()
+#1 unknown(0): MahasiswaController->actionDaftar()
+#2 /home/cethol/Projects/new.mawapres/framework/web/actions/CAction.php(108): ReflectionMethod->invokeArgs()
+#3 /home/cethol/Projects/new.mawapres/framework/web/actions/CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#4 /home/cethol/Projects/new.mawapres/framework/web/CController.php(308): CInlineAction->runWithParams()
+#5 /home/cethol/Projects/new.mawapres/framework/web/filters/CFilterChain.php(133): MahasiswaController->runAction()
+#6 /home/cethol/Projects/new.mawapres/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#7 /home/cethol/Projects/new.mawapres/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#8 /home/cethol/Projects/new.mawapres/framework/web/filters/CInlineFilter.php(58): MahasiswaController->filterAccessControl()
+#9 /home/cethol/Projects/new.mawapres/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#10 /home/cethol/Projects/new.mawapres/framework/web/CController.php(291): CFilterChain->run()
+#11 /home/cethol/Projects/new.mawapres/framework/web/CController.php(265): MahasiswaController->runActionWithFilters()
+#12 /home/cethol/Projects/new.mawapres/framework/web/CWebApplication.php(282): MahasiswaController->run()
+#13 /home/cethol/Projects/new.mawapres/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#14 /home/cethol/Projects/new.mawapres/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#15 /home/cethol/Projects/new.mawapres/index.php(13): CWebApplication->run()
+REQUEST_URI=/new.mawapres/pt/mahasiswa/daftar/jenjang/SARJANA
+in /home/cethol/Projects/new.mawapres/protected/modules/pt/controllers/MahasiswaController.php (59)
+in /home/cethol/Projects/new.mawapres/index.php (13)
+2016/03/19 15:17:38 [error] [exception.CException] exception 'CException' with message 'Property "MasterProdi.NAMA" is not defined.' in /home/cethol/Projects/new.mawapres/framework/base/CComponent.php:130
+Stack trace:
+#0 /home/cethol/Projects/new.mawapres/framework/db/ar/CActiveRecord.php(145): CComponent->__get('NAMA')
+#1 /home/cethol/Projects/new.mawapres/protected/modules/pt/views/default/index.php(66): CActiveRecord->__get('NAMA')
+#2 /home/cethol/Projects/new.mawapres/framework/web/CBaseController.php(126): require('/home/cethol/Pr...')
+#3 /home/cethol/Projects/new.mawapres/framework/web/CBaseController.php(95): CBaseController->renderInternal('/home/cethol/Pr...', NULL, true)
+#4 /home/cethol/Projects/new.mawapres/framework/web/CController.php(869): CBaseController->renderFile('/home/cethol/Pr...', NULL, true)
+#5 /home/cethol/Projects/new.mawapres/framework/web/CController.php(782): CController->renderPartial('index', NULL, true)
+#6 /home/cethol/Projects/new.mawapres/protected/modules/pt/controllers/DefaultController.php(9): CController->render('index')
+#7 /home/cethol/Projects/new.mawapres/framework/web/actions/CInlineAction.php(49): DefaultController->actionIndex()
+#8 /home/cethol/Projects/new.mawapres/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#9 /home/cethol/Projects/new.mawapres/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#10 /home/cethol/Projects/new.mawapres/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 /home/cethol/Projects/new.mawapres/framework/web/CWebApplication.php(282): CController->run('')
+#12 /home/cethol/Projects/new.mawapres/framework/web/CWebApplication.php(141): CWebApplication->runController('pt')
+#13 /home/cethol/Projects/new.mawapres/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#14 /home/cethol/Projects/new.mawapres/index.php(13): CApplication->run()
+#15 {main}
+REQUEST_URI=/new.mawapres/pt
+---
+2016/03/19 15:17:39 [error] [exception.CException] exception 'CException' with message 'Property "MasterProdi.NAMA" is not defined.' in /home/cethol/Projects/new.mawapres/framework/base/CComponent.php:130
+Stack trace:
+#0 /home/cethol/Projects/new.mawapres/framework/db/ar/CActiveRecord.php(145): CComponent->__get('NAMA')
+#1 /home/cethol/Projects/new.mawapres/protected/modules/pt/views/default/index.php(66): CActiveRecord->__get('NAMA')
+#2 /home/cethol/Projects/new.mawapres/framework/web/CBaseController.php(126): require('/home/cethol/Pr...')
+#3 /home/cethol/Projects/new.mawapres/framework/web/CBaseController.php(95): CBaseController->renderInternal('/home/cethol/Pr...', NULL, true)
+#4 /home/cethol/Projects/new.mawapres/framework/web/CController.php(869): CBaseController->renderFile('/home/cethol/Pr...', NULL, true)
+#5 /home/cethol/Projects/new.mawapres/framework/web/CController.php(782): CController->renderPartial('index', NULL, true)
+#6 /home/cethol/Projects/new.mawapres/protected/modules/pt/controllers/DefaultController.php(9): CController->render('index')
+#7 /home/cethol/Projects/new.mawapres/framework/web/actions/CInlineAction.php(49): DefaultController->actionIndex()
+#8 /home/cethol/Projects/new.mawapres/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#9 /home/cethol/Projects/new.mawapres/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#10 /home/cethol/Projects/new.mawapres/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 /home/cethol/Projects/new.mawapres/framework/web/CWebApplication.php(282): CController->run('')
+#12 /home/cethol/Projects/new.mawapres/framework/web/CWebApplication.php(141): CWebApplication->runController('pt')
+#13 /home/cethol/Projects/new.mawapres/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#14 /home/cethol/Projects/new.mawapres/index.php(13): CApplication->run()
+#15 {main}
+REQUEST_URI=/new.mawapres/pt
+---
+2016/03/19 15:18:10 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in /home/cethol/Projects/new.mawapres/framework/web/auth/CAccessControlFilter.php:182
+Stack trace:
+#0 /home/cethol/Projects/new.mawapres/framework/web/auth/CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(WebUser), 'You are not aut...')
+#1 /home/cethol/Projects/new.mawapres/framework/web/filters/CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 /home/cethol/Projects/new.mawapres/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 /home/cethol/Projects/new.mawapres/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 /home/cethol/Projects/new.mawapres/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 /home/cethol/Projects/new.mawapres/framework/web/CController.php(291): CFilterChain->run()
+#6 /home/cethol/Projects/new.mawapres/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 /home/cethol/Projects/new.mawapres/framework/web/CWebApplication.php(282): CController->run('view')
+#8 /home/cethol/Projects/new.mawapres/framework/web/CWebApplication.php(141): CWebApplication->runController('pt/mahasiswa/vi...')
+#9 /home/cethol/Projects/new.mawapres/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#10 /home/cethol/Projects/new.mawapres/index.php(13): CApplication->run()
+#11 {main}
+REQUEST_URI=/new.mawapres/pt/mahasiswa/view/1
+HTTP_REFERER=http://localhost/new.mawapres/pt
+---
+2016/03/19 15:18:14 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in /home/cethol/Projects/new.mawapres/framework/web/auth/CAccessControlFilter.php:182
+Stack trace:
+#0 /home/cethol/Projects/new.mawapres/framework/web/auth/CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(WebUser), 'You are not aut...')
+#1 /home/cethol/Projects/new.mawapres/framework/web/filters/CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 /home/cethol/Projects/new.mawapres/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 /home/cethol/Projects/new.mawapres/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 /home/cethol/Projects/new.mawapres/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 /home/cethol/Projects/new.mawapres/framework/web/CController.php(291): CFilterChain->run()
+#6 /home/cethol/Projects/new.mawapres/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 /home/cethol/Projects/new.mawapres/framework/web/CWebApplication.php(282): CController->run('view')
+#8 /home/cethol/Projects/new.mawapres/framework/web/CWebApplication.php(141): CWebApplication->runController('pt/mahasiswa/vi...')
+#9 /home/cethol/Projects/new.mawapres/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#10 /home/cethol/Projects/new.mawapres/index.php(13): CApplication->run()
+#11 {main}
+REQUEST_URI=/new.mawapres/pt/mahasiswa/view/1
+HTTP_REFERER=http://localhost/new.mawapres/pt
+---
+2016/03/21 14:55:12 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/favicon.png".' in /home/cethol/Projects/new.mawapres/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /home/cethol/Projects/new.mawapres/framework/web/CWebApplication.php(141): CWebApplication->runController('images/favicon....')
+#1 /home/cethol/Projects/new.mawapres/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /home/cethol/Projects/new.mawapres/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/new.mawapres/images/favicon.png
+HTTP_REFERER=http://localhost/new.mawapres/pt/default/login
+---
+2016/03/21 14:55:19 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in /home/cethol/Projects/new.mawapres/framework/web/auth/CAccessControlFilter.php:182
+Stack trace:
+#0 /home/cethol/Projects/new.mawapres/framework/web/auth/CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(WebUser), 'You are not aut...')
+#1 /home/cethol/Projects/new.mawapres/framework/web/filters/CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 /home/cethol/Projects/new.mawapres/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 /home/cethol/Projects/new.mawapres/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 /home/cethol/Projects/new.mawapres/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 /home/cethol/Projects/new.mawapres/framework/web/CController.php(291): CFilterChain->run()
+#6 /home/cethol/Projects/new.mawapres/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 /home/cethol/Projects/new.mawapres/framework/web/CWebApplication.php(282): CController->run('view')
+#8 /home/cethol/Projects/new.mawapres/framework/web/CWebApplication.php(141): CWebApplication->runController('pt/mahasiswa/vi...')
+#9 /home/cethol/Projects/new.mawapres/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#10 /home/cethol/Projects/new.mawapres/index.php(13): CApplication->run()
+#11 {main}
+REQUEST_URI=/new.mawapres/pt/mahasiswa/view/1
+HTTP_REFERER=http://localhost/new.mawapres/pt/default/index
+---
+2016/03/21 15:50:07 [error] [php] include(MyFormatter.php): failed to open stream: No such file or directory (/home/cethol/Projects/new.mawapres/framework/YiiBase.php:421)
+Stack trace:
+#0 /home/cethol/Projects/new.mawapres/protected/modules/pt/controllers/MahasiswaController.php(59): spl_autoload_call()
+#1 unknown(0): MahasiswaController->actionDaftar()
+#2 /home/cethol/Projects/new.mawapres/framework/web/actions/CAction.php(108): ReflectionMethod->invokeArgs()
+#3 /home/cethol/Projects/new.mawapres/framework/web/actions/CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#4 /home/cethol/Projects/new.mawapres/framework/web/CController.php(308): CInlineAction->runWithParams()
+#5 /home/cethol/Projects/new.mawapres/framework/web/filters/CFilterChain.php(133): MahasiswaController->runAction()
+#6 /home/cethol/Projects/new.mawapres/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#7 /home/cethol/Projects/new.mawapres/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#8 /home/cethol/Projects/new.mawapres/framework/web/filters/CInlineFilter.php(58): MahasiswaController->filterAccessControl()
+#9 /home/cethol/Projects/new.mawapres/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#10 /home/cethol/Projects/new.mawapres/framework/web/CController.php(291): CFilterChain->run()
+#11 /home/cethol/Projects/new.mawapres/framework/web/CController.php(265): MahasiswaController->runActionWithFilters()
+#12 /home/cethol/Projects/new.mawapres/framework/web/CWebApplication.php(282): MahasiswaController->run()
+#13 /home/cethol/Projects/new.mawapres/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#14 /home/cethol/Projects/new.mawapres/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#15 /home/cethol/Projects/new.mawapres/index.php(13): CWebApplication->run()
+REQUEST_URI=/new.mawapres/pt/mahasiswa/daftar/jenjang/DIPLOMA
+in /home/cethol/Projects/new.mawapres/protected/modules/pt/controllers/MahasiswaController.php (59)
+in /home/cethol/Projects/new.mawapres/index.php (13)
+2016/03/21 18:21:54 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/favicon.png".' in /home/cethol/Projects/new.mawapres/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /home/cethol/Projects/new.mawapres/framework/web/CWebApplication.php(141): CWebApplication->runController('images/favicon....')
+#1 /home/cethol/Projects/new.mawapres/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /home/cethol/Projects/new.mawapres/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/new.mawapres/images/favicon.png
+HTTP_REFERER=http://localhost/new.mawapres/pt/default/login
+---
+2016/03/21 18:26:55 [error] [exception.CException] exception 'CException' with message 'Property "PtModule.homeUrl" is not defined.' in /home/cethol/Projects/new.mawapres/framework/base/CComponent.php:173
+Stack trace:
+#0 /home/cethol/Projects/new.mawapres/protected/modules/pt/PtModule.php(10): CComponent->__set('homeUrl', Array)
+#1 /home/cethol/Projects/new.mawapres/framework/base/CModule.php(90): PtModule->init()
+#2 /home/cethol/Projects/new.mawapres/framework/YiiBase.php(206): CModule->__construct('pt', NULL, Array)
+#3 /home/cethol/Projects/new.mawapres/framework/base/CModule.php(282): YiiBase::createComponent('pt.PtModule', 'pt', NULL, Array)
+#4 /home/cethol/Projects/new.mawapres/framework/web/CWebApplication.php(337): CModule->getModule('pt')
+#5 /home/cethol/Projects/new.mawapres/framework/web/CWebApplication.php(276): CWebApplication->createController('pt/mahasiswa/vi...')
+#6 /home/cethol/Projects/new.mawapres/framework/web/CWebApplication.php(141): CWebApplication->runController('pt/mahasiswa/vi...')
+#7 /home/cethol/Projects/new.mawapres/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#8 /home/cethol/Projects/new.mawapres/index.php(13): CApplication->run()
+#9 {main}
+REQUEST_URI=/new.mawapres/pt/mahasiswa/view/1
+HTTP_REFERER=http://localhost/new.mawapres/pt/default/index
+---
+2016/03/21 18:28:37 [error] [exception.CException] exception 'CException' with message 'Property "CWebApplication.homeLabel" is not defined.' in /home/cethol/Projects/new.mawapres/framework/base/CComponent.php:173
+Stack trace:
+#0 /home/cethol/Projects/new.mawapres/protected/modules/pt/PtModule.php(11): CComponent->__set('homeLabel', 'Beranda')
+#1 /home/cethol/Projects/new.mawapres/framework/base/CModule.php(90): PtModule->init()
+#2 /home/cethol/Projects/new.mawapres/framework/YiiBase.php(206): CModule->__construct('pt', NULL, Array)
+#3 /home/cethol/Projects/new.mawapres/framework/base/CModule.php(282): YiiBase::createComponent('pt.PtModule', 'pt', NULL, Array)
+#4 /home/cethol/Projects/new.mawapres/framework/web/CWebApplication.php(337): CModule->getModule('pt')
+#5 /home/cethol/Projects/new.mawapres/framework/web/CWebApplication.php(276): CWebApplication->createController('pt/mahasiswa/da...')
+#6 /home/cethol/Projects/new.mawapres/framework/web/CWebApplication.php(141): CWebApplication->runController('pt/mahasiswa/da...')
+#7 /home/cethol/Projects/new.mawapres/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#8 /home/cethol/Projects/new.mawapres/index.php(13): CApplication->run()
+#9 {main}
+REQUEST_URI=/new.mawapres/pt/mahasiswa/daftar/jenjang/DIPLOMA
+HTTP_REFERER=http://localhost/new.mawapres/pt
+---
+2016/03/21 18:28:42 [error] [exception.CException] exception 'CException' with message 'Property "CWebApplication.homeLabelUrl" is not defined.' in /home/cethol/Projects/new.mawapres/framework/base/CComponent.php:173
+Stack trace:
+#0 /home/cethol/Projects/new.mawapres/protected/modules/pt/PtModule.php(11): CComponent->__set('homeLabelUrl', 'Beranda')
+#1 /home/cethol/Projects/new.mawapres/framework/base/CModule.php(90): PtModule->init()
+#2 /home/cethol/Projects/new.mawapres/framework/YiiBase.php(206): CModule->__construct('pt', NULL, Array)
+#3 /home/cethol/Projects/new.mawapres/framework/base/CModule.php(282): YiiBase::createComponent('pt.PtModule', 'pt', NULL, Array)
+#4 /home/cethol/Projects/new.mawapres/framework/web/CWebApplication.php(337): CModule->getModule('pt')
+#5 /home/cethol/Projects/new.mawapres/framework/web/CWebApplication.php(276): CWebApplication->createController('pt/mahasiswa/da...')
+#6 /home/cethol/Projects/new.mawapres/framework/web/CWebApplication.php(141): CWebApplication->runController('pt/mahasiswa/da...')
+#7 /home/cethol/Projects/new.mawapres/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#8 /home/cethol/Projects/new.mawapres/index.php(13): CApplication->run()
+#9 {main}
+REQUEST_URI=/new.mawapres/pt/mahasiswa/daftar/jenjang/DIPLOMA
+HTTP_REFERER=http://localhost/new.mawapres/pt
+---
+2016/03/21 18:28:52 [error] [exception.CException] exception 'CException' with message 'Property "CWebApplication.homeLink" is not defined.' in /home/cethol/Projects/new.mawapres/framework/base/CComponent.php:173
+Stack trace:
+#0 /home/cethol/Projects/new.mawapres/protected/modules/pt/PtModule.php(11): CComponent->__set('homeLink', 'Beranda')
+#1 /home/cethol/Projects/new.mawapres/framework/base/CModule.php(90): PtModule->init()
+#2 /home/cethol/Projects/new.mawapres/framework/YiiBase.php(206): CModule->__construct('pt', NULL, Array)
+#3 /home/cethol/Projects/new.mawapres/framework/base/CModule.php(282): YiiBase::createComponent('pt.PtModule', 'pt', NULL, Array)
+#4 /home/cethol/Projects/new.mawapres/framework/web/CWebApplication.php(337): CModule->getModule('pt')
+#5 /home/cethol/Projects/new.mawapres/framework/web/CWebApplication.php(276): CWebApplication->createController('pt/mahasiswa/da...')
+#6 /home/cethol/Projects/new.mawapres/framework/web/CWebApplication.php(141): CWebApplication->runController('pt/mahasiswa/da...')
+#7 /home/cethol/Projects/new.mawapres/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#8 /home/cethol/Projects/new.mawapres/index.php(13): CApplication->run()
+#9 {main}
+REQUEST_URI=/new.mawapres/pt/mahasiswa/daftar/jenjang/DIPLOMA
+HTTP_REFERER=http://localhost/new.mawapres/pt
+---
+2016/03/21 18:55:21 [error] [php] Missing argument 2 for CWebUser::setFlash(), called in /home/cethol/Projects/new.mawapres/protected/modules/pt/views/mahasiswa/view.php on line 11 and defined (/home/cethol/Projects/new.mawapres/framework/web/auth/CWebUser.php:682)
+Stack trace:
+#0 /home/cethol/Projects/new.mawapres/framework/web/CBaseController.php(95): MahasiswaController->renderInternal()
+#1 /home/cethol/Projects/new.mawapres/framework/web/CController.php(869): MahasiswaController->renderFile()
+#2 /home/cethol/Projects/new.mawapres/framework/web/CController.php(782): MahasiswaController->renderPartial()
+#3 /home/cethol/Projects/new.mawapres/protected/modules/pt/controllers/MahasiswaController.php(86): MahasiswaController->render()
+#4 unknown(0): MahasiswaController->actionView()
+#5 /home/cethol/Projects/new.mawapres/framework/web/actions/CAction.php(108): ReflectionMethod->invokeArgs()
+#6 /home/cethol/Projects/new.mawapres/framework/web/actions/CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#7 /home/cethol/Projects/new.mawapres/framework/web/CController.php(308): CInlineAction->runWithParams()
+#8 /home/cethol/Projects/new.mawapres/framework/web/filters/CFilterChain.php(133): MahasiswaController->runAction()
+#9 /home/cethol/Projects/new.mawapres/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#10 /home/cethol/Projects/new.mawapres/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#11 /home/cethol/Projects/new.mawapres/framework/web/filters/CInlineFilter.php(58): MahasiswaController->filterAccessControl()
+#12 /home/cethol/Projects/new.mawapres/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#13 /home/cethol/Projects/new.mawapres/framework/web/CController.php(291): CFilterChain->run()
+#14 /home/cethol/Projects/new.mawapres/framework/web/CController.php(265): MahasiswaController->runActionWithFilters()
+#15 /home/cethol/Projects/new.mawapres/framework/web/CWebApplication.php(282): MahasiswaController->run()
+#16 /home/cethol/Projects/new.mawapres/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#17 /home/cethol/Projects/new.mawapres/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#18 /home/cethol/Projects/new.mawapres/index.php(13): CWebApplication->run()
+REQUEST_URI=/new.mawapres/pt/mahasiswa/view/3
+in /home/cethol/Projects/new.mawapres/protected/modules/pt/views/mahasiswa/view.php (11)
+in /home/cethol/Projects/new.mawapres/protected/modules/pt/controllers/MahasiswaController.php (86)
+in /home/cethol/Projects/new.mawapres/index.php (13)
+2016/03/21 18:58:06 [error] [exception.CException] exception 'CException' with message 'Property "CDetailView.itemCssTemplate" is not defined.' in /home/cethol/Projects/new.mawapres/framework/base/CComponent.php:173
+Stack trace:
+#0 /home/cethol/Projects/new.mawapres/framework/web/CWidgetFactory.php(161): CComponent->__set('itemCssTemplate', 'table table-bas...')
+#1 /home/cethol/Projects/new.mawapres/framework/web/CBaseController.php(146): CWidgetFactory->createWidget(Object(MahasiswaController), 'zii.widgets.CDe...', Array)
+#2 /home/cethol/Projects/new.mawapres/framework/web/CBaseController.php(172): CBaseController->createWidget('zii.widgets.CDe...', Array)
+#3 /home/cethol/Projects/new.mawapres/protected/modules/pt/views/mahasiswa/view.php(78): CBaseController->widget('zii.widgets.CDe...', Array)
+#4 /home/cethol/Projects/new.mawapres/framework/web/CBaseController.php(126): require('/home/cethol/Pr...')
+#5 /home/cethol/Projects/new.mawapres/framework/web/CBaseController.php(95): CBaseController->renderInternal('/home/cethol/Pr...', Array, true)
+#6 /home/cethol/Projects/new.mawapres/framework/web/CController.php(869): CBaseController->renderFile('/home/cethol/Pr...', Array, true)
+#7 /home/cethol/Projects/new.mawapres/framework/web/CController.php(782): CController->renderPartial('view', Array, true)
+#8 /home/cethol/Projects/new.mawapres/protected/modules/pt/controllers/MahasiswaController.php(86): CController->render('view', Array)
+#9 [internal function]: MahasiswaController->actionView('1')
+#10 /home/cethol/Projects/new.mawapres/framework/web/actions/CAction.php(108): ReflectionMethod->invokeArgs(Object(MahasiswaController), Array)
+#11 /home/cethol/Projects/new.mawapres/framework/web/actions/CInlineAction.php(47): CAction->runWithParamsInternal(Object(MahasiswaController), Object(ReflectionMethod), Array)
+#12 /home/cethol/Projects/new.mawapres/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#13 /home/cethol/Projects/new.mawapres/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#14 /home/cethol/Projects/new.mawapres/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#15 /home/cethol/Projects/new.mawapres/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#16 /home/cethol/Projects/new.mawapres/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#17 /home/cethol/Projects/new.mawapres/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#18 /home/cethol/Projects/new.mawapres/framework/web/CController.php(291): CFilterChain->run()
+#19 /home/cethol/Projects/new.mawapres/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#20 /home/cethol/Projects/new.mawapres/framework/web/CWebApplication.php(282): CController->run('view')
+#21 /home/cethol/Projects/new.mawapres/framework/web/CWebApplication.php(141): CWebApplication->runController('pt/mahasiswa/vi...')
+#22 /home/cethol/Projects/new.mawapres/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#23 /home/cethol/Projects/new.mawapres/index.php(13): CApplication->run()
+#24 {main}
+REQUEST_URI=/new.mawapres/pt/mahasiswa/view/1
+HTTP_REFERER=http://localhost/new.mawapres/pt/default/index
+---
+2016/03/21 18:58:11 [error] [exception.CException] exception 'CException' with message 'Property "CDetailView.itemsCssTemplate" is not defined.' in /home/cethol/Projects/new.mawapres/framework/base/CComponent.php:173
+Stack trace:
+#0 /home/cethol/Projects/new.mawapres/framework/web/CWidgetFactory.php(161): CComponent->__set('itemsCssTemplat...', 'table table-bas...')
+#1 /home/cethol/Projects/new.mawapres/framework/web/CBaseController.php(146): CWidgetFactory->createWidget(Object(MahasiswaController), 'zii.widgets.CDe...', Array)
+#2 /home/cethol/Projects/new.mawapres/framework/web/CBaseController.php(172): CBaseController->createWidget('zii.widgets.CDe...', Array)
+#3 /home/cethol/Projects/new.mawapres/protected/modules/pt/views/mahasiswa/view.php(78): CBaseController->widget('zii.widgets.CDe...', Array)
+#4 /home/cethol/Projects/new.mawapres/framework/web/CBaseController.php(126): require('/home/cethol/Pr...')
+#5 /home/cethol/Projects/new.mawapres/framework/web/CBaseController.php(95): CBaseController->renderInternal('/home/cethol/Pr...', Array, true)
+#6 /home/cethol/Projects/new.mawapres/framework/web/CController.php(869): CBaseController->renderFile('/home/cethol/Pr...', Array, true)
+#7 /home/cethol/Projects/new.mawapres/framework/web/CController.php(782): CController->renderPartial('view', Array, true)
+#8 /home/cethol/Projects/new.mawapres/protected/modules/pt/controllers/MahasiswaController.php(86): CController->render('view', Array)
+#9 [internal function]: MahasiswaController->actionView('1')
+#10 /home/cethol/Projects/new.mawapres/framework/web/actions/CAction.php(108): ReflectionMethod->invokeArgs(Object(MahasiswaController), Array)
+#11 /home/cethol/Projects/new.mawapres/framework/web/actions/CInlineAction.php(47): CAction->runWithParamsInternal(Object(MahasiswaController), Object(ReflectionMethod), Array)
+#12 /home/cethol/Projects/new.mawapres/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#13 /home/cethol/Projects/new.mawapres/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#14 /home/cethol/Projects/new.mawapres/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#15 /home/cethol/Projects/new.mawapres/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#16 /home/cethol/Projects/new.mawapres/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#17 /home/cethol/Projects/new.mawapres/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#18 /home/cethol/Projects/new.mawapres/framework/web/CController.php(291): CFilterChain->run()
+#19 /home/cethol/Projects/new.mawapres/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#20 /home/cethol/Projects/new.mawapres/framework/web/CWebApplication.php(282): CController->run('view')
+#21 /home/cethol/Projects/new.mawapres/framework/web/CWebApplication.php(141): CWebApplication->runController('pt/mahasiswa/vi...')
+#22 /home/cethol/Projects/new.mawapres/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#23 /home/cethol/Projects/new.mawapres/index.php(13): CApplication->run()
+#24 {main}
+REQUEST_URI=/new.mawapres/pt/mahasiswa/view/1
+HTTP_REFERER=http://localhost/new.mawapres/pt/default/index
+---
+2016/03/22 08:38:08 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/favicon.png".' in /home/cethol/Projects/new.mawapres/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /home/cethol/Projects/new.mawapres/framework/web/CWebApplication.php(141): CWebApplication->runController('images/favicon....')
+#1 /home/cethol/Projects/new.mawapres/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /home/cethol/Projects/new.mawapres/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/new.mawapres/images/favicon.png
+HTTP_REFERER=http://localhost/new.mawapres/
+---

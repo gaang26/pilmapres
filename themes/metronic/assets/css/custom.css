@@ -1,0 +1,37 @@
+.bordered-dashed-1{
+    border: 1px dashed #DDD;
+}
+
+
+/*BEGIN: profile card*/
+.v-card{
+	text-align: center !important;
+}
+.v-card .image-container{
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+.v-card .image-container img{
+	border-radius: 100px !important;
+	height: 171px;
+	width: 171px;
+}
+.v-card .profile-container{}
+.v-card .profile-container .nama{
+	font-size: 1.2em;
+	font-weight: bold;
+}
+.v-card .profile-container .jurusan{}
+.v-card .profile-container .pin{
+    color: #b94a48;
+    font-weight: bold;
+}
+.v-card .profile-container .nama-pt{}
+/*END: profile card*/
+
+.table.table-basic td{
+    border: none;
+}
+.table.table-dashed-border td{
+    border: 1px dashed #DDD;
+}
