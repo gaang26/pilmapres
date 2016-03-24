@@ -35,3 +35,79 @@
 .table.table-dashed-border td{
     border: 1px dashed #DDD;
 }
+.table.table-dashed-border th{
+    font-weight: bold;
+    border: 1px dashed #DDD;
+}
+.table.table-bordered tr{
+    border: 1px solid #DDD;
+}
+
+
+
+/*step*/
+.step{
+	text-align: center;
+	margin-bottom: 20px;
+	padding: 20px;
+	text-decoration: none !important;
+}
+.step.bg-done{
+	background-color: #26C281!important;
+}
+.step.bg-done .step-number , .step.bg-done .step-title , .step.bg-done .step-content{
+	color: #FFFFFF !important;
+	border-color: #FFFFFF !important;
+	font-weight: 100;
+}
+
+.step.bg-active{
+	background-color: #32c5d2!important;
+}
+.step.bg-active .step-number , .step.bg-active .step-title , .step.bg-active .step-content{
+	color: #FFFFFF !important;
+	border-color: #FFFFFF !important;
+	font-weight: 100;
+}
+
+.step.error .step-number , .step.error .step-title , .step.error .step-content{
+	color: #E7505A !important;
+	border-color: #E7505A !important;
+	font-weight: 600;
+}
+.step.done .step-number , .step.done .step-title , .step.done .step-content{
+	color: #26C281!important;
+	border-color: #26C281!important;
+	font-weight: 600;
+}
+.step.active .step-number , .step.active .step-title , .step.active .step-content{
+	color: #32c5d2!important;
+	border-color: #32c5d2!important;
+	font-weight: 600;
+}
+.step .step-number{
+	font-size: 26px;
+    border-radius: 50%!important;
+    display: inline-block;
+    margin: auto auto 20px;
+    padding: 12px 15px;
+    border: 1px solid #95A5A6;
+	color: #95A5A6;
+	font-weight: 600;
+}
+.step .step-title{
+	font-size: 18px;
+	font-weight: 600;
+	margin: 10px 0px;
+	color: #95A5A6;
+
+}
+.step .step-content{
+	color: #95A5A6;
+	font-weight: 600;
+    font-size: 12px;
+}
+.font-grey{
+	color: #95A5A6 !important
+}
+/*step*/

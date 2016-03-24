@@ -21,6 +21,21 @@
  */
 class PesertaPrestasi extends CActiveRecord
 {
+	const PENCAPAIAN_JUARA_1='Juara 1';
+	const PENCAPAIAN_JUARA_2='Juara 2';
+	const PENCAPAIAN_JUARA_3='Juara 3';
+	const PENCAPAIAN_LAINNYA='Lainnya';
+
+	const TINGKAT_INTERNASIONAL = 1;
+	const TINGKAT_NASIONAL = 2;
+	const TINGKAT_PROPINSI = 3;
+	const TINGKAT_REGIONAL = 4;
+
+	const JENIS_INDIVIDU = 1;
+	const JENIS_KELOMPOK = 2;
+
+	public $OTHERS;
+
 	/**
 	 * @return string the associated database table name
 	 */
@@ -37,17 +52,38 @@ class PesertaPrestasi extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('ID_PRESTASI, ID_PESERTA, NAMA_PRESTASI, PENCAPAIAN, TAHUN, JENIS, LEMBAGA, TINGKAT', 'required'),
+			array(
+                'SERTIFIKAT',
+                'file',
+				'types'=>'jpg,jpeg,png',
+				'on'=>'new-prestasi-no-other, new-prestasi-with-other',
+				'maxSize'=>1024 * 1024 * 1,//1MB
+				'tooLarge'=>'Ukuran maksimal 1 MB',
+                'allowEmpty'=>true,
+				//'message'=>'Sertifikat tidak boleh dikosongkan',
+			),
+			array('ID_PRESTASI, ID_PESERTA, NAMA_PRESTASI, PENCAPAIAN, TAHUN, JENIS, LEMBAGA, TINGKAT, OTHERS, PRIORITAS', 'required','on'=>'new-prestasi,edit-prestasi'),
 			array('ID_PRESTASI, ID_PESERTA, JENIS, TINGKAT, PRIORITAS', 'numerical', 'integerOnly'=>true),
 			array('NAMA_PRESTASI, LEMBAGA', 'length', 'max'=>100),
-			array('PENCAPAIAN', 'length', 'max'=>50),
+			array('PENCAPAIAN', 'length', 'max'=>255),
 			array('TAHUN', 'length', 'max'=>4),
 			array('SERTIFIKAT', 'length', 'max'=>255),
 			array('TANGGAL_INPUT', 'safe'),
+			array('PRIORITAS','checkUniqueOrder'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('ID_PRESTASI, ID_PESERTA, NAMA_PRESTASI, PENCAPAIAN, TAHUN, JENIS, LEMBAGA, TINGKAT, SERTIFIKAT, PRIORITAS, TANGGAL_INPUT', 'safe', 'on'=>'search'),
 		);
+	}
+
+	public function checkUniqueOrder($attribute,$param){
+		$criteria = new CDbCriteria;
+		$criteria->condition = 'ID_PESERTA=:id_peserta AND PRIORITAS=:order';
+		$criteria->params = array(':id_peserta'=>$this->ID_PESERTA,':order'=>$this->PRIORITAS);
+
+		$model = self::model()->find($criteria);
+		if($this->isNewRecord && $model!==null)
+			$this->addError('PRIORITAS','Anda sudah memasukkan prioritas '.$this->PRIORITAS.' untuk prestasi '.$model->NAMA_PRESTASI);
 	}
 
 	/**
@@ -58,7 +94,7 @@ class PesertaPrestasi extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'iDPESERTA' => array(self::BELONGS_TO, 'Peserta', 'ID_PESERTA'),
+			'Peserta' => array(self::BELONGS_TO, 'Peserta', 'ID_PESERTA'),
 		);
 	}
 
@@ -70,11 +106,12 @@ class PesertaPrestasi extends CActiveRecord
 		return array(
 			'ID_PRESTASI' => 'Id Prestasi',
 			'ID_PESERTA' => 'Id Peserta',
-			'NAMA_PRESTASI' => 'Nama Prestasi',
-			'PENCAPAIAN' => 'Pencapaian',
-			'TAHUN' => 'Tahun',
-			'JENIS' => 'Jenis',
-			'LEMBAGA' => 'Lembaga',
+			'NAMA_PRESTASI' => 'Nama Prestasi/Kemampuan yg Diunggulkan',
+			'PENCAPAIAN' => 'Pencapaian/Penghargaan/Pengakuan',
+			'OTHERS'=>'Masukkan pencapaian/penghargaan/pengakuan lainnya',
+			'TAHUN' => 'Tahun Perolehan',
+			'JENIS' => 'Individu/Kelompok',
+			'LEMBAGA' => 'Lembaga Pemberi/Event',
 			'TINGKAT' => 'Tingkat',
 			'SERTIFIKAT' => 'Sertifikat',
 			'PRIORITAS' => 'Prioritas',
@@ -126,5 +163,85 @@ class PesertaPrestasi extends CActiveRecord
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
+	}
+
+	public function generateID(){
+		$post = rand(1,999);
+		if(strlen($post)==1)
+			$post = '00'.$post;
+		else if(strlen($post)==2)
+			$post = '0'.$post;
+		else
+			$post = $post;
+
+		$id = str_replace(' ', '', $this->ID_PESERTA.$post);
+		return $id;
+	}
+
+	public function isAvailable(){
+		$criteria = new CDbCriteria;
+		$criteria->condition = 'ID_PESERTA=:id_peserta';
+		$criteria->params = array(':id_peserta'=>$this->ID_PESERTA);
+		$count = self::model()->count($criteria);
+
+		return $count<10;
+	}
+	public static function optionsPencapaian(){
+		return array(
+			self::PENCAPAIAN_JUARA_1=>'Juara 1',
+			self::PENCAPAIAN_JUARA_2=>'Juara 2',
+			self::PENCAPAIAN_JUARA_3=>'Juara 3',
+			self::PENCAPAIAN_LAINNYA=>'Lainnya',
+		);
+	}
+	public static function optionsTingkat(){
+		return array(
+			self::TINGKAT_INTERNASIONAL =>'Internasional',
+			self::TINGKAT_NASIONAL =>'Nasional',
+			self::TINGKAT_PROPINSI =>'Propinsi',
+			self::TINGKAT_REGIONAL =>'Regional',
+		);
+	}
+	public static function optionsJenis(){
+		return array(
+			self::JENIS_INDIVIDU=>'Individu',
+			self::JENIS_KELOMPOK=>'Kelompok',
+		);
+	}
+	public static function optionsTahun(){
+		$tahun = [];
+		for($i=date('Y');$i>=2000;$i--){
+			$tahun[$i] = $i;
+		}
+		return $tahun;
+	}
+	public static function optionsPrioritas(){
+		$prioritas = [];
+		for($i=1;$i<=10;$i++){
+			$prioritas[$i] = $i;
+		}
+		return $prioritas;
+	}
+	public function getLabelJenis(){
+		if($this->JENIS==self::JENIS_INDIVIDU)
+			return '<span class="label label-success">Individu</span>';
+		else
+			return '<span class="label label-success">Kelompok</span>';;
+	}
+	public function getLabelTingkat(){
+		switch ($this->TINGKAT) {
+			case self::TINGKAT_INTERNASIONAL:
+				return '<span class="label label-important">Internasional</span>';
+				break;
+			case self::TINGKAT_NASIONAL:
+				return '<span class="label label-info">Nasional</span>';;
+				break;
+			case self::TINGKAT_PROPINSI:
+				return '<span class="label label-warning">Propinsi</span>';;
+				break;
+			case self::TINGKAT_REGIONAL:
+				return '<span class="label">Regional</span>';;
+				break;
+		}
 	}
 }

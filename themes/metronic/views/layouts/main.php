@@ -24,6 +24,7 @@
 
     <link rel="stylesheet" href="<?php echo $baseUrl; ?>/assets/css/chosen/jquery.chosen.css" />
 
+
     <link rel="stylesheet" href="<?php echo $baseUrl;?>/assets/plugins/revolution_slider/css/rs-style.css" media="screen">
     <link rel="stylesheet" href="<?php echo $baseUrl;?>/assets/plugins/revolution_slider/rs-plugin/css/settings.css" media="screen">
     <link href="<?php echo $baseUrl;?>/assets/css/style-responsive.css" rel="stylesheet" type="text/css"/>

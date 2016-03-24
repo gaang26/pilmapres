@@ -182,7 +182,13 @@ class MahasiswaController extends Controller
 	 */
 	public function loadModel($id)
 	{
-		$model=Peserta::model()->findByPk($id);
+		$criteria = new CDbCriteria;
+		$criteria->condition = 'ID_PESERTA=:peserta AND TAHUN=:tahun';
+		$criteria->params = array(
+			':peserta'=>$id,
+			':tahun'=>Yii::app()->params['tahun']
+		);
+		$model=Peserta::model()->find($criteria);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;

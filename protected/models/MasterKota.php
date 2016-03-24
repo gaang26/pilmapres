@@ -47,8 +47,8 @@ class MasterKota extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'iDPROVINSI' => array(self::BELONGS_TO, 'MasterProvinsi', 'ID_PROVINSI'),
-			'pesertas' => array(self::HAS_MANY, 'Peserta', 'ID_KOTA'),
+			'Provinsi' => array(self::BELONGS_TO, 'MasterProvinsi', 'ID_PROVINSI'),
+			'Peserta' => array(self::HAS_MANY, 'Peserta', 'ID_KOTA'),
 		);
 	}
 
@@ -100,5 +100,16 @@ class MasterKota extends CActiveRecord
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
+	}
+
+	public static function optionsAll(){
+		$model = self::model()->findAll();
+
+		$kota = [];
+		foreach ($model as $data) {
+			$kota[$data->ID_KOTA] = $data->NAMA_KOTA.', '.$data->Provinsi->NAMA_PROVINSI;
+		}
+
+		return $kota;
 	}
 }

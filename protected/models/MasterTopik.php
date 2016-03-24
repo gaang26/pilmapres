@@ -50,7 +50,7 @@ class MasterTopik extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'pesertas' => array(self::HAS_MANY, 'Peserta', 'ID_TOPIK'),
+			'Peserta' => array(self::HAS_MANY, 'Peserta', 'ID_TOPIK'),
 		);
 	}
 
@@ -106,5 +106,23 @@ class MasterTopik extends CActiveRecord
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
+	}
+
+	public static function optionsTopik($jenjang){
+		$tahun = Yii::app()->params['tahun'];
+		$criteria = new CDbCriteria;
+		$criteria->condition = 'TAHUN=:tahun AND JENJANG=:jenjang';
+		$criteria->params = array(
+			':tahun'=>$tahun,
+			':jenjang'=>$jenjang
+		);
+		$criteria->order = 'JUDUL ASC';
+
+		$model = self::model()->findAll($criteria);
+		$data = [];
+		foreach ($model as $topik) {
+			$data[$topik->ID_TOPIK] = $topik->JUDUL;
+		}
+		return $data;
 	}
 }

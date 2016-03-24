@@ -3,7 +3,7 @@
 class DefaultController extends Controller
 {
 	public function actionIndex(){
-		if(WebUser::isGuest() && !WebUser::isUserPT()){
+		if(WebUser::isGuest() || !WebUser::isUserPT()){
 			$this->redirect(array('default/login'));
 		}else{
 			$this->render('index');
@@ -43,5 +43,9 @@ class DefaultController extends Controller
 	{
 		Yii::app()->user->logout();
 		$this->redirect(array('default/index'));
+	}
+
+	public function actionError(){
+		$this->render('error');
 	}
 }

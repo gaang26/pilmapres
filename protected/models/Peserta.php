@@ -25,6 +25,7 @@
  * @property string $WEBSITE
  * @property string $PHOTO
  * @property string $JUDUL_KTI
+ * @property string $FILE_KTI
  * @property integer $ID_TOPIK
  * @property string $BIDANG
  * @property string $RINGKASAN
@@ -51,6 +52,13 @@ class Peserta extends CActiveRecord
 {
 	const SARJANA = 'SARJANA';
 	const DIPLOMA = 'DIPLOMA';
+
+	const MALE = 'L';
+	const FEMALE = 'P';
+
+	const BIDANG_IPA = 'IPA';
+	const BIDANG_IPS = 'IPS';
+	const BIDANG_TERAPAN = 'TERAPAN';
 	/**
 	 * @return string the associated database table name
 	 */
@@ -67,17 +75,41 @@ class Peserta extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
+			array(
+                'FILE_KTI',
+                'file',
+				'types'=>'pdf',
+				'on'=>'update-kti-new',
+				'maxSize'=>1024 * 1024 * 10,//10Mb
+				'tooLarge'=>'Ukuran maksimal 10 MB',
+                'allowEmpty'=>false,
+				'message'=>'File karya tulis ilmiah tidak boleh dikosongkan',
+			),
+			array(
+                'FILE_KTI',
+                'file',
+				'types'=>'pdf',
+				'on'=>'update-kti-edit',
+				'maxSize'=>1024 * 1024 * 10,//10Mb
+				'tooLarge'=>'Ukuran maksimal 10 MB',
+                'allowEmpty'=>true,
+			),
 			array('ID_PT, ROLE, PIN, TAHUN, NIM, NAMA, ID_PRODI, JENJANG, SEMESTER, EMAIL, PASSWORD', 'required','on'=>'daftar'),
+			array('NIM, NAMA, ID_PRODI, JENJANG, SEMESTER, EMAIL, HP, EMAIL, ALAMAT, ID_KOTA, JENIS_KELAMIN, TEMPAT_LAHIR, TANGGAL_LAHIR,IPK', 'required','on'=>'update-profil'),
+			array('JUDUL_KTI, BIDANG, ID_TOPIK, RINGKASAN', 'required', 'on'=>'update-kti-new,update-kti-edit'),
 			array('ID_PT, ROLE, ID_PRODI, SEMESTER, ID_KOTA, ID_TOPIK, ID_USER, ROLE_USER, TAHAP_AWAL', 'numerical', 'integerOnly'=>true),
 			array('PIN, BIDANG', 'length', 'max'=>10),
 			array('TAHUN', 'length', 'max'=>4),
 			array('NIM, TEMPAT_LAHIR, PASSWORD', 'length', 'max'=>50),
 			array('NAMA, EMAIL, WEBSITE', 'length', 'max'=>100),
 			array('JENJANG', 'length', 'max'=>15),
-			array('IPK', 'length', 'max'=>5),
+			array('JENIS_KELAMIN', 'length', 'max'=>1),
+			array('IPK', 'length', 'max'=>4),
+			array('IPK', 'numerical', 'numberPattern' => "/^\s*[-+]?[0-9]*[.,]?[0-9]+([eE][-+]?[0-9]+)?\s*$/"),
 			array('HP', 'length', 'max'=>20),
-			array('PHOTO, JUDUL_KTI, VIDEO_RINGKASAN, VIDEO_KESEHARIAN, SURAT_PENGANTAR, URL_FORLAP, KTM', 'length', 'max'=>255),
-			array('TANGGAL_LAHIR, ALAMAT, RINGKASAN, TANGGAL_INPUT, TANGGAL_UPDATE', 'safe'),
+			array('JUDUL_KTI', 'length', 'max'=>500),
+			array('PHOTO, VIDEO_RINGKASAN, VIDEO_KESEHARIAN, SURAT_PENGANTAR, URL_FORLAP, KTM', 'length', 'max'=>255),
+			array('TANGGAL_LAHIR, ALAMAT, RINGKASAN, TANGGAL_INPUT, TANGGAL_UPDATE,FILE_KTI', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('ID_PESERTA, ID_PT, ROLE, PIN, TAHUN, NIM, NAMA, ID_PRODI, JENJANG, SEMESTER, IPK, EMAIL, HP, TEMPAT_LAHIR, TANGGAL_LAHIR, ALAMAT, ID_KOTA, WEBSITE, PHOTO, JUDUL_KTI, ID_TOPIK, BIDANG, RINGKASAN, VIDEO_RINGKASAN, VIDEO_KESEHARIAN, SURAT_PENGANTAR, URL_FORLAP, KTM, ID_USER, ROLE_USER, TANGGAL_INPUT, TANGGAL_UPDATE, TAHAP_AWAL', 'safe', 'on'=>'search'),
@@ -97,7 +129,7 @@ class Peserta extends CActiveRecord
 			'PT' => array(self::BELONGS_TO, 'MasterPT', 'ID_PT'),
 			'Prodi' => array(self::BELONGS_TO, 'MasterProdi', 'ID_PRODI'),
 			'Prestasi' => array(self::HAS_MANY, 'PesertaPrestasi', 'ID_PESERTA'),
-			'SosialMedia' => array(self::MANY_MANY, 'MasterSosialMedia', 'peserta_sosial_media(ID_PESERTA, ID_SOSIAL_MEDIA)'),
+			'SosialMedia' => array(self::HAS_MANY, 'PesertaSosialMedia', 'ID_PESERTA'),
 		);
 	}
 
@@ -126,10 +158,11 @@ class Peserta extends CActiveRecord
 			'ID_KOTA' => 'Kota',
 			'WEBSITE' => 'Website',
 			'PHOTO' => 'Photo',
-			'JUDUL_KTI' => 'Judul Karya Tulis Ilmiah',
-			'ID_TOPIK' => 'Topik',
-			'BIDANG' => 'Bidang',
-			'RINGKASAN' => 'Ringkasan',
+			'JUDUL_KTI' => 'Judul Karya Tulis',
+			'FILE_KTI' => 'File Karya Tulis',
+			'ID_TOPIK' => 'Topik Karya Tulis',
+			'BIDANG' => 'Bidang Karya Tulis',
+			'RINGKASAN' => 'Ringkasan Karya Tulis Dalam Bahasa Asing (Bukan Abstrak)',
 			'VIDEO_RINGKASAN' => 'Video Ringkasan',
 			'VIDEO_KESEHARIAN' => 'Video Keseharian',
 			'SURAT_PENGANTAR' => 'Surat Pengantar',
@@ -263,6 +296,72 @@ class Peserta extends CActiveRecord
 			$smt[$i] = $i;
 		}
 		return $smt;
+	}
+
+	public static function optionsJenisKelamin(){
+		return array(
+			self::MALE=>'Laki-Laki',
+			self::FEMALE=>'Perempuan',
+		);
+	}
+	public static function optionsBidang(){
+		return array(
+			self::BIDANG_IPA=>'IPA (Alam dan Formal)',
+			self::BIDANG_IPS=>'IPS (Humaniora, Sosial, dan Agama)',
+			self::BIDANG_TERAPAN=>'Terapan'
+		);
+	}
+
+	//get get an
+	public function getWilayah(){
+		if($this->Kota!=null){
+			return $this->Kota->NAMA_KOTA.', '.$this->Kota->Provinsi->NAMA_PROVINSI;
+		}else{
+			'-';
+		}
+	}
+	public function getJenisKelamin(){
+		if($this->JENIS_KELAMIN==self::MALE){
+			return 'Laki-Laki';
+		}else if($this->JENIS_KELAMIN==self::FEMALE){
+			return 'Perempuan';
+		}else{
+			return '-';
+		}
+	}
+	public function getTanggalLahir(){
+		if($this->TANGGAL_LAHIR!=null || $this->TANGGAL_LAHIR!='')
+			return date('d M Y',strtotime($this->TANGGAL_LAHIR));
+		else
+			return '-';
+	}
+
+	//is is an
+	public function isKaryaTulisEmpty(){
+		return $this->JUDUL_KTI==null || $this->JUDUL_KTI=='';
+	}
+
+	public function isBiodataEmpty(){
+		return $this->JENIS_KELAMIN==null || $this->JENIS_KELAMIN=='';
+	}
+
+	public function isPrestasiEmpty(){
+		return count($this->Prestasi)==0;
+	}
+
+	public function isVideoEmpty(){
+		return $this->VIDEO_RINGKASAN==null || $this->VIDEO_RINGKASAN=='';
+	}
+
+	public function getPrestasi(){
+		$criteria = new CDbCriteria;
+		$criteria->condition = 'ID_PESERTA=:id_peserta';
+		$criteria->params = array(':id_peserta'=>$this->ID_PESERTA);
+		$criteria->order = 'PRIORITAS ASC';
+
+		$model = PesertaPrestasi::model()->findAll($criteria);
+
+		return $model;
 	}
 
 	//
