@@ -97,6 +97,7 @@ class Peserta extends CActiveRecord
 			array('ID_PT, ROLE, PIN, TAHUN, NIM, NAMA, ID_PRODI, JENJANG, SEMESTER, EMAIL, PASSWORD', 'required','on'=>'daftar'),
 			array('NIM, NAMA, ID_PRODI, JENJANG, SEMESTER, EMAIL, HP, EMAIL, ALAMAT, ID_KOTA, JENIS_KELAMIN, TEMPAT_LAHIR, TANGGAL_LAHIR,IPK', 'required','on'=>'update-profil'),
 			array('JUDUL_KTI, BIDANG, ID_TOPIK, RINGKASAN', 'required', 'on'=>'update-kti-new,update-kti-edit'),
+			array('VIDEO_RINGKASAN','required','on'=>'update-video'),
 			array('ID_PT, ROLE, ID_PRODI, SEMESTER, ID_KOTA, ID_TOPIK, ID_USER, ROLE_USER, TAHAP_AWAL', 'numerical', 'integerOnly'=>true),
 			array('PIN, BIDANG', 'length', 'max'=>10),
 			array('TAHUN', 'length', 'max'=>4),
@@ -163,7 +164,7 @@ class Peserta extends CActiveRecord
 			'ID_TOPIK' => 'Topik Karya Tulis',
 			'BIDANG' => 'Bidang Karya Tulis',
 			'RINGKASAN' => 'Ringkasan Karya Tulis Dalam Bahasa Asing (Bukan Abstrak)',
-			'VIDEO_RINGKASAN' => 'Video Ringkasan',
+			'VIDEO_RINGKASAN' => 'Video Kemampuan Bahasa Inggris',
 			'VIDEO_KESEHARIAN' => 'Video Keseharian',
 			'SURAT_PENGANTAR' => 'Surat Pengantar',
 			'URL_FORLAP' => 'URL Forlap',
@@ -363,6 +364,18 @@ class Peserta extends CActiveRecord
 
 		return $model;
 	}
+
+	public function getEmbedLink($url,$width,$height)
+    {
+        $temp=explode('=',$url);
+        if(count($temp)>1){
+            $id=$temp[1];
+            $embed = '<iframe width="'.$width.'" height="'.$height.'" src="http://youtube.com/embed/'.$id.'" frameborder="0" allowfullscreen></iframe>';
+            return $embed;
+        }else{
+            return "<div class='alert alert-error'>Mohon masukkan URL video yang benar seperti pada contoh. Sistem tidak dapat mengenali url : ".$url."</div>";
+        }
+    }
 
 	//
 	// public function getImage(){

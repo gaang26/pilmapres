@@ -26,7 +26,7 @@ if(!$peserta->isPrestasiEmpty()){
 
 if(!$peserta->isVideoEmpty()){
     $status_video = 'done';
-}else if($this->id=='video' && $this->action->id=='tambah'){
+}else if($this->id=='video' && $this->action->id=='update'){
     $status_video = 'active';
 }
 ?>

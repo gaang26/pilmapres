@@ -111,3 +111,17 @@
 	color: #95A5A6 !important
 }
 /*step*/
+
+
+/*blockquote*/
+blockquote.note{
+    border-left: 3px solid #DDD;
+    padding: 0px 10px;
+    font-style: normal !important;
+}
+blockquote.note.note-info{
+    border-color: #bce8f1!important;
+    background-color: #d9edf7;
+    color: #3a87ad;
+    padding: 10px;
+}

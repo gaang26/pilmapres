@@ -36,6 +36,7 @@ class PesertaLoginForm extends CFormModel
 	public function attributeLabels()
 	{
 		return array(
+			'pin'=>'PIN Peserta',
 			'rememberMe'=>'Remember me next time',
 		);
 	}

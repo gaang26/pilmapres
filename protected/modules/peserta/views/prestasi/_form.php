@@ -118,6 +118,7 @@
 
             	<div class="row buttons">
             		<?php echo CHtml::submitButton($model->isNewRecord ? 'SIMPAN DATA PRESTASI' : 'SIMPAN PERUBAHAN',array('class'=>'btn green')); ?>
+					<?php echo CHtml::link('BATAL',array('prestasi/index'),array('class'=>'btn yellow','style'=>'margin-top:-4px;')); ?>
             	</div>
             </div>
         </div>

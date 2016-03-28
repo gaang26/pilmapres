@@ -7,15 +7,18 @@ $this->pageTitle = 'Beranda Perguruan Tinggi';
 // );
 ?>
 
-
-<div class="alert alert-info">
-	<?php
-	if(WebUser::isPTN()){
-		echo 'Anda bisa mendaftarkan 2 mahasiswa berprestasi dari perguruan tinggi Anda. <br>Terdiri dari 1 mahasiswa dari jenjang SARJANA, dan 1 mahasiswa dari jenjang DIPLOMA.';
-	}else{
-		echo 'Anda bisa mendaftarkan 1 mahasiswa berprestasi dari jenjang DIPLOMA';
-	}
-	?>
+<div class="row-fluid">
+	<div class="span8 offset2">
+		<div class="alert alert-info">
+			<?php
+			if(WebUser::isPTN()){
+				echo 'Anda bisa mendaftarkan 2 mahasiswa berprestasi dari perguruan tinggi Anda. <br>Terdiri dari 1 mahasiswa dari jenjang SARJANA, dan 1 mahasiswa dari jenjang DIPLOMA.';
+			}else{
+				echo 'Anda bisa mendaftarkan 1 mahasiswa berprestasi dari jenjang DIPLOMA';
+			}
+			?>
+		</div>
+	</div>
 </div>
 
 <?php

@@ -4,17 +4,61 @@
 $this->pageTitle=Yii::app()->name;
 ?>
 
-<h1>Welcome to <i><?php echo CHtml::encode(Yii::app()->name); ?></i></h1>
+<div class="row-fluid">
+	<div class="span2 offset3">
+		<a href="<?php echo Yii::app()->createUrl('/peserta/default/index')?>">
+			<div class="step">
+				<div class="step-number">
+					<i class="icon-user"></i>
+				</div>
+				<div class="step-title">
+					PESERTA
+				</div>
+				<div class="step-content">
+					Login peserta mawapres
+				</div>
+			</div>
+		</a>
+	</div>
+	<div class="span2">
+		<a href="<?php echo Yii::app()->createUrl('/pt/default/index')?>">
+			<div class="step">
+				<div class="step-number">
+					<i class="icon-user"></i>
+				</div>
+				<div class="step-title">
+					PTN/PTS
+				</div>
+				<div class="step-content">
+					Login pengelola perguruan tinggi negeri/swasta
+				</div>
 
-<p>Congratulations! You have successfully created your Yii application.</p>
+			</div>
+		</a>
 
-<p>You may change the content of this page by modifying the following two files:</p>
-<ul>
-	<li>View file: <code><?php echo __FILE__; ?></code></li>
-	<li>Layout file: <code><?php echo $this->getLayoutFile('main'); ?></code></li>
-</ul>
+	</div>
+	<div class="span2">
+		<a href="<?php echo Yii::app()->createUrl('/kopertis/default/index')?>">
+			<div class="step">
+				<div class="step-number">
+					<i class="icon-user"></i>
+				</div>
+				<div class="step-title">
+					KOPERTIS
+				</div>
+				<div class="step-content">
+					Login pengelola kopertis wilayah
+				</div>
+			</div>
+		</a>
+	</div>
+</div>
 
-<p>For more details on how to further develop this application, please read
-the <a href="http://www.yiiframework.com/doc/">documentation</a>.
-Feel free to ask in the <a href="http://www.yiiframework.com/forum/">forum</a>,
-should you have any questions.</p>
+
+<style media="screen">
+a:hover{
+	text-decoration: none !important;
+}
+</style>
+
+<?php $this->renderPartial('pages/jadwal'); ?>

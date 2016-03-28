@@ -162,3 +162,10 @@ div.wide.form .buttons, div.wide.form .hint, div.wide.form .errorMessage
 	clear: left;
 	padding-left: 110px;
 }
+
+div.form .compactRadioGroup label,
+div.form .compactRadioGroup input {
+    display:inline-block;
+    margin-left: 0px !important;
+    margin-right: 5px;
+}
