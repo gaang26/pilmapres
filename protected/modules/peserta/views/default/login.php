@@ -11,10 +11,10 @@ $this->breadcrumbs=array(
 
 <div class="row-fluid">
 	<div class="span6 offset3">
-		<div class="well well-smoke bordered-dashed-1 text-center">
+		<div class="well well-smoke bordered-dashed-1">
 			<h2>Login Peserta</h2>
 
-			<p>Please fill out the following form with your login credentials:</p>
+			<p>Silahkan isi form berikut dengan akun peserta yang Anda dapatkan dari perguruan tinggi:</p>
 
 			<div class="form text-left">
 			<?php $form=$this->beginWidget('CActiveForm', array(
@@ -27,13 +27,13 @@ $this->breadcrumbs=array(
 
 				<div class="row">
 					<?php echo $form->labelEx($model,'pin'); ?>
-					<?php echo $form->textField($model,'pin',array('class'=>'input-block-level')); ?>
+					<?php echo $form->textField($model,'pin'); ?>
 					<?php echo $form->error($model,'pin'); ?>
 				</div>
 
 				<div class="row">
 					<?php echo $form->labelEx($model,'password'); ?>
-					<?php echo $form->passwordField($model,'password',array('class'=>'input-block-level')); ?>
+					<?php echo $form->passwordField($model,'password'); ?>
 					<?php echo $form->error($model,'password'); ?>
 				</div>
 
@@ -44,10 +44,12 @@ $this->breadcrumbs=array(
 				</div>
 
 				<div class="row buttons">
-					<?php echo CHtml::submitButton('Masuk',array('class'=>'btn blue btn-block')); ?>
+					<?php echo CHtml::submitButton('Masuk',array('class'=>'btn blue')); ?>
 				</div>
 
 			<?php $this->endWidget(); ?>
+
+			</div><!-- form -->
 			<div class="row-fluid">
 				<div class="span6">
 					<?php echo CHtml::link('Lupa Password?',array('default/lupapassword')); ?>
@@ -56,7 +58,6 @@ $this->breadcrumbs=array(
 
 				</div>
 			</div>
-			</div><!-- form -->
 		</div>
 	</div>
 </div>

@@ -81,7 +81,12 @@ class KtiController extends Controller
                 }
 
 				if($model->save()){
-					$this->redirect(array('default/index'));
+					Yii::app()->user->setFlash('info',MyFormatter::alertSuccess('<b>Sukses!</b> Informasi karya tulis ilmiah telah berhasil disimpan.'));
+					if($model->isVideoEmpty()){
+						$this->redirect(array('video/update'));
+					}else{
+						$this->redirect(array('kti/update'));
+					}
 				}
 			}
 

@@ -4,6 +4,11 @@ $status_kti = '';
 $status_prestasi = '';
 $status_video = '';
 
+$number_biodata = '1';
+$number_kti = '2';
+$number_video = '3';
+$number_prestasi = '4';
+
 $peserta = Peserta::model()->findByPk(Yii::app()->user->getState('id_peserta'));
 
 if(!$peserta->isBiodataEmpty()){
@@ -64,26 +69,11 @@ if(!$peserta->isVideoEmpty()){
 		</a>
 
 	</div>
-	<div class="span2">
-		<a href="<?php echo Yii::app()->createUrl('peserta/prestasi/index')?>">
-			<div class="step <?php echo $status_prestasi; ?>">
-				<div class="step-number">
-					3
-				</div>
-				<div class="step-title">
-					PRESTASI
-				</div>
-				<div class="step-content">
-					Melengkapi prestasi unggulan
-				</div>
-			</div>
-		</a>
-	</div>
-	<div class="span2">
+    <div class="span2">
 		<a href="<?php echo Yii::app()->createUrl('peserta/video/index')?>">
 			<div class="step <?php echo $status_video; ?>">
 				<div class="step-number">
-					4
+					3
 				</div>
 				<div class="step-title">
 					VIDEO
@@ -94,6 +84,22 @@ if(!$peserta->isVideoEmpty()){
 			</div>
 		</a>
 	</div>
+	<div class="span2">
+		<a href="<?php echo Yii::app()->createUrl('peserta/prestasi/index')?>">
+			<div class="step <?php echo $status_prestasi; ?>">
+				<div class="step-number">
+					4
+				</div>
+				<div class="step-title">
+					PRESTASI
+				</div>
+				<div class="step-content">
+					Melengkapi prestasi unggulan
+				</div>
+			</div>
+		</a>
+	</div>
+
 </div>
 
 

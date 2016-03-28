@@ -34,7 +34,9 @@ class PesertaPrestasi extends CActiveRecord
 	const JENIS_INDIVIDU = 1;
 	const JENIS_KELOMPOK = 2;
 
+	const MAKS_PRESTASI = 10;
 	public $OTHERS;
+	public $FILE_SERTIFIKAT;
 
 	/**
 	 * @return string the associated database table name
@@ -53,10 +55,20 @@ class PesertaPrestasi extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array(
-                'SERTIFIKAT',
+                'FILE_SERTIFIKAT',
                 'file',
 				'types'=>'jpg,jpeg,png',
-				'on'=>'new-prestasi-no-other, new-prestasi-with-other',
+				'on'=>'new-prestasi',
+				'maxSize'=>1024 * 1024 * 1,//1MB
+				'tooLarge'=>'Ukuran maksimal 1 MB',
+                'allowEmpty'=>true,
+				//'message'=>'Sertifikat tidak boleh dikosongkan',
+			),
+			array(
+                'FILE_SERTIFIKAT',
+                'file',
+				'types'=>'jpg,jpeg,png',
+				'on'=>'edit-prestasi',
 				'maxSize'=>1024 * 1024 * 1,//1MB
 				'tooLarge'=>'Ukuran maksimal 1 MB',
                 'allowEmpty'=>true,
@@ -68,7 +80,7 @@ class PesertaPrestasi extends CActiveRecord
 			array('PENCAPAIAN', 'length', 'max'=>255),
 			array('TAHUN', 'length', 'max'=>4),
 			array('SERTIFIKAT', 'length', 'max'=>255),
-			array('TANGGAL_INPUT', 'safe'),
+			array('TANGGAL_INPUT, KETERANGAN', 'safe'),
 			array('PRIORITAS','checkUniqueOrder'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
@@ -113,9 +125,11 @@ class PesertaPrestasi extends CActiveRecord
 			'JENIS' => 'Individu/Kelompok',
 			'LEMBAGA' => 'Lembaga Pemberi/Event',
 			'TINGKAT' => 'Tingkat',
-			'SERTIFIKAT' => 'Sertifikat',
+			'SERTIFIKAT' => 'Sertifikat Prestasi',
+			'FILE_SERTIFIKAT' => 'Sertifikat Prestasi',
 			'PRIORITAS' => 'Prioritas',
 			'TANGGAL_INPUT' => 'Tanggal Input',
+			'KETERANGAN'=>'Keterangan Tambahan',
 		);
 	}
 
@@ -184,7 +198,7 @@ class PesertaPrestasi extends CActiveRecord
 		$criteria->params = array(':id_peserta'=>$this->ID_PESERTA);
 		$count = self::model()->count($criteria);
 
-		return $count<10;
+		return $count<self::MAKS_PRESTASI;
 	}
 	public static function optionsPencapaian(){
 		return array(
@@ -242,6 +256,16 @@ class PesertaPrestasi extends CActiveRecord
 			case self::TINGKAT_REGIONAL:
 				return '<span class="label">Regional</span>';;
 				break;
+		}
+	}
+
+	public function getSertifikat(){
+		$photopath = Yii::app()->basePath . '/../file/prestasi/'.Yii::app()->params['tahun'].'/' . $this->SERTIFIKAT;
+		if($this->SERTIFIKAT!=null && $this->SERTIFIKAT!='' && file_exists($photopath)){
+			$photourl = Yii::app()->request->baseUrl.'/file/prestasi/'.Yii::app()->params['tahun'].'/'.$this->SERTIFIKAT;
+			return '<img src="'.$photourl.'" alt="Photo"/>';
+		}else{
+			return 'TIDAK ADA SERTIFIKAT';
 		}
 	}
 }

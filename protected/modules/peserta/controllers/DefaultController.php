@@ -9,8 +9,12 @@ class DefaultController extends Controller
 			$peserta = $this->loadModel();
 			if($peserta->isBiodataEmpty()){
 				$this->redirect(array('biodata/update'));
+			}else if($peserta->isKaryaTulisEmpty()){
+				$this->redirect(array('kti/update'));
+			}else if($peserta->isVideoEmpty()){
+				$this->redirect(array('video/update'));
 			}
-			$this->render('index');
+			$this->render('index',array('peserta'=>$peserta));
 		}
 	}
 

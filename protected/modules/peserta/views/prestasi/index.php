@@ -27,11 +27,18 @@ dl.list-prestasi dd{
 
 <div class="row-fluid">
     <div class="span8 offset2">
+        <?php echo Yii::app()->user->getFlash('info'); ?>
         <div class="well well-smoke bordered-dashed-1 text-center">
-            <?php echo CHtml::link('Tambah Prestasi / Kemampuan Unggulan',array('prestasi/tambah'),array(
+            <?php echo CHtml::link('<i class="icon-plus"></i> Tambah Prestasi / Kemampuan Unggulan',array('prestasi/tambah'),array(
                 'class'=>'btn blue'
             )); ?>
+            <?php echo CHtml::link('<i class="icon-ok"></i> Selesai',array('default/index'),array(
+                'class'=>'btn green'
+            )); ?>
         </div>
+
+        <blockquote class="note note-info">Anda dapat memasukkan 10 prestasi/kemampuan unggulan. Urutkan sesuai dengan prioritas atau prestasi yang paling membanggakan (prioritas 1 - 10).<br>
+        </blockquote>
 
         <table class="table table-bordered table-striped">
             <tr>
@@ -39,13 +46,19 @@ dl.list-prestasi dd{
                     Prioritas
                 </th>
                 <th>
-                    Informasi Kemampuan yang Diunggulkan
+                    Pencapaian
                 </th>
-                <th width="5%">
-                    Koreksi
+                <th>
+                    Prestasi
                 </th>
-                <th width="5%">
-                    Hapus
+                <th>
+                    Tahun
+                </th>
+                <th>
+                    Tingkat
+                </th>
+                <th width="100px">
+
                 </th>
             </tr>
             <?php
@@ -56,7 +69,8 @@ dl.list-prestasi dd{
                     <?php echo $prestasi->PRIORITAS; ?>
                 </td>
                 <td>
-                    <dl class="list-prestasi">
+                    <?php echo $prestasi->PENCAPAIAN; ?>
+                    <!-- <dl class="list-prestasi">
                         <dt>Nama Prestasi</dt>
                         <dd><?php echo $prestasi->NAMA_PRESTASI; ?></dd>
 
@@ -74,20 +88,30 @@ dl.list-prestasi dd{
 
                         <dt>Tingkat</dt>
                         <dd><?php echo $prestasi->getLabelTingkat(); ?></dd>
-                    </dl>
+                    </dl> -->
                 </td>
                 <td>
-                    <?php echo CHtml::link('<i class="icon-pencil"></i>','#',array(
-                        'submit'=>array('prestasi/hapus'),
-                        'confirm'=>'Apakah Anda yakin ingin menghapus data ini?',
-                        'class'=>'btn yellow'
+                    <?php echo $prestasi->NAMA_PRESTASI; ?>
+                </td>
+                <td>
+                    <?php echo $prestasi->TAHUN; ?>
+                </td>
+                <td>
+                    <?php echo $prestasi->getLabelTingkat(); ?>
+                </td>
+                <td style="text-align:right;">
+                    <?php echo CHtml::link('<i class="icon-search"></i>',array('prestasi/view','id'=>$prestasi->ID_PRESTASI),array(
+                        'class'=>'btn mini green'
                     )); ?>
-                </td>
-                <td>
+                    <?php echo CHtml::link('<i class="icon-pencil"></i>',array('prestasi/update','id'=>$prestasi->ID_PRESTASI),array(
+                        'class'=>'btn mini yellow',
+                        'title'=>'Koreksi prestasi',
+                    )); ?>
                     <?php echo CHtml::link('<i class="icon-trash"></i>','#',array(
-                        'submit'=>array('prestasi/hapus'),
+                        'submit'=>array('prestasi/hapus','id'=>$prestasi->ID_PRESTASI),
                         'confirm'=>'Apakah Anda yakin ingin menghapus data ini?',
-                        'class'=>'btn red'
+                        'class'=>'btn mini red',
+                        'title'=>'Hapus prestasi',
                     )); ?>
                 </td>
             </tr>

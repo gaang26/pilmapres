@@ -7,7 +7,7 @@ $this->pageTitle=Yii::app()->name;
 <div class="row-fluid">
 	<div class="span2 offset3">
 		<a href="<?php echo Yii::app()->createUrl('/peserta/default/index')?>">
-			<div class="step">
+			<div class="step blue">
 				<div class="step-number">
 					<i class="icon-user"></i>
 				</div>
@@ -22,7 +22,7 @@ $this->pageTitle=Yii::app()->name;
 	</div>
 	<div class="span2">
 		<a href="<?php echo Yii::app()->createUrl('/pt/default/index')?>">
-			<div class="step">
+			<div class="step blue">
 				<div class="step-number">
 					<i class="icon-user"></i>
 				</div>
@@ -39,7 +39,7 @@ $this->pageTitle=Yii::app()->name;
 	</div>
 	<div class="span2">
 		<a href="<?php echo Yii::app()->createUrl('/kopertis/default/index')?>">
-			<div class="step">
+			<div class="step blue">
 				<div class="step-number">
 					<i class="icon-user"></i>
 				</div>

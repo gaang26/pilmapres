@@ -51,15 +51,67 @@ class BiodataController extends Controller
         $model = $this->loadModel();
 		$model->scenario = 'update-profil';
 
-		if(isset($_POST['Peserta'])){
-			$model->attributes = $_POST['Peserta'];
+		$sosmed = new PesertaSosialMedia;
 
-			if($model->save()){
-				$this->redirect(array('default/index'));
+		if(isset($_POST['Peserta'],$_POST['PesertaSosialMedia'])){
+			$model->attributes = $_POST['Peserta'];
+			$sosmed->attributes = $_POST['PesertaSosialMedia'];
+
+			if (CUploadedFile::getInstance($model, 'PHOTO') != NULL) {
+				//jika sebelumnya telah mengupload file kti
+				if ($model->PHOTO != NULL && file_exists(Yii::app()->basePath . '/../file/foto/' . $model->PHOTO)) {
+					// maka dihapus filenya, diganti dengan yang baru
+					unlink(Yii::app()->basePath . '/../file/foto/' . $model->PHOTO);
+				}
+				//mengambil value dari fileupload
+				$model->PHOTO = CUploadedFile::getInstance($model, 'PHOTO');
 			}
+
+			if($model->validate()){
+				//proses upload dan menyimpan dalam database
+                if (CUploadedFile::getInstance($model, 'PHOTO') != NULL) {
+                    if ($model->PHOTO) {
+						$nama = strtoupper(str_replace(' ','_',$model->NAMA));
+                        $nama_file = $model->JENJANG.'_'.$nama.'_'.$model->PIN.'_PHOTO_'.str_replace(' ','_',$model->PHOTO);
+                        //simpan file ke server
+                        $model->PHOTO->saveAs(Yii::app()->basePath . '/../file/foto/' . $nama_file);
+                        $model->setAttribute('PHOTO', $nama_file); //memberikan nama lampiran sesuai dengan nama file yang diupload
+                    }
+                }
+				if($model->save()){
+					foreach (MasterSosialMedia::getAll() as $datamaster) {
+						$existing = $model->getSocialMedia($datamaster->ID_SOSIAL_MEDIA);
+	                    if($existing!=null){
+	                        $_sosmed = $existing;
+							$_sosmed->KETERANGAN = $sosmed->KETERANGAN[$datamaster->ID_SOSIAL_MEDIA];
+
+							$_sosmed->save();
+	                    }else{
+	                        $_sosmed = new PesertaSosialMedia;
+							$_sosmed->ID_PESERTA = $model->ID_PESERTA;
+							$_sosmed->ID_SOSIAL_MEDIA = $datamaster->ID_SOSIAL_MEDIA;
+							$_sosmed->KETERANGAN = $sosmed->KETERANGAN[$datamaster->ID_SOSIAL_MEDIA];
+							$_sosmed->TANGGAL_INPUT = date('Y-m-d H:i:s');
+
+							if($sosmed->KETERANGAN[$datamaster->ID_SOSIAL_MEDIA]!='' || $sosmed->KETERANGAN[$datamaster->ID_SOSIAL_MEDIA]!=null){
+								$_sosmed->save();
+							}
+	                    }
+					}
+
+					Yii::app()->user->setFlash('info',MyFormatter::alertSuccess('<b>Sukses!</b> Informasi biodata telah berhasil disimpan.'));
+					if($model->isKaryaTulisEmpty()){
+						$this->redirect(array('kti/update'));
+					}else{
+						$this->redirect(array('biodata/update'));
+					}
+				}
+			}
+
 		}
         $this->render('update',array(
-            'model'=>$model
+            'model'=>$model,
+			'sosmed'=>$sosmed
         ));
     }
 

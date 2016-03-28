@@ -6,4 +6,4 @@ $this->breadcrumbs = array(
 );
 ?>
 <?php $this->renderPartial('../default/_step'); ?>
-<?php $this->renderPartial('_form', array('model'=>$model)); ?>
+<?php $this->renderPartial('_form', array('model'=>$model,'sosmed'=>$sosmed)); ?>

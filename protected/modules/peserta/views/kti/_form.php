@@ -19,9 +19,13 @@
     <div class="row-fluid">
         <div class="span8 offset2">
             <div class="well well-white bordered-dashed-1">
-                <p class="note">Fields with <span class="required">*</span> are required.</p>
+                <?php echo Yii::app()->user->getFlash('info'); ?>
 
                 <?php //echo $form->errorSummary($model); ?>
+
+                <h4>Informasi Karya Tulis Ilmiah</h4>
+                <blockquote class="note"><small>Masukkan informasi karya tulis ilmiah Anda pada kolom-kolom yang tersedia dibawah ini:</small>
+                </blockquote>
 
                 <div class="row">
             		<?php echo $form->labelEx($model,'JUDUL_KTI'); ?>

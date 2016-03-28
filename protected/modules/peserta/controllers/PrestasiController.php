@@ -9,7 +9,7 @@ class PrestasiController extends Controller
 	{
 		return array(
 			'accessControl', // perform access control for CRUD operations
-			'postOnly + delete', // we only allow deletion via POST request
+			'postOnly + hapus', // we only allow deletion via POST request
 		);
 	}
 
@@ -23,7 +23,7 @@ class PrestasiController extends Controller
 		return array(
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
 				'actions'=>array(
-                    'index','update','tambah',
+                    'index','update','tambah','hapus','view'
                 ),
 				'users'=>array('@'),
 				'roles'=>array(WebUser::ROLE_PESERTA)
@@ -63,20 +63,26 @@ class PrestasiController extends Controller
 					$model->OTHERS=$model->PENCAPAIAN;
 
                 $model->ID_PRESTASI = $model->generateID();
+
+				if (CUploadedFile::getInstance($model, 'FILE_SERTIFIKAT') != NULL) {
+					$model->FILE_SERTIFIKAT = CUploadedFile::getInstance($model, 'FILE_SERTIFIKAT');
+				}
 				if($model->validate()){
 					//proses upload dan menyimpan dalam database
 					$path = Yii::app()->basePath . '/../file/prestasi/'.Yii::app()->params['tahun'].'/';
-	                if (CUploadedFile::getInstance($model, 'SERTIFIKAT') != NULL) {
-	                	$model->SERTIFIKAT = CUploadedFile::getInstance($model, 'SERTIFIKAT');
-	                    if ($model->SERTIFIKAT) {
-	                    	$name = $_FILES['PesertaPrestasi']['name']['SERTIFIKAT'];
+	                if (CUploadedFile::getInstance($model, 'FILE_SERTIFIKAT') != NULL) {
+	                	$model->FILE_SERTIFIKAT = CUploadedFile::getInstance($model, 'FILE_SERTIFIKAT');
+	                    if ($model->FILE_SERTIFIKAT) {
+	                    	$name = $_FILES['PesertaPrestasi']['name']['FILE_SERTIFIKAT'];
 							$ext = end((explode(".", $name)));
 							$nama_prestasi = str_replace(' ', '_', $model->NAMA_PRESTASI);
 							$nama_prestasi = str_replace('/', '_', $nama_prestasi);
-	                        $fullImgName = $model->ID_PESERTA.'_'.$model->KODE_PRESTASI.'_'.$model->SORT_ORDER.'_SERTIFIKAT_'.$nama_prestasi.'.'.$ext;
-	                        //$fullImgName = $model->SERTIFIKAT;
+
+							$nama = strtoupper(str_replace(' ','_',$model->Peserta->NAMA));
+	                        $fullImgName = $model->Peserta->JENJANG.'_'.$nama.'_'.$model->Peserta->PIN.'_'.$model->PRIORITAS.$model->ID_PRESTASI.'_SERTIFIKAT_'.$nama_prestasi.'.'.$ext;
+	                        //$fullImgName = $model->FILE_SERTIFIKAT;
 	                        //mengcopy file ke drive server
-	                        $model->SERTIFIKAT->saveAs($path. $fullImgName);
+	                        $model->FILE_SERTIFIKAT->saveAs($path. $fullImgName);
 	                        $model->setAttribute('SERTIFIKAT', $fullImgName); //memberikan nama lampiran sesuai dengan nama file yang diupload
 	                    }
 	                }
@@ -91,7 +97,7 @@ class PrestasiController extends Controller
 					$model->TANGGAL_INPUT = date('Y-m-d H:i:s');
 					if($model->save()){
 						Yii::app()->user->setFlash('info',MyFormatter::alertSuccess('<b>Sukses !</b> Prestasi unggulan baru telah berhasil ditambahkan'));
-						$this->redirect(array('prestasi/index'));
+						$this->redirect(array('prestasi/view','id'=>$model->ID_PRESTASI));
 					}
 				}else{
 					if($model->PENCAPAIAN!=PesertaPrestasi::PENCAPAIAN_LAINNYA)
@@ -104,26 +110,111 @@ class PrestasiController extends Controller
 				'model'=>$model,
 			));
 		}else{
+			Yii::app()->user->setFlash('info',MyFormatter::alertError('<b>Gagal !</b> Anda hanya bisa menambahkan '.PesertaPrestasi::MAKS_PRESTASI.' prestasi yang diunggulkan.'));
+			$this->redirect(array('prestasi/index'));
+		}
+	}
+
+	public function actionUpdate($id)
+	{
+		$model=$this->loadModelPrestasi($id);
+		$model->scenario = 'edit-prestasi';
+		//$model->ID_PESERTA = Yii::app()->user->getState('id_peserta');
+		if(true){
+			// Uncomment the following line if AJAX validation is needed
+			// $this->performAjaxValidation($model);
+
+			if(isset($_POST['PesertaPrestasi']))
+			{
+				$model->attributes=$_POST['PesertaPrestasi'];
+
+	            /*pencapaian lainnya*/
+				if($model->PENCAPAIAN!=PesertaPrestasi::PENCAPAIAN_LAINNYA)
+					$model->OTHERS=$model->PENCAPAIAN;
+
+				if (CUploadedFile::getInstance($model, 'FILE_SERTIFIKAT') != NULL) {
+					$model->FILE_SERTIFIKAT = CUploadedFile::getInstance($model, 'FILE_SERTIFIKAT');
+				}
+				if($model->validate()){
+					//proses upload dan menyimpan dalam database
+					$path = Yii::app()->basePath . '/../file/prestasi/'.Yii::app()->params['tahun'].'/';
+	                if (CUploadedFile::getInstance($model, 'FILE_SERTIFIKAT') != NULL) {
+
+						// REMOVE EXISTING
+						if($model->SERTIFIKAT!=null && $model->SERTIFIKAT!='' && file_exists($path.$model->SERTIFIKAT)){
+							unlink($path.$model->SERTIFIKAT);
+						}
+						// END REMOVE EXISTING
+
+	                	$model->FILE_SERTIFIKAT = CUploadedFile::getInstance($model, 'FILE_SERTIFIKAT');
+	                    if ($model->FILE_SERTIFIKAT) {
+	                    	$name = $_FILES['PesertaPrestasi']['name']['FILE_SERTIFIKAT'];
+							$ext = end((explode(".", $name)));
+							$nama_prestasi = str_replace(' ', '_', $model->NAMA_PRESTASI);
+							$nama_prestasi = str_replace('/', '_', $nama_prestasi);
+
+							$nama = strtoupper(str_replace(' ','_',$model->Peserta->NAMA));
+	                        $fullImgName = $model->Peserta->JENJANG.'_'.$model->Peserta->BIDANG.'_'.$nama.'_'.$model->Peserta->PIN.'_'.$model->PRIORITAS.$model->ID_PRESTASI.'_SERTIFIKAT_'.$nama_prestasi.'.'.$ext;
+	                        //$fullImgName = $model->SERTIFIKAT;
+	                        //mengcopy file ke drive server
+	                        $model->FILE_SERTIFIKAT->saveAs($path. $fullImgName);
+	                        $model->setAttribute('SERTIFIKAT', $fullImgName); //memberikan nama lampiran sesuai dengan nama file yang diupload
+	                    }
+	                }
+
+					/*pencapaian lainnya*/
+					if($model->PENCAPAIAN!=PesertaPrestasi::PENCAPAIAN_LAINNYA)
+						$model->OTHERS=$model->PENCAPAIAN;
+					else
+						$model->PENCAPAIAN=$model->OTHERS;
+					/*end pencapaian lainnya*/
+
+					$model->TANGGAL_INPUT = date('Y-m-d H:i:s');
+					if($model->save()){
+						Yii::app()->user->setFlash('info',MyFormatter::alertSuccess('<b>Sukses !</b> Perubahan telah berhasil disimpan'));
+						$this->redirect(array('prestasi/view','id'=>$model->ID_PRESTASI));
+					}
+				}else{
+					if($model->PENCAPAIAN!=PesertaPrestasi::PENCAPAIAN_LAINNYA)
+						$model->OTHERS='';
+					Yii::app()->user->setFlash('info',MyFormatter::alertError('<b>Gagal !</b> Terjadi kesalahan pada kolom isian data, silahkan cek kolom yang berwarna merah.'));
+				}
+			}
+
+			$this->render('update',array(
+				'model'=>$model,
+			));
+		}else{
 			Yii::app()->user->setFlash('info',MyFormatter::alertError('<b>Gagal !</b> Anda hanya bisa menambahkan 10 prestasi yang diunggulkan.'));
 			$this->redirect(array('prestasi/index'));
 		}
 	}
 
-    public function actionUpdate(){
-        $model = $this->loadModel();
-		$model->scenario = 'update-profil';
+	public function actionView($id){
+		$model = $this->loadModelPrestasi($id);
 
-		if(isset($_POST['Peserta'])){
-			$model->attributes = $_POST['Peserta'];
+		$this->render('view',array(
+			'model'=>$model
+		));
+	}
 
-			if($model->save()){
-				$this->redirect(array('default/index'));
+	public function actionHapus($id){
+		$model = $this->loadModelPrestasi($id);
+
+		$temp_sertifikat = $model->SERTIFIKAT;
+
+		if($model->delete()){
+			$path = Yii::app()->basePath . '/../file/prestasi/'.Yii::app()->params['tahun'].'/';
+			if($temp_sertifikat!=null && $temp_sertifikat!='' && file_exists($path.$temp_sertifikat)){
+				unlink($path.$temp_sertifikat);
 			}
+			Yii::app()->user->setFlash('info',MyFormatter::alertSuccess('Sukses!. data prestasi telah berhasil dihapus'));
+		}else{
+			Yii::app()->user->setFlash('info',MyFormatter::alertError('Gagal!. data prestasi tidak berhasil dihapus'));
 		}
-        $this->render('update',array(
-            'model'=>$model
-        ));
-    }
+
+		$this->redirect(array('prestasi/index'));
+	}
 
     /**
 	 * Returns the data model based on the primary key given in the GET variable.
@@ -142,6 +233,14 @@ class PrestasiController extends Controller
 			':tahun'=>Yii::app()->params['tahun']
 		);
 		$model=Peserta::model()->find($criteria);
+		if($model===null)
+			throw new CHttpException(404,'The requested page does not exist.');
+		return $model;
+	}
+
+	public function loadModelPrestasi($id_prestasi)
+	{
+		$model=PesertaPrestasi::model()->findByPk($id_prestasi);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;

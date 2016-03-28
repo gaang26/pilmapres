@@ -18,15 +18,13 @@
     <div class="row-fluid">
         <div class="span8 offset2">
             <div class="well well-white bordered-dashed-1">
-                <h4>Video kemampuan bahasa inggris</h4>
-                <p class="note">Fields with <span class="required">*</span> are required.</p>
-
                 <?php echo Yii::app()->user->getFlash('info'); ?>
+                <h4>Video kemampuan bahasa inggris</h4>
                 <?php //echo $form->errorSummary($model); ?>
 
-                <blockquote class="note note-info">Masukkan full url video yang telah Anda unggah di youtube.
+                <blockquote class="note"><small>Masukkan full url video yang telah Anda unggah di youtube.
                     Pastikan bahwa video yang Anda upload di youtube sudah Anda publish sehingga dapat terbaca pada sistem ini. Jika video Anda tidak dapat diputar, maka akan dianggap tidak menyertakan video kemampuan bahasa inggris.<br>
-                    Contoh url: http://www.youtube.com/watch?v=dNmuUOpBX7Q
+                    Contoh url: http://www.youtube.com/watch?v=dNmuUOpBX7Q</small>
                 </blockquote>
                 <div class="row">
                     <?php echo $form->labelEx($model,'VIDEO_RINGKASAN'); ?>
@@ -49,8 +47,9 @@
                 <div class="row buttons">
                     <?php echo CHtml::submitButton(($model->isVideoEmpty())?'SIMPAN VIDEO':'SIMPAN PERUBAHAN',array('class'=>'btn blue btn-large btn-block')); ?>
                 </div>
-                <?php echo CHtml::link('<< Kembali',array('default/index'),array(
-                )); ?>
+                <div class="text-right">
+                    <?php echo CHtml::link('Entri data prestasi >>',array('prestasi/index')); ?>
+                </div>
             </div>
         </div>
     </div>

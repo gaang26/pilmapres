@@ -109,11 +109,20 @@
                     </div>
                 </div>
 
+				<div class="row">
+            		<?php echo $form->labelEx($model,'KETERANGAN'); ?>
+					<p class="hint">
+						<small>Berikan keterangan tambahan mengenai prestasi yang Anda entrikan, misalnya informasi mengenai website event yang menyelenggarakan, link poster atau lainnya.</small>
+					</p>
+            		<?php echo $form->textArea($model,'KETERANGAN',array('class'=>'input-block-level','rows'=>5)); ?>
+            		<?php echo $form->error($model,'KETERANGAN'); ?>
+            	</div>
+
             	<div class="row">
-            		<?php echo $form->labelEx($model,'SERTIFIKAT'); ?>
+            		<?php echo $form->labelEx($model,'FILE_SERTIFIKAT'); ?>
             		<p class="hint">Masukkan file pendukung prestasi/sertifikat(jika ada). format file jpg/jpeg/png ukuran maks. 1MB</p>
-            		<?php echo $form->fileField($model,'SERTIFIKAT',array('class'=>'uniform-file')); ?>
-            		<?php echo $form->error($model,'SERTIFIKAT'); ?>
+            		<?php echo $form->fileField($model,'FILE_SERTIFIKAT',array('class'=>'uniform-file')); ?>
+            		<?php echo $form->error($model,'FILE_SERTIFIKAT'); ?>
             	</div>
 
             	<div class="row buttons">

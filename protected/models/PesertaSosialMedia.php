@@ -27,7 +27,7 @@ class PesertaSosialMedia extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('ID_SOSIAL_MEDIA, ID_PESERTA, KETERANGAN', 'required'),
+			array('ID_SOSIAL_MEDIA, ID_PESERTA', 'required'),
 			array('ID_SOSIAL_MEDIA, ID_PESERTA', 'numerical', 'integerOnly'=>true),
 			array('KETERANGAN', 'length', 'max'=>255),
 			array('TANGGAL_INPUT', 'safe'),

@@ -58,6 +58,7 @@ class MahasiswaController extends Controller
 					if($model->validate()){
 						$model->NAMA = trim(strtoupper($model->NAMA));
 						if($model->save()){
+							$model->sendEmailPeserta();
 							Yii::app()->user->setFlash('info',MyFormatter::alertSuccess('<b>Selamat!</b> peserta atas nama '.$model->NAMA.' telah berhasil didaftarkan.'));
 							$this->redirect(array('default/index'));
 						}

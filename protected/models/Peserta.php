@@ -94,6 +94,15 @@ class Peserta extends CActiveRecord
 				'tooLarge'=>'Ukuran maksimal 10 MB',
                 'allowEmpty'=>true,
 			),
+			array(
+                'PHOTO',
+                'file',
+				'types'=>'jpg,jpeg,png',
+				'on'=>'update-profil',
+				'maxSize'=>1024 * 300 * 1,//300KB
+				'tooLarge'=>'Ukuran maksimal 300 KB',
+                'allowEmpty'=>true,
+			),
 			array('ID_PT, ROLE, PIN, TAHUN, NIM, NAMA, ID_PRODI, JENJANG, SEMESTER, EMAIL, PASSWORD', 'required','on'=>'daftar'),
 			array('NIM, NAMA, ID_PRODI, JENJANG, SEMESTER, EMAIL, HP, EMAIL, ALAMAT, ID_KOTA, JENIS_KELAMIN, TEMPAT_LAHIR, TANGGAL_LAHIR,IPK', 'required','on'=>'update-profil'),
 			array('JUDUL_KTI, BIDANG, ID_TOPIK, RINGKASAN', 'required', 'on'=>'update-kti-new,update-kti-edit'),
@@ -158,7 +167,7 @@ class Peserta extends CActiveRecord
 			'ALAMAT' => 'Alamat',
 			'ID_KOTA' => 'Kota',
 			'WEBSITE' => 'Website',
-			'PHOTO' => 'Photo',
+			'PHOTO' => 'Foto Profil Peserta',
 			'JUDUL_KTI' => 'Judul Karya Tulis',
 			'FILE_KTI' => 'File Karya Tulis',
 			'ID_TOPIK' => 'Topik Karya Tulis',
@@ -353,6 +362,9 @@ class Peserta extends CActiveRecord
 	public function isVideoEmpty(){
 		return $this->VIDEO_RINGKASAN==null || $this->VIDEO_RINGKASAN=='';
 	}
+	public function isComplete(){
+		return (!$this->isVideoEmpty() && !$this->isPrestasiEmpty() && !$this->isBiodataEmpty() && !$this->isKaryaTulisEmpty());
+	}
 
 	public function getPrestasi(){
 		$criteria = new CDbCriteria;
@@ -376,6 +388,108 @@ class Peserta extends CActiveRecord
             return "<div class='alert alert-error'>Mohon masukkan URL video yang benar seperti pada contoh. Sistem tidak dapat mengenali url : ".$url."</div>";
         }
     }
+
+	public function getPhoto(){
+		$photopath = Yii::app()->basePath . '/../file/foto/' . $this->PHOTO;
+		if($this->PHOTO!=null && $this->PHOTO!='' && file_exists($photopath)){
+			$photourl = Yii::app()->request->baseUrl.'/file/foto/'.$this->PHOTO;
+			return '<img src="'.$photourl.'" alt="Photo"/>';
+		}else{
+			$photourl = Yii::app()->request->baseUrl.'/images/profilethumb.png';
+			return '<img src="'.$photourl.'" alt="Photo"/>';
+		}
+	}
+
+	public function getSocialMedia($id_sosial_media){
+		$criteria = new CDbCriteria;
+		$criteria->condition = 'ID_SOSIAL_MEDIA=:id_sosial_media AND ID_PESERTA=:peserta';
+		$criteria->params = array(
+			':id_sosial_media'=>$id_sosial_media,
+			':peserta'=>$this->ID_PESERTA
+		);
+
+		$model = PesertaSosialMedia::model()->find($criteria);
+		return $model;
+	}
+
+	public function sendEmailPeserta()
+    {
+        $to = $this->EMAIL;
+        //$to = 'cethol@localhost';
+        $message = '
+        <html>
+        <head>
+          <title>Pendaftaran Peserta Mawapres '.Yii::app()->params["tahun"].'</title>
+          <style type="text/css">
+          body{
+            margin:0px;
+          }
+          .page{
+            width:80%;
+            margin:0px auto 0px auto;
+            border: 1px solid #CCC;
+            border-top:3px solid #09A;
+            padding: 10px;
+          }
+          </style>
+        </head>
+        <body>
+          <h1>Selamat !</h1>
+          <h3>Anda telah terdaftar di sistem online mawapres '.Yii::app()->params["tahun"].'.</h3>
+          <p>PIN : ' .$this->PIN . '</br>
+          <p>Password : ' . $this->PASSWORD . '</p>
+          <p>Silahkan login ke sistem online mawapres untuk melengkapi dokumen-dokumen yang diperlukan dengan menggunakan Nomor PIN dan Password diatas.</p>
+          <p>Terima kasih.</p>
+        </body>
+        </html>
+        ';
+        $subject = "Pendaftaran Peserta Mawapres";
+        // To send HTML mail, the Content-type header must be set
+        /*$headers = 'MIME-Version: 1.0' . "\r\n";
+        $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+        $headers .= 'From: ' . Yii::app()->params['adminEmail'] . "\r\n";
+        if(mail($to, $subject, $message, $headers))
+            return true;
+        else
+            return false;*/
+
+        Yii::import('application.extensions.MandrillApp.src.Mandrill', true);
+        $mandrill = new Mandrill('bRmaoste1J1bILbnDqK6yQ');
+
+        try{
+            $message = array(
+                'subject' => $subject,
+                'html' => $message, // or just use 'html' to support HTMl markup
+                'from_email' => Yii::app()->params['adminEmail'],
+                'from_name' => 'Mawapres Nasional', //optional
+                'to' => array(
+                    array(
+                        'email' => $this->EMAIL,
+                        //'name' => 'Recipient Name', // optional
+                        'type' => 'to' //optional. Default is 'to'. Other options: cc & bcc
+                    )
+                ),
+                'track_opens'=>TRUE,
+                /* Other API parameters (e.g., 'preserve_recipients => FALSE', 'track_opens => TRUE',
+                  'track_clicks' => TRUE) go here */
+            );
+
+            $result = $mandrill->messages->send($message);
+        } catch(Mandrill_Error $e) {
+            echo 'A mandrill error occurred: ' . get_class($e) . ' - ' . $e->getMessage();
+            throw $e;
+        }
+    }
+
+	public function getUserPendaftar(){
+		if($this->ROLE_USER==WebUser::ROLE_PT){
+			$user = UserPT::model()->findByPk($this->ID_USER);
+			return $user;
+		}else if($this->ROLE_USER==WebUser::ROLE_KOPERTIS){
+			$user = UserKopertis::model()->findByPk($this->ID_USER);
+			return $user;
+		}
+	}
 
 	//
 	// public function getImage(){
