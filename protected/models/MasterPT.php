@@ -118,4 +118,10 @@ class MasterPT extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+
+	public static function optionsAll(){
+		$criteria = new CDbCriteria;
+		$criteria->condition = 'LENGTH(KODE_PT) > 5';
+		return CHtml::listData(self::model()->findAll($criteria),'ID_PT','NAMA');
+	}
 }

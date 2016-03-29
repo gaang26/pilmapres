@@ -9,7 +9,7 @@ $this->breadcrumbs=array(
 ?>
 
 <div class="row-fluid">
-	<div class="span6 offset3">
+	<div class="span8 offset2">
 		<div class="well well-white bordered-dashed-1">
 			<h4>Formulir Daftar Peserta Baru</h4>
 			<?php $this->renderPartial('_form', array('model'=>$model)); ?>

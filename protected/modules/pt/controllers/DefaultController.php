@@ -48,4 +48,19 @@ class DefaultController extends Controller
 	public function actionError(){
 		$this->render('error');
 	}
+
+	public function actionLupaPassword(){
+		$model = new UserPT;
+		$model->scenario = 'lupa-password';
+
+		if(isset($_POST['UserPT'])){
+			$model->attributes = $_POST['UserPT'];
+
+			if($model->validate()){
+				$model->sendEmailLupaPassword();
+			}
+		}
+
+		$this->render('lupapassword',array('model'=>$model));
+	}
 }

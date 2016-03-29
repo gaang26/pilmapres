@@ -7,7 +7,7 @@
  */
 class PTIdentity extends CUserIdentity
 {
-    const ERROR_INACTIVE=3;
+    const ERROR_PENDING=3;
 	/**
 	 * Authenticates a user.
 	 * The example implementation makes sure if the username and password
@@ -24,10 +24,10 @@ class PTIdentity extends CUserIdentity
         $record=UserPT::model()->find($criteria);
         if($record===null)
             $this->errorCode=self::ERROR_USERNAME_INVALID;
-        else if($record->PASSWORD!==md5($this->password))
+        else if($record->PASSWORD!=md5($this->password))
             $this->errorCode=self::ERROR_PASSWORD_INVALID;
-		// else if($record->STATUS==User::INACTIVE)
-		// 	$this->errorCode=self::ERROR_INACTIVE;
+		else if($record->STATUS==UserPT::PENDING)
+			$this->errorCode=self::ERROR_PENDING;
         else
         {
 			$this->setState('isLogin', true);

@@ -454,7 +454,7 @@ class Peserta extends CActiveRecord
             return false;*/
 
         Yii::import('application.extensions.MandrillApp.src.Mandrill', true);
-        $mandrill = new Mandrill('bRmaoste1J1bILbnDqK6yQ');
+        $mandrill = new Mandrill(MyMandrill::API_KEY);
 
         try{
             $message = array(

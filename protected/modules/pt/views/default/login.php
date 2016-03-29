@@ -10,7 +10,18 @@ $this->breadcrumbs=array(
 ?>
 
 <div class="row-fluid">
-	<div class="span6 offset3">
+
+	<div class="span6">
+		<div class="well well-smoke bordered-dashed-1">
+			<div class="text-center">
+				<?php echo CHtml::link('Daftar Akun Perguruan Tinggi',array('daftar/index'),array(
+					'class'=>'btn large red'
+				)); ?>
+			</div>
+		</div>
+	</div>
+
+	<div class="span6">
 		<div class="well well-smoke bordered-dashed-1">
 			<h2><?php echo $this->pageTitle; ?></h2>
 
@@ -57,6 +68,7 @@ $this->breadcrumbs=array(
 
 				</div>
 			</div>
+
 		</div>
 	</div>
 </div>

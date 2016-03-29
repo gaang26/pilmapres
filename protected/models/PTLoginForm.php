@@ -49,8 +49,20 @@ class PTLoginForm extends CFormModel
 		if(!$this->hasErrors())
 		{
 			$this->_identity=new PTIdentity($this->email,$this->password);
-			if(!$this->_identity->authenticate())
-				$this->addError('password','Incorrect email or password.');
+			if(!$this->_identity->authenticate()){
+				switch ($this->_identity->errorCode){
+					case PTIdentity::ERROR_PENDING:
+						$this->addError('email','Akun Anda belum diverifikasi. Proses verifikasi dilakukan maksimal 1x24 jam hari kerja.');
+						return FALSE;
+					case PTIdentity::ERROR_PASSWORD_INVALID:
+						$this->addError('password', 'Kesalahan Username atau Password');
+						return FALSE;
+					case PTIdentity::ERROR_USERNAME_INVALID:
+						$this->addError('password', 'Kesalahan Username atau Password');
+                        return FALSE;
+				}
+			}
+				//$this->addError('password','Incorrect email or password.');
 		}
 	}
 
