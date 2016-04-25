@@ -218,7 +218,7 @@ class UserPT extends CActiveRecord
 			<body>
 				<h1>Selamat !</h1>
 				<h3>' . $this->PT->NAMA . ' telah terdaftar di sistem mawapres online '.Yii::app()->params["tahun"].'.</h3>
-				<p>Username : ' . $this->EMAIL . '</br>
+				<p>Email : ' . $this->EMAIL . '</br>
 				<p>Password : ' . $password . '</p>
 				<p>Anda dapat login ke sistem mawapres dengan menggunakan password diatas setelah kami melakukan verifikasi data Anda</p>
 				<p>Anda akan diverifikasi maksimal dalam waktu 1 x 24 jam pada hari dan jam kerja.</p>
@@ -263,4 +263,101 @@ class UserPT extends CActiveRecord
             throw $e;
         }
 	}
+
+	public function sendEmailLupaPassword(){
+		$to = $this->EMAIL;
+        //$to = 'cethol@localhost';
+		$message = '
+		<html>
+			<head>
+				<title>Pendaftaran Akun Perguruan Tinggi Tahun '.Yii::app()->params["tahun"].'</title>
+				<style type="text/css">
+				body{
+					margin:0px;
+				}
+				.page{
+					width:80%;
+					margin:0px auto 0px auto;
+					border: 1px solid #CCC;
+					border-top:3px solid #09A;
+					padding: 10px;
+				}
+				</style>
+			</head>
+			<body>
+				<h1>Selamat !</h1>
+				<h3>' . $this->PT->NAMA . ' telah terdaftar di sistem mawapres online '.Yii::app()->params["tahun"].'.</h3>
+				<p>Username : ' . $this->EMAIL . '</br>
+				<p>Password : ' . $this->PASSWORD . '</p>
+				<p>Anda dapat login ke sistem mawapres dengan menggunakan password diatas setelah kami melakukan verifikasi data Anda</p>
+				<p>Anda akan diverifikasi maksimal dalam waktu 1 x 24 jam pada hari dan jam kerja.</p>
+				<p>Hari Kerja Senin-Jumat<br>Jam Kerja 08.00-17.00</p>
+			</body>
+		</html>
+		';
+        $subject = "Pendaftaran Mawapres Tahun ".Yii::app()->params['tahun'];
+
+		// Begin: proses pengiriman email menggunakan mandrill
+        Yii::import('application.extensions.MandrillApp.src.Mandrill', true);
+        $mandrill = new Mandrill(MyMandrill::API_KEY);
+
+        try{
+            $message = array(
+                'subject' => $subject,
+                'html' => $message, // or just use 'html' to support HTMl markup
+                'from_email' => Yii::app()->params['adminEmail'],
+                'from_name' => 'Mawapres Nasional', //optional
+                'to' => array(
+                    array(
+                        'email' => $this->EMAIL,
+                        //'name' => 'Recipient Name', // optional
+                        'type' => 'to' //optional. Default is 'to'. Other options: cc & bcc
+                    )
+                ),
+                'track_opens'=>TRUE,
+                /* Other API parameters (e.g., 'preserve_recipients => FALSE', 'track_opens => TRUE',
+                  'track_clicks' => TRUE) go here */
+            );
+
+            $result = $mandrill->messages->send($message);
+        } catch(Mandrill_Error $e) {
+            echo 'A mandrill error occurred: ' . get_class($e) . ' - ' . $e->getMessage();
+            throw $e;
+        }
+		// End: proses pengiriman email menggunakan mandrill
+
+		// Begin: proses pengiriman menggunakan sendpulse
+		Yii::import('application.extensions.SendPulse.SmtpApi', true);
+		$sPubKey = '
+		MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDsu165g+8V7c5cWhPGmTRMbwSq
+		ZbRf2PpmTd6Va4XaRnuhYxugQNcewt+tvuFVqkI8Yj5ONXnfsuym0wVtOjD1F8Oe
+		QMr5mxuIWsFqU4qLn3tSYeotVeq4zC3RME5hsKTUBGuD4vrawP9NpwTct9p3JVGA
+		8LwjSIWMWeTEJbk7MwIDAQAB
+		';
+
+		$oApi = new SmtpApi($sPubKey);
+		$aEmail = array(
+		    'html' => $message,
+		    //'text' => 'Email message text',
+		    'encoding' => 'UTF-8',
+		    'subject' => $subject,
+		    'from' => array(
+		        'name' => 'Mawapres Sistem',
+		        'email' => 'klicethol@gmail.com',
+		    ),
+		    'to' => array(
+		        array(
+		            'email' => $this->EMAIL
+		        ),
+		    )
+		);
+		$res = $oApi->send_email($aEmail);
+		if ($res['error']){ // check if operation succeeds
+		    die('Error: ' . $res['text']);
+		} else {
+		    // success
+		}
+		// End: proses pengiriman menggunakan sendpulse
+	}
+
 }

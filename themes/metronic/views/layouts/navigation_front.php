@@ -52,7 +52,7 @@
                         <li>
                             <?php echo CHtml::link(
                                 'Ganti Password',
-                                array('/pt/biodata/ubahpassword')
+                                array('/pt/default/ubahpassword')
                             );?>
                         </li>
                         <li>

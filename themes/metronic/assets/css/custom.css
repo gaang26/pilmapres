@@ -1,6 +1,21 @@
 .bordered-dashed-1{
     border: 1px dashed #DDD;
 }
+.bordered-radius-5{
+    border-radius: 5px !important;
+}
+.bordered-radius-4{
+    border-radius: 4px !important;
+}
+.bordered-radius-3{
+    border-radius: 3px !important;
+}
+.bordered-radius-2{
+    border-radius: 2px !important;
+}
+.bordered-radius-1{
+    border-radius: 1px !important;
+}
 
 
 /*BEGIN: profile card*/
@@ -51,14 +66,16 @@
 	margin-bottom: 20px;
 	padding: 20px;
 	text-decoration: none !important;
-    border-bottom: 2px solid transparent;
-    border-radius: 100px !important;
+    /*border-bottom: 2px solid transparent;
+    border-radius: 100px !important;*/
+    border-radius: 1px;
     -webkit-transition-duration:0.5s;
     -moz-transition-duration:0.5s;
     -o-transition-duration:0.5s;
 }
 .step:hover{
-    border-bottom-color: #95A5A6;;
+    border-bottom-color: #95A5A6;
+    background: #F5F5F5;
 }
 .step.bg-done{
 	background-color: #26C281!important;

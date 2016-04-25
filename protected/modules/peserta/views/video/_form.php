@@ -39,7 +39,7 @@
 
                 <?php
                 if(!$model->isVideoEmpty()){
-                    echo '<h4>Hasil video</h4>';
+                    echo '<h4>Video kemampuan bahasa inggris</h4>';
                     echo $model->getEmbedLink($model->VIDEO_RINGKASAN,'100%','315');
                 }
                 ?>

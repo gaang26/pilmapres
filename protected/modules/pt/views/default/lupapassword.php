@@ -66,8 +66,8 @@ $this->breadcrumbs=array(
 
             <hr>
 
-            <?php echo CHtml::link('<i class="icon-arrow-left"></i> Kembali',array('default/login'),array('class'=>'btn mini yellow')); ?>
-            <?php echo CHtml::link('Daftar Akun Perguruan Tinggi <i class="icon-arrow-right"></i>',array('daftar/index'),array('class'=>'btn mini red')); ?>
+            <?php echo CHtml::link('<i class="icon-arrow-left"></i> Kembali',array('default/login'),array('class'=>'btn yellow')); ?>
+            <?php echo CHtml::link('Daftar Akun Perguruan Tinggi <i class="icon-arrow-right"></i>',array('daftar/index'),array('class'=>'btn red')); ?>
         </div>
     </div>
 </div>

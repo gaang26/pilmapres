@@ -44,6 +44,7 @@ $this->breadcrumbs=array(
 				</div>
 
 				<div class="row buttons">
+					<?php echo CHtml::link('<i class="icon-arrow-left"></i> Kembali',array('/site/index'),array('class'=>'btn yellow','style'=>'margin-top:-3px;')); ?>
 					<?php echo CHtml::submitButton('Masuk',array('class'=>'btn blue')); ?>
 				</div>
 
@@ -52,6 +53,7 @@ $this->breadcrumbs=array(
 			</div><!-- form -->
 			<div class="row-fluid">
 				<div class="span6">
+
 					<?php echo CHtml::link('Lupa Password?',array('default/lupapassword')); ?>
 				</div>
 				<div class="span6">
