@@ -15,7 +15,7 @@ $this->breadcrumbs=array(
 		<div class="well well-smoke text-center">
 			<div class="v-card text-center">
 				<div class="image-container">
-					<img src="<?php echo Yii::app()->request->baseUrl?>/images/profilethumb.png" alt="" />
+					<?php echo $model->getPhoto(); ?>
 				</div>
 
 				<div class="profile-container">
@@ -71,10 +71,10 @@ $this->breadcrumbs=array(
 
 		<div class="tabbable">
 			<ul class="nav nav-tabs" id="myTab">
-				<li class="active"><a href="#profil" data-toggle="tab">Profil</a></li>
-				<li><a href="#karyatulis" data-toggle="tab">Karya Tulis</a></li>
-				<li><a href="#prestasi" data-toggle="tab">Prestasi</a></li>
-				<li><a href="#video" data-toggle="tab">Video</a></li>
+				<li class="active"><a href="#profil" data-toggle="tab"><i class="icon-user"></i> Profil</a></li>
+				<li><a href="#karyatulis" data-toggle="tab"><i class="icon-file-text"></i> Karya Tulis</a></li>
+				<li><a href="#prestasi" data-toggle="tab"><i class="icon-trophy"></i> Prestasi</a></li>
+				<li><a href="#video" data-toggle="tab"><i class="icon-film"></i> Video</a></li>
 			</ul>
 
 			<div class="tab-content">
@@ -85,10 +85,10 @@ $this->breadcrumbs=array(
 					<?php $this->renderPartial('_karya_tulis',array('model'=>$model)) ?>
 				</div>
 				<div class="tab-pane" id="prestasi">
-					<?php $this->renderPartial('_profil',array('model'=>$model)) ?>
+					<?php $this->renderPartial('_prestasi',array('model'=>$model)) ?>
 				</div>
 				<div class="tab-pane" id="video">
-					<?php $this->renderPartial('_profil',array('model'=>$model)) ?>
+					<?php $this->renderPartial('_video',array('model'=>$model)) ?>
 				</div>
 			</div>
 		</div>

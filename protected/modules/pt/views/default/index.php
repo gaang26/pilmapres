@@ -36,7 +36,7 @@ $peserta_diploma = Peserta::getPeserta($user,$role_user,Peserta::DIPLOMA);
 				<div class="well well-smoke bordered-dashed-1 text-center">
 					<div class="v-card text-center">
 						<div class="image-container">
-							<img src="<?php echo Yii::app()->request->baseUrl?>/images/profilethumb.png" alt="" />
+							<?php echo $peserta_sarjana->getPhoto(); ?>
 						</div>
 
 						<div class="profile-container">
@@ -79,7 +79,7 @@ $peserta_diploma = Peserta::getPeserta($user,$role_user,Peserta::DIPLOMA);
 				<div class="well well-smoke bordered-dashed-1 text-center">
 					<div class="v-card text-center">
 						<div class="image-container">
-							<img src="<?php echo Yii::app()->request->baseUrl?>/images/profilethumb.png" alt="" />
+							<?php echo $peserta_diploma->getPhoto(); ?>
 						</div>
 
 						<div class="profile-container">

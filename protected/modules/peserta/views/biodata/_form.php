@@ -147,7 +147,7 @@ $user_pendaftar = $model->getUserPendaftar();
 
                 <h4>Sosial Media</h4>
                 <blockquote class="note"><small>Masukkan informasi sosial media Anda. Kosongkan jika tidak ada.<br>
-                    Silahkan dimasukkan username atau url lengkap. Ex: <a href="http://instagram.com/cethol_" target="_blank">http://instagram.com/cethol_</a>
+                    Silahkan dimasukkan username atau url lengkap. Ex: <a href="http://instagram.com/cethol_" target="_blank">http://instagram.com/cethol_</a><br>
                 </small>
                 </blockquote>
                 <?php
@@ -174,6 +174,19 @@ $user_pendaftar = $model->getUserPendaftar();
                     <?php
                 }
                 ?>
+
+                <h4>VALIDASI DATA</h4>
+                <blockquote class="note">Silahkan cari profil Anda pada website <a href="http://forlap.dikti.go.id/mahasiswa" target="_blank">forlap.dikti.go.id/mahasiswa</a>, Kemudian masukkan link profil Anda pada kolom dibawah ini.
+                    <br>Contoh link profil forlap: <a href="http://forlap.dikti.go.id/mahasiswa/detail/N0JBNzg4NkEtMzYzMy00RDEwLTlBMzktOEY5QUQ5MDc4RUM6" target="_blank">http://forlap.dikti.go.id/mahasiswa/detail/N0JBNzg4NkEtMzYzMy00RDEwLTlBMzktOEY5QUQ5MDc4RUM5</a>
+                    <br><small>*Jika profil Anda tidak ditemukan pada website tersebut, silahkan laporkan ke pihak kemahasiswaan perguruan tinggi Anda agar data Anda dilaporkan ke sistem forlap.dikti.go.id</small>
+                </blockquote>
+
+                <div class="row">
+                    <?php echo $form->labelEx($model,'URL_FORLAP'); ?>
+                    <?php echo $form->textField($model,'URL_FORLAP',array('class'=>'input-block-level')); ?>
+                    <?php echo $form->error($model,'URL_FORLAP'); ?>
+                </div>
+
                 <h4>Foto Profil</h4>
                 <blockquote class="note"><small>Unggah foto profil Anda dalam format gambar dengan ukuran maksimal 300KB</small>
                 </blockquote>

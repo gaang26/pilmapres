@@ -22,7 +22,7 @@ class MahasiswaController extends Controller
 	{
 		return array(
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('daftar','view'),
+				'actions'=>array('daftar','view','prestasi','unduhkti'),
 				'users'=>array('@'),
 				'roles'=>array(WebUser::ROLE_PT)
 			),
@@ -76,6 +76,18 @@ class MahasiswaController extends Controller
 
 	}
 
+	public function actionUnduhKti($id){
+        $model=$this->loadModel($id);
+        $filename = $model->FILE_KTI;
+        $path = Yii::app()->basePath . '/../file/kti/' . $filename;
+        $filecontent = file_get_contents($path);
+        header("Content-Type: text/plain");
+        header("Content-disposition: attachment; filename=$filename");
+        header("Pragma: no-cache");
+        echo $filecontent;
+        exit;
+    }
+
 	/**
 	 * Displays a particular model.
 	 * @param integer $id the ID of the model to be displayed
@@ -84,6 +96,14 @@ class MahasiswaController extends Controller
 	{
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
+		));
+	}
+
+	public function actionPrestasi($id){
+		$model = $this->loadModelPrestasi($id);
+
+		$this->render('view_prestasi',array(
+			'model'=>$model
 		));
 	}
 
@@ -190,6 +210,14 @@ class MahasiswaController extends Controller
 			':tahun'=>Yii::app()->params['tahun']
 		);
 		$model=Peserta::model()->find($criteria);
+		if($model===null)
+			throw new CHttpException(404,'The requested page does not exist.');
+		return $model;
+	}
+
+	public function loadModelPrestasi($id_prestasi)
+	{
+		$model=PesertaPrestasi::model()->findByPk($id_prestasi);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;

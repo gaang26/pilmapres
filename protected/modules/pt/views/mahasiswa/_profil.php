@@ -3,7 +3,7 @@
     'htmlOptions'=>array(
         'class'=>'table table-bordered table-striped'
     ),
-    'itemTemplate'=>'<tr><th width="180px">{label}</th><td>{value}</td></tr>',
+    'itemTemplate'=>'<tr><th style="width:180px !important;">{label}</th><td>{value}</td></tr>',
     'attributes'=>array(
         array(
             'label'=>'Asal Perguruan Tinggi',
@@ -16,7 +16,11 @@
         'SEMESTER',
         'IPK',
         'SURAT_PENGANTAR',
-        'URL_FORLAP',
+        array(
+            'name'=>'URL_FORLAP',
+            'type'=>'raw',
+            'value'=>CHtml::link('Link Profil Forlap',$model->URL_FORLAP,array('target'=>'_blank'))
+        )
     ),
 )); ?>
 
@@ -53,6 +57,8 @@
 )); ?>
 
 <h5>Sosial Media</h5>
+
+<?php if(count($model->SosialMedia)>0): ?>
 <table class="table table-striped table-bordered">
     <tr>
         <th width="20px">
@@ -76,3 +82,8 @@
     }
     ?>
 </table>
+<?php else: ?>
+    <div class="alert alert-warning">
+        Belum ada data
+    </div>
+<?php endif; ?>
