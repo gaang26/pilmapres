@@ -60,7 +60,7 @@ class UserKopertis extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'iDKOPERTIS' => array(self::BELONGS_TO, 'MasterKopertis', 'ID_KOPERTIS'),
+			'Kopertis' => array(self::BELONGS_TO, 'MasterKopertis', 'ID_KOPERTIS'),
 		);
 	}
 

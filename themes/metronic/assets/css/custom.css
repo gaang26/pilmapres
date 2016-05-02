@@ -30,6 +30,8 @@
     border-radius: 100px !important;
 	height: 171px;
 	width: 171px;
+    /*height: 100px;
+	width: 100px;*/
 }
 .v-card .profile-container{}
 .v-card .profile-container .nama{

@@ -231,41 +231,19 @@ class UserPT extends CActiveRecord
 		</html>
 		';
         $subject = "Pendaftaran Mawapres Tahun ".Yii::app()->params['tahun'];
-        // To send HTML mail, the Content-type header must be set
-        /*$headers = 'MIME-Version: 1.0' . "\r\n";
-        $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-        $headers .= 'From: ' . Yii::app()->params['adminEmail'] . "\r\n";
-        if(mail($to, $subject, $message, $headers))
-            return true;
-        else
-            return false;*/
+		// begin: send email using sendpulse
+		$sender = new SendPulseSender;
 
-        Yii::import('application.extensions.MandrillApp.src.Mandrill', true);
-        $mandrill = new Mandrill(MyMandrill::API_KEY);
+        $to = array(
+            'email'=>$this->EMAIL
+        );
+        $from = array(
+            'name'=>SendPulseSender::SENDER_NAME,
+            'email'=>SendPulseSender::SENDER_EMAIL,
+        );
 
-        try{
-            $message = array(
-                'subject' => $subject,
-                'html' => $message, // or just use 'html' to support HTMl markup
-                'from_email' => Yii::app()->params['adminEmail'],
-                'from_name' => 'Mawapres Nasional', //optional
-                'to' => array(
-                    array(
-                        'email' => $this->EMAIL,
-                        //'name' => 'Recipient Name', // optional
-                        'type' => 'to' //optional. Default is 'to'. Other options: cc & bcc
-                    )
-                ),
-                'track_opens'=>TRUE,
-                /* Other API parameters (e.g., 'preserve_recipients => FALSE', 'track_opens => TRUE',
-                  'track_clicks' => TRUE) go here */
-            );
-
-            $result = $mandrill->messages->send($message);
-        } catch(Mandrill_Error $e) {
-            echo 'A mandrill error occurred: ' . get_class($e) . ' - ' . $e->getMessage();
-            throw $e;
-        }
+        return $sender->sendMail($to,$from,$subject,$message);
+		// end: send email using sendpulse
 	}
 
 	public function sendEmailLupaPassword(){

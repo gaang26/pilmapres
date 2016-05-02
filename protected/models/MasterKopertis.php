@@ -31,7 +31,7 @@ class MasterKopertis extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('ID_KOPERTIS, NAMA', 'required'),
-			array('ID_KOPERTIS', 'numerical', 'integerOnly'=>true),
+			array('ID_KOPERTIS, KUOTA', 'numerical', 'integerOnly'=>true),
 			array('NAMA', 'length', 'max'=>50),
 			array('TANGGAL_INPUT', 'safe'),
 			// The following rule is used by search().
