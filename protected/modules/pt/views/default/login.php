@@ -55,8 +55,8 @@ $this->breadcrumbs=array(
 				</div>
 
 				<div class="row buttons">
-					<?php echo CHtml::link('<i class="icon-arrow-left"></i> Kembali',array('/site/index'),array('class'=>'btn yellow','style'=>'margin-top:-3px;')); ?>
 					<?php echo CHtml::submitButton('Masuk', array('class'=>'btn blue')); ?>
+					<?php echo CHtml::link('<i class="icon-arrow-left"></i> Kembali',array('/site/index'),array('class'=>'btn yellow','style'=>'margin-top:-3px;')); ?>
 				</div>
 
 			<?php $this->endWidget(); ?>

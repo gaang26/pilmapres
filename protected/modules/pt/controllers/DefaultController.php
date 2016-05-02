@@ -64,6 +64,35 @@ class DefaultController extends Controller
 		$this->render('lupapassword',array('model'=>$model));
 	}
 
+	public function actionResetpassword($ref){
+		$criteria = new CDbCriteria;
+		$criteria->condition = 'TOKEN=:token';
+		$criteria->params = array(
+			':token'=>$ref
+		);
+		$model = UserPT::model()->find($criteria);
+
+		if($model!==null){
+			$model->scenario = 'reset-password';
+			if(isset($_POST['UserPT'])){
+				$model->attributes = $_POST['UserPT'];
+
+				if($model->validate()){
+					$model->PASSWORD = md5($model->NEW_PASSWORD);
+					if($model->save()){
+						Yii::app()->user->setFlash('info',MyFormatter::alertSuccess('<b>Sukses!</b> password Anda telah berhasil diperbarui.'));
+						$this->redirect(array('default/login'));
+					}
+				}
+			}
+			$this->render('resetpassword',array(
+				'model'=>$model
+			));
+		}else{
+			$this->redirect(array('default/login'));
+		}
+	}
+
 	public function actionUbahPassword(){
 		if(Yii::app()->user->isGuest){
 			$this->redirect(array('/site/index'));
