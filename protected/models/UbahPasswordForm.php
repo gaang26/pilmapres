@@ -51,7 +51,7 @@ class UbahPasswordForm extends CFormModel
 
     public function cekOldPasswordKopertis($password)
 	{
-		$model=User::model()->findByPk(Yii::app()->user->id);
+		$model=UserKopertis::model()->findByPk(Yii::app()->user->getState('id_user'));
 		if(md5($password)!=$model->PASSWORD)
 			return false;
 		else
@@ -60,7 +60,7 @@ class UbahPasswordForm extends CFormModel
 
 	public function savePasswordKopertis($password)
 	{
-		$model=User::model()->findByPk(Yii::app()->user->id);
+		$model=UserKopertis::model()->findByPk(Yii::app()->user->getState('id_user'));
 		$model->setAttribute('PASSWORD',md5($password));
 		if($model->save())
 			return true;

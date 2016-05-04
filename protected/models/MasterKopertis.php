@@ -102,4 +102,10 @@ class MasterKopertis extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+
+	public static function optionsAll(){
+		$criteria = new CDbCriteria;
+		$criteria->condition = 'ID_KOPERTIS!=0';
+		return CHtml::listData(self::model()->findAll($criteria),'ID_KOPERTIS','NAMA');
+	}
 }

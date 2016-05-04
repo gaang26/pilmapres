@@ -55,11 +55,11 @@ class DefaultController extends Controller
 	}
 
 	public function actionLupaPassword(){
-		$model = new UserPT;
+		$model = new UserKopertis;
 		$model->scenario = 'lupa-password';
 
-		if(isset($_POST['UserPT'])){
-			$model->attributes = $_POST['UserPT'];
+		if(isset($_POST['UserKopertis'])){
+			$model->attributes = $_POST['UserKopertis'];
 
 			if($model->validate()){
 				$model->sendEmailLupaPassword();
@@ -75,12 +75,12 @@ class DefaultController extends Controller
 		$criteria->params = array(
 			':token'=>$ref
 		);
-		$model = UserPT::model()->find($criteria);
+		$model = UserKopertis::model()->find($criteria);
 
 		if($model!==null){
 			$model->scenario = 'reset-password';
-			if(isset($_POST['UserPT'])){
-				$model->attributes = $_POST['UserPT'];
+			if(isset($_POST['UserKopertis'])){
+				$model->attributes = $_POST['UserKopertis'];
 
 				if($model->validate()){
 					$model->PASSWORD = md5($model->NEW_PASSWORD);
@@ -106,8 +106,8 @@ class DefaultController extends Controller
         if (isset($_POST['UbahPasswordForm'])) {
             $model->attributes = $_POST['UbahPasswordForm'];
             if ($model->validate()) {
-                if ($model->cekOldPasswordPT($model->OLD)) {
-                    if ($model->savePasswordPT($model->NEW)) {
+                if ($model->cekOldPasswordKopertis($model->OLD)) {
+                    if ($model->savePasswordKopertis($model->NEW)) {
                         Yii::app()->user->setFlash('info', MyFormatter::alertSuccess('<strong>Selamat!</strong> Password telah berhasil diubah.'));
 						$model->unsetAttributes();
 						//$this->redirect(array('index'));
