@@ -6,7 +6,12 @@ class DefaultController extends Controller
 		if(WebUser::isGuest() || !WebUser::isKopertis()){
 			$this->redirect(array('default/login'));
 		}else{
-			$this->render('index');
+			$kopertis = MasterKopertis::model()->findByPk(Yii::app()->user->getState('id_kopertis'));
+			$peserta = Peserta::getPeserta(Yii::app()->user->getState('id_user'),Yii::app()->user->getState('role'));
+			$this->render('index',array(
+				'kopertis'=>$kopertis,
+				'peserta'=>$peserta
+			));
 		}
 	}
 

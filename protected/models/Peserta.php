@@ -150,7 +150,7 @@ class Peserta extends CActiveRecord
 	{
 		return array(
 			'ID_PESERTA' => 'Id Peserta',
-			'ID_PT' => 'Id Pt',
+			'ID_PT' => 'Asal Perguruan Tinggi',
 			'ROLE' => 'Role',
 			'PIN' => 'Pin',
 			'TAHUN' => 'Tahun',
@@ -255,18 +255,34 @@ class Peserta extends CActiveRecord
 	}
 
 	//
-	public static function getPeserta($user,$role_user,$jenjang){
-		$criteria = new CDbCriteria;
-		$criteria->condition = 'ID_USER=:user AND ROLE_USER=:role_user AND JENJANG=:jenjang AND TAHUN=:tahun';
-		$criteria->params = array(
-			':user'=>$user,
-			':role_user'=>$role_user,
-			':jenjang'=>$jenjang,
-			':tahun'=>Yii::app()->params['tahun']
-		);
+	public static function getPeserta($user,$role_user,$jenjang=null){
+		if($role_user==WebUser::ROLE_PT){
+			$criteria = new CDbCriteria;
+			$criteria->condition = 'ID_USER=:user AND ROLE_USER=:role_user AND JENJANG=:jenjang AND TAHUN=:tahun';
+			$criteria->params = array(
+				':user'=>$user,
+				':role_user'=>$role_user,
+				':jenjang'=>$jenjang,
+				':tahun'=>Yii::app()->params['tahun']
+			);
 
-		$model = self::model()->find($criteria);
-		return $model;
+			$model = self::model()->find($criteria);
+			return $model; // return 1 result
+		}else if($role_user==WebUser::ROLE_KOPERTIS){
+			$criteria = new CDbCriteria;
+			$criteria->condition = 'ID_USER=:user AND ROLE_USER=:role_user AND TAHUN=:tahun';
+			$criteria->params = array(
+				':user'=>$user,
+				':role_user'=>$role_user,
+				':tahun'=>Yii::app()->params['tahun']
+			);
+
+			$model = self::model()->findAll($criteria);
+			return $model;
+		}else{
+			return null;
+		}
+
 	}
 
 	public function generatePIN(){

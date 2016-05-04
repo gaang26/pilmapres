@@ -10,15 +10,15 @@ $this->pageTitle = 'Beranda Kopertis ';
 <div class="row-fluid">
 	<div class="span8 offset2">
 		<div class="alert alert-info">
-			<h4>Anda dapat mendaftarkan sebanyak <?php echo Yii::app()->user->getState('kuota'); ?> mahasiswa berprestasi tingkat SARJANA</h4>
+			<h5>Anda dapat mendaftarkan sebanyak <?php echo Yii::app()->user->getState('kuota'); ?> mahasiswa berprestasi tingkat SARJANA</h5>
 		</div>
 	</div>
 </div>
 
 <div class="row-fluid">
 	<div class="span8 offset2">
-		<?php for ($i=1; $i <= Yii::app()->user->getState('kuota'); $i++): ?>
-			<div class="well well-smoke bordered-dashed-1 text-center">
+		<?php foreach ($peserta as $data): ?>
+			<div class="well well-smoke">
 				<div class="row-fluid">
 					<div class="span4">
 						<div class="v-card text-center">
@@ -28,11 +28,31 @@ $this->pageTitle = 'Beranda Kopertis ';
 						</div>
 					</div>
 					<div class="span8">
-						<?php echo CHtml::link('<i class="icon-plus"></i> DAFTARKAN',array('mahasiswa/daftar','jenjang'=>Peserta::SARJANA),array(
-							'class'=>'btn btn-large blue btn-block'
-						)); ?>
+						<h4><?php echo $data->NAMA; ?></h4>
+						<p>
+							<?php echo 'PIN: '.$data->PIN; ?>
+						</p>
+						<p>
+							<?php echo $data->JENJANG; ?> - <?php echo $data->Prodi->NAMA_PRODI; ?>
+						</p>
+						<p>
+							<?php echo $data->PT->NAMA; ?>
+						</p>
+						<p>
+							<?php echo CHtml::link('SELENGKAPNYA',array('mahasiswa/view','id'=>$data->ID_PESERTA),array(
+								'class'=>'btn btn-large blue btn-block'
+							)); ?>
+						</p>
 					</div>
 				</div>
+
+			</div>
+		<?php endforeach; ?>
+		<?php for ($i=1; $i <= ($kopertis->KUOTA - count($peserta)); $i++): ?>
+			<div class="well well-smoke bordered-dashed-1 text-center">
+				<?php echo CHtml::link('<i class="icon-plus"></i> DAFTARKAN',array('mahasiswa/daftar','jenjang'=>Peserta::SARJANA),array(
+					'class'=>'btn green btn-block'
+				)); ?>
 			</div>
 		<?php endfor; ?>
 

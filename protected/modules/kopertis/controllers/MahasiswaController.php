@@ -32,48 +32,42 @@ class MahasiswaController extends Controller
 		);
 	}
 
-	public function actionDaftar($jenjang){
-		if($jenjang!=Peserta::SARJANA){
-			echo "SALAH JENJANG";
-		}else{
-			$peserta = Peserta::getPeserta(Yii::app()->user->getState('id_user'),Yii::app()->user->getState('role'),$jenjang);
-			if($peserta===null){
-				$model = new Peserta;
-				$model->scenario = 'daftar';
-				$model->JENJANG = $jenjang;
-				$model->ROLE = WebUser::ROLE_PESERTA;
-				$model->TAHUN = Yii::app()->params['tahun'];
-				$model->ID_PT = Yii::app()->user->getState('id_pt');
-				$model->ID_USER = Yii::app()->user->getState('id_user');
-				$model->ROLE_USER = Yii::app()->user->getState('role');
+	public function actionDaftar(){
+		$kopertis = MasterKopertis::model()->findByPk(Yii::app()->user->getState('id_kopertis'));
+		$peserta = Peserta::getPeserta(Yii::app()->user->getState('id_user'),Yii::app()->user->getState('role'));
+		if(count($peserta) < $kopertis->KUOTA){ //jika masih memenuhi kuota
+			$model = new Peserta;
+			$model->scenario = 'daftar';
+			$model->JENJANG = Peserta::SARJANA;
+			$model->ROLE = WebUser::ROLE_PESERTA;
+			$model->TAHUN = Yii::app()->params['tahun'];
+			//$model->ID_PT = Yii::app()->user->getState('id_pt');
+			$model->ID_USER = Yii::app()->user->getState('id_user');
+			$model->ROLE_USER = Yii::app()->user->getState('role');
 
+			if(isset($_POST['Peserta'])){
+				$model->attributes = $_POST['Peserta'];
 
-				if(isset($_POST['Peserta'])){
-					$model->attributes = $_POST['Peserta'];
+				$model->PIN = $model->generatePIN();
+				$model->PASSWORD = $model->generatePassword();
+				$model->TANGGAL_INPUT = date('Y-m-d H:i:s');
 
-					$model->PIN = $model->generatePIN();
-					$model->PASSWORD = $model->generatePassword();
-					$model->TANGGAL_INPUT = date('Y-m-d H:i:s');
-
-					if($model->validate()){
-						$model->NAMA = trim(strtoupper($model->NAMA));
-						if($model->save()){
-							$model->sendEmailPeserta();
-							Yii::app()->user->setFlash('info',MyFormatter::alertSuccess('<b>Selamat!</b> peserta atas nama '.$model->NAMA.' telah berhasil didaftarkan.'));
-							$this->redirect(array('default/index'));
-						}
+				if($model->validate()){
+					$model->NAMA = trim(strtoupper($model->NAMA));
+					if($model->save()){
+						$model->sendEmailPeserta();
+						Yii::app()->user->setFlash('info',MyFormatter::alertSuccess('<b>Selamat!</b> peserta atas nama '.$model->NAMA.' telah berhasil didaftarkan.'));
+						$this->redirect(array('default/index'));
 					}
 				}
-
-
-				$this->render('daftar',array(
-					'model'=>$model
-				));
-			}else{
-				echo "SUDAH ENTRI";
 			}
-		}
 
+			$this->render('daftar',array(
+				'model'=>$model
+			));
+		}else{
+			echo "Anda tidak dapat mendaftarkan peserta melebihi kuota yang telah ditentukan. Kuota Anda adalah ".$kopertis->KUOTA;
+		}
 	}
 
 	public function actionUnduhKti($id){

@@ -124,4 +124,13 @@ class MasterPT extends CActiveRecord
 		$criteria->condition = 'LENGTH(KODE_PT) > 5';
 		return CHtml::listData(self::model()->findAll($criteria),'ID_PT','NAMA');
 	}
+
+	public static function optionsAllByKopertis($id_kopertis){
+		$criteria = new CDbCriteria;
+		$criteria->condition = 'LENGTH(KODE_PT) > 5 AND KOPERTIS=:id_kopertis';
+		$criteria->params = array(
+			':id_kopertis'=>$id_kopertis
+		);
+		return CHtml::listData(self::model()->findAll($criteria),'ID_PT','NAMA');
+	}
 }

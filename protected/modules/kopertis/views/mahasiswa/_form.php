@@ -32,6 +32,15 @@
 	</div>
 
 	<div class="row">
+		<?php echo $form->labelEx($model,'ID_PT'); ?>
+		<?php echo $form->dropDownList($model,'ID_PT',MasterPT::optionsAllByKopertis(Yii::app()->user->getState('id_kopertis')),array(
+			'class'=>'input-block-level select',
+			'prompt'=>'Pilih perguruan tinggi asal...'
+		)); ?>
+		<?php echo $form->error($model,'ID_PT'); ?>
+	</div>
+
+	<div class="row">
 		<?php echo $form->labelEx($model,'JENJANG'); ?>
 		<?php echo $form->textField($model,'JENJANG',array('class'=>'input-block-level','readonly'=>true)); ?>
 		<?php echo $form->error($model,'JENJANG'); ?>
