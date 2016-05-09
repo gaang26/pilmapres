@@ -14,6 +14,7 @@ class DefaultController extends Controller
 	 */
 	public function actionLogin()
 	{
+		$this->layout = '\layouts\blank';
 		$model=new SimLoginForm;
 
 		// if it is ajax validation request
@@ -42,5 +43,9 @@ class DefaultController extends Controller
 	{
 		Yii::app()->user->logout();
 		$this->redirect(array('default/index'));
+	}
+
+	public function actionError(){
+		$this->render('error');
 	}
 }

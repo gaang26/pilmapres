@@ -17,6 +17,7 @@ $this->pageTitle = 'Beranda Kopertis ';
 
 <div class="row-fluid">
 	<div class="span8 offset2">
+		<!-- begin: menampilkan daftar peserta -->
 		<?php foreach ($peserta as $data): ?>
 			<div class="well well-smoke">
 				<div class="row-fluid">
@@ -48,6 +49,8 @@ $this->pageTitle = 'Beranda Kopertis ';
 
 			</div>
 		<?php endforeach; ?>
+		<!-- end: menampilkan daftar peserta -->
+		<!-- begin: menampilkan menu daftarkan peserta -->
 		<?php for ($i=1; $i <= ($kopertis->KUOTA - count($peserta)); $i++): ?>
 			<div class="well well-smoke bordered-dashed-1 text-center">
 				<?php echo CHtml::link('<i class="icon-plus"></i> DAFTARKAN',array('mahasiswa/daftar','jenjang'=>Peserta::SARJANA),array(
@@ -55,6 +58,6 @@ $this->pageTitle = 'Beranda Kopertis ';
 				)); ?>
 			</div>
 		<?php endfor; ?>
-
+		<!-- end: menampilkan menu daftarkan peserta -->
 	</div>
 </div>
