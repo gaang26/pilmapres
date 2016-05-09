@@ -47,6 +47,7 @@ class UserPT extends CActiveRecord
 		return array(
 			//array('ID_PT, EMAIL, PASSWORD, TAHUN, ROLE, TANGGAL_UPDATE', 'required'),
 			array('ID_PT, EMAIL, NAMA, PASSWORD, TAHUN, ROLE, HP, TANGGAL_UPDATE, PASSWORD_REPEAT', 'required','on'=>'daftar-baru','message'=>'{attribute} ini tidak boleh dikosongkan'),
+			array('ID_PT, EMAIL, NAMA, PASSWORD, TAHUN, ROLE, HP, TANGGAL_UPDATE', 'required','on'=>'update-biodata','message'=>'{attribute} ini tidak boleh dikosongkan'),
 			array('ID_PT, EMAIL', 'required', 'on'=>'lupa-password'),
 			array('NEW_PASSWORD, PASSWORD, PASSWORD_REPEAT','required','on'=>'reset-password'),
 			array('ID_PT, ROLE, STATUS, VERIFIKATOR', 'numerical', 'integerOnly'=>true),
@@ -57,7 +58,7 @@ class UserPT extends CActiveRecord
 			array('TANGGAL_INPUT', 'safe'),
 			array('PASSWORD_REPEAT', 'compare', 'compareAttribute'=>'NEW_PASSWORD','on'=>'reset-password','message'=>'Password tidak cocok'),
 			array('PASSWORD_REPEAT', 'compare', 'compareAttribute'=>'PASSWORD','on'=>'daftar-baru','message'=>'Password tidak cocok'),
-			array('EMAIL,TAHUN','checkUniqueEmail','on'=>'daftar-baru'),
+			array('EMAIL,TAHUN','checkUniqueEmail','on'=>'daftar-baru,update-biodata'),
 			array('ID_PT,TAHUN','checkUniquePT','on'=>'daftar-baru'),
 			array('EMAIL','checkEmailLupaPassword','on'=>'lupa-password'),
 			// The following rule is used by search().
@@ -109,7 +110,7 @@ class UserPT extends CActiveRecord
 
 		$model = self::model()->find($criteria);
 
-		if($model!==null){
+		if($model!==null && $model->EMAIL!=Yii::app()->user->getState('email')){
 			$this->addError('EMAIL','Email '.$this->EMAIL.' sudah terdaftar pada tanggal '.$model->TANGGAL_INPUT.' dengan perguruan tinggi '.$model->PT->NAMA);
 		}
 	}

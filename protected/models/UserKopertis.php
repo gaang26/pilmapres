@@ -23,6 +23,8 @@
  */
 class UserKopertis extends CActiveRecord
 {
+	public $PASSWORD_REPEAT;
+	public $NEW_PASSWORD;
 	/**
 	 * @return string the associated database table name
 	 */
@@ -39,17 +41,55 @@ class UserKopertis extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('ID_KOPERTIS, EMAIL, PASSWORD, TAHUN, ROLE, TANGGAL_UPDATE', 'required'),
+			array('ID_KOPERTIS, EMAIL, PASSWORD, TAHUN, ROLE, TANGGAL_UPDATE', 'required','on'=>'daftar-baru,update-biodata'),
 			array('ID_KOPERTIS, ROLE, STATUS, VERIFIKATOR', 'numerical', 'integerOnly'=>true),
 			array('EMAIL, NAMA', 'length', 'max'=>100),
-			array('PASSWORD', 'length', 'max'=>50),
+			array('PASSWORD, TOKEN', 'length', 'max'=>50),
 			array('TAHUN', 'length', 'max'=>4),
 			array('HP, TELP', 'length', 'max'=>20),
 			array('TANGGAL_INPUT', 'safe'),
+			array('EMAIL','checkUniqueEmail','on'=>'daftar-baru,update-biodata'),
+			array('EMAIL','checkEmailLupaPassword','on'=>'lupa-password'),
+			array('ID_KOPERTIS, EMAIL', 'required', 'on'=>'lupa-password'),
+			array('NEW_PASSWORD, PASSWORD_REPEAT','required','on'=>'reset-password'),
+			array('PASSWORD_REPEAT', 'compare', 'compareAttribute'=>'NEW_PASSWORD','on'=>'reset-password','message'=>'Password tidak cocok'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('ID_USER, ID_KOPERTIS, EMAIL, PASSWORD, TAHUN, ROLE, NAMA, HP, TELP, STATUS, VERIFIKATOR, TANGGAL_INPUT, TANGGAL_UPDATE', 'safe', 'on'=>'search'),
 		);
+	}
+
+	public function checkEmailLupaPassword(){
+		$criteria = new CDbCriteria;
+		$criteria->condition = 'ID_KOPERTIS=:pt AND TAHUN=:tahun';
+		$criteria->params = array(
+			':pt'=>$this->ID_KOPERTIS,
+			':tahun'=>Yii::app()->params['tahun']
+		);
+
+		$model = self::model()->find($criteria);
+
+		if($model!==null){
+			if($this->EMAIL!==$model->EMAIL)
+				$this->addError('EMAIL','Email yang Anda masukkan tidak sesuai dengan email yang Anda gunakan pada saat mendaftar.');
+		}else{
+			$this->addError('ID_KOPERTIS','Perguruan tinggi belum terdaftar. Silahkan mendaftar terlebih dahulu.');
+		}
+	}
+
+	public function checkUniqueEmail($attribute,$params){
+		$criteria = new CDbCriteria;
+		$criteria->condition = 'EMAIL=:email AND TAHUN=:tahun';
+		$criteria->params = array(
+			':email'=>$this->EMAIL,
+			':tahun'=>$this->TAHUN
+		);
+
+		$model = self::model()->find($criteria);
+
+		if($model!==null && $model->EMAIL!=Yii::app()->user->getState('email')){
+			$this->addError('EMAIL','Email '.$this->EMAIL.' sudah terdaftar untuk user dengan nama '.$model->Kopertis->NAMA);
+		}
 	}
 
 	/**
@@ -71,7 +111,7 @@ class UserKopertis extends CActiveRecord
 	{
 		return array(
 			'ID_USER' => 'Id User',
-			'ID_KOPERTIS' => 'Id Kopertis',
+			'ID_KOPERTIS' => 'Kopertis',
 			'EMAIL' => 'Email',
 			'PASSWORD' => 'Password',
 			'TAHUN' => 'Tahun',
@@ -132,5 +172,58 @@ class UserKopertis extends CActiveRecord
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
+	}
+
+	public function sendEmailLupaPassword(){
+		$criteria = new CDbCriteria;
+		$criteria->condition = 'EMAIL=:email';
+		$criteria->params = array(
+			':email'=>$this->EMAIL
+		);
+		$user = self::model()->find($criteria);
+		$user->TOKEN = md5($this->ID_USER.$this->EMAIL);
+		$user->save();
+		$this->TOKEN = $user->TOKEN;
+		$to = $this->EMAIL;
+        //$to = 'cethol@localhost';
+		$message = '
+		<html>
+			<head>
+				<title>Reset password sistem mawapres</title>
+				<style type="text/css">
+				body{
+					margin:0px;
+				}
+				.page{
+					width:80%;
+					margin:0px auto 0px auto;
+					border: 1px solid #CCC;
+					border-top:3px solid #09A;
+					padding: 10px;
+				}
+				</style>
+			</head>
+			<body>
+				<h3>Hello, ' . $this->Kopertis->NAMA.'</h3>
+				<p>Untuk reset password Anda, silahkan klik tautan berikut ini:</p>
+				<a href="http://mawapres.dikti.go.id/pt/default/resetpassword/ref/'.$this->TOKEN.'">RESET PASSWORD</a>
+			</body>
+		</html>
+		';
+        $subject = "Reset Password Sistem Mawapres";
+
+		// begin: send email using sendpulse
+		$sender = new SendPulseSender;
+
+        $to = array(
+            'email'=>$this->EMAIL
+        );
+        $from = array(
+            'name'=>SendPulseSender::SENDER_NAME,
+            'email'=>SendPulseSender::SENDER_EMAIL,
+        );
+
+        return $sender->sendMail($to,$from,$subject,$message);
+		// end: send email using sendpulse
 	}
 }

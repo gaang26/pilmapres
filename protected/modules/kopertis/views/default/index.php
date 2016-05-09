@@ -9,8 +9,9 @@ $this->pageTitle = 'Beranda Kopertis ';
 
 <div class="row-fluid">
 	<div class="span8 offset2">
+		<h3>Selamat Datang, <?php echo Yii::app()->user->nama; ?></h3>
 		<div class="alert alert-info">
-			<h5>Anda dapat mendaftarkan sebanyak <?php echo Yii::app()->user->getState('kuota'); ?> mahasiswa berprestasi tingkat SARJANA</h5>
+			<h5>Anda dapat mendaftarkan sebanyak <?php echo Yii::app()->user->getState('kuota'); ?> mahasiswa berprestasi tingkat SARJANA. Kuota ini telah ditetapkan pada pedoman sarjana.</h5>
 		</div>
 	</div>
 </div>
@@ -51,9 +52,9 @@ $this->pageTitle = 'Beranda Kopertis ';
 		<?php endforeach; ?>
 		<!-- end: menampilkan daftar peserta -->
 		<!-- begin: menampilkan menu daftarkan peserta -->
-		<?php for ($i=1; $i <= ($kopertis->KUOTA - count($peserta)); $i++): ?>
+		<?php for ($i=count($peserta)+1; $i <= $kopertis->KUOTA; $i++): ?>
 			<div class="well well-smoke bordered-dashed-1 text-center">
-				<?php echo CHtml::link('<i class="icon-plus"></i> DAFTARKAN',array('mahasiswa/daftar','jenjang'=>Peserta::SARJANA),array(
+				<?php echo CHtml::link('<i class="icon-plus"></i> DAFTARKAN PESERTA '.$i,array('mahasiswa/daftar','jenjang'=>Peserta::SARJANA),array(
 					'class'=>'btn green btn-block'
 				)); ?>
 			</div>

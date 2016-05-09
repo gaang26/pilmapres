@@ -10,7 +10,11 @@ $this->breadcrumbs=array(
 ?>
 
 <div class="row-fluid">
-
+	<div class="span6">
+		<div class="alert alert-info">
+			Kopertis dapat mendaftarkan peserta jenjang sarjana sebanyak kuota yang telah ditetapkan pada pedoman sarjana.
+		</div>
+	</div>
 	<!-- <div class="span6">
 		<div class="well well-smoke bordered-dashed-1">
 			<div class="text-center">

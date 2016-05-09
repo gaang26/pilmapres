@@ -28,15 +28,15 @@ $this->breadcrumbs=array(
 
                 <p class="note">Kolom isian dengan tanda <span class="required">*</span> Wajib diisi.</p>
 
-                <?php //echo $form->errorSummary($model); ?>
+                <?php echo $form->errorSummary($model); ?>
 
                 <div class="row">
-                    <?php echo $form->labelEx($model,'ID_PT'); ?>
-                    <?php echo $form->dropDownList($model,'ID_PT',MasterPT::optionsAll(),array(
+                    <?php echo $form->labelEx($model,'ID_KOPERTIS'); ?>
+                    <?php echo $form->dropDownList($model,'ID_KOPERTIS',MasterKopertis::optionsAll(),array(
                         'class'=>'select input-block-level',
-                        'prompt'=>'Pilih perguruan tinggi...'
+                        'prompt'=>'Pilih kopertis...'
                     )); ?>
-                    <?php echo $form->error($model,'ID_PT'); ?>
+                    <?php echo $form->error($model,'ID_KOPERTIS'); ?>
                 </div>
 
                 <div class="row-fluid">
