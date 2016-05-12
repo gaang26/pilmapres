@@ -63,6 +63,8 @@ class DefaultController extends Controller
 
 			if($model->validate()){
 				$model->sendEmailLupaPassword();
+				Yii::app()->user->setFlash('info',MyFormatter::alertSuccess('<b>Sukses!</b> tautan reset password telah dikirim ke email '.$model->EMAIL.'. Silahkan cek email Anda kemudian klik tautan reset password yang tertera pada email tersebut.'));
+				$this->redirect(array('default/login'));
 			}
 		}
 

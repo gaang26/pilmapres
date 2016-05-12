@@ -55,7 +55,7 @@ class UserKopertis extends CActiveRecord
 			array('PASSWORD_REPEAT', 'compare', 'compareAttribute'=>'NEW_PASSWORD','on'=>'reset-password','message'=>'Password tidak cocok'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('ID_USER, ID_KOPERTIS, EMAIL, PASSWORD, TAHUN, ROLE, NAMA, HP, TELP, STATUS, VERIFIKATOR, TANGGAL_INPUT, TANGGAL_UPDATE', 'safe', 'on'=>'search'),
+			array('ID_USER, ID_KOPERTIS, EMAIL, PASSWORD, TOKEN, TAHUN, ROLE, NAMA, HP, TELP, STATUS, VERIFIKATOR, TANGGAL_INPUT, TANGGAL_UPDATE', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -176,9 +176,10 @@ class UserKopertis extends CActiveRecord
 
 	public function sendEmailLupaPassword(){
 		$criteria = new CDbCriteria;
-		$criteria->condition = 'EMAIL=:email';
+		$criteria->condition = 'EMAIL=:email AND TAHUN=:tahun';
 		$criteria->params = array(
-			':email'=>$this->EMAIL
+			':email'=>$this->EMAIL,
+			':tahun'=>Yii::app()->params['tahun']
 		);
 		$user = self::model()->find($criteria);
 		$user->TOKEN = md5($this->ID_USER.$this->EMAIL);
@@ -206,7 +207,8 @@ class UserKopertis extends CActiveRecord
 			<body>
 				<h3>Hello, ' . $this->Kopertis->NAMA.'</h3>
 				<p>Untuk reset password Anda, silahkan klik tautan berikut ini:</p>
-				<a href="http://mawapres.dikti.go.id/pt/default/resetpassword/ref/'.$this->TOKEN.'">RESET PASSWORD</a>
+				<a href="http://mawapres.dikti.go.id/kopertis/default/resetpassword/ref/'.$this->TOKEN.'">RESET PASSWORD</a>
+				<p>Terima kasih.</p>
 			</body>
 		</html>
 		';

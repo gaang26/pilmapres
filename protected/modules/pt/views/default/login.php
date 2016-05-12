@@ -12,6 +12,14 @@ $this->breadcrumbs=array(
 <div class="row-fluid">
 
 	<div class="span6">
+		<blockquote><h4>Keterangan</h4>
+			<ol>
+				<li>Perguruan tinggi yang sudah mendaftar dapat login pada laman ini dengan menggunakan email dan password yang dicantumkan pada saat mendaftar.</li>
+				<li>Perguruan tinggi yang belum mempunyai akun dapat mendaftar dengan memilih tautan daftar yang ada pada laman ini.</li>
+				<li>Perguruan tinggi negeri dapat mendaftarkan 1 mahasiswa sarjana dan 1 mahasiswa diploma</li>
+				<li>Perguruan tinggi swasta dapat mendaftarkan 1 mahasiswa diploma untuk mahasiswa tingkat sarjana akan didaftarkan oleh kopertis setempat.</li>
+			</ol>
+		</blockquote>
 		<div class="well well-smoke bordered-dashed-1">
 			<div class="text-center">
 				<?php echo CHtml::link('Daftar Akun Perguruan Tinggi',array('daftar/index'),array(
@@ -23,6 +31,7 @@ $this->breadcrumbs=array(
 
 	<div class="span6">
 		<div class="well well-smoke bordered-dashed-1">
+			<?php echo Yii::app()->user->getFlash('info'); ?>
 			<h2><?php echo $this->pageTitle; ?></h2>
 
 			<p>Silahkan isi form berikut dengan akun perguruan tinggi Anda:</p>

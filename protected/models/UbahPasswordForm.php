@@ -70,8 +70,8 @@ class UbahPasswordForm extends CFormModel
 
     public function cekOldPasswordPeserta($password)
 	{
-		$model=User::model()->findByPk(Yii::app()->user->id);
-		if(md5($password)!=$model->PASSWORD)
+		$model=Peserta::model()->findByPk(Yii::app()->user->getState('id_peserta'));
+		if($password!=$model->PASSWORD)
 			return false;
 		else
 			return true;
@@ -79,8 +79,8 @@ class UbahPasswordForm extends CFormModel
 
 	public function savePasswordPeserta($password)
 	{
-		$model=User::model()->findByPk(Yii::app()->user->id);
-		$model->setAttribute('PASSWORD',md5($password));
+		$model=Peserta::model()->findByPk(Yii::app()->user->getState('id_peserta'));
+		$model->setAttribute('PASSWORD',$password);
 		if($model->save())
 			return true;
 		else

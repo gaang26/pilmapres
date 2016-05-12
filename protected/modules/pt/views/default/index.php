@@ -69,7 +69,7 @@ $peserta_diploma = Peserta::getPeserta($user,$role_user,Peserta::DIPLOMA);
 						</div>
 					</div>
 					<?php echo CHtml::link('<i class="icon-plus"></i> DAFTARKAN MAHASISWA SARJANA',array('mahasiswa/daftar','jenjang'=>Peserta::SARJANA),array(
-						'class'=>'btn btn-large blue btn-block'
+						'class'=>'btn blue btn-block'
 					)); ?>
 				</div>
 			</div>
@@ -111,7 +111,7 @@ $peserta_diploma = Peserta::getPeserta($user,$role_user,Peserta::DIPLOMA);
 						</div>
 					</div>
 					<?php echo CHtml::link('<i class="icon-plus"></i> DAFTARKAN MAHASISWA DIPLOMA',array('mahasiswa/daftar','jenjang'=>Peserta::DIPLOMA),array(
-						'class'=>'btn btn-large blue btn-block'
+						'class'=>'btn blue btn-block'
 					)); ?>
 				</div>
 			</div>
@@ -120,7 +120,7 @@ $peserta_diploma = Peserta::getPeserta($user,$role_user,Peserta::DIPLOMA);
 		<div class="span4 offset4">
 			<div class="well well-smoke bordered-dashed-1 text-center">
 				<?php echo CHtml::link('<i class="icon-plus"></i> DAFTARKAN MAHASISWA DIPLOMA',array('register/new'),array(
-					'class'=>'btn btn-large blue'
+					'class'=>'btn blue'
 				)); ?>
 			</div>
 		</div>

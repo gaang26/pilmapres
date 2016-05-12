@@ -20,7 +20,7 @@
                         <li>
                             <?php echo CHtml::link(
                                 'Ganti Password',
-                                array('/peserta/biodata/ubahpassword')
+                                array('/peserta/default/ubahpassword')
                             );?>
                         </li>
                         <li>

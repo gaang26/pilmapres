@@ -59,6 +59,9 @@ class Peserta extends CActiveRecord
 	const BIDANG_IPA = 'IPA';
 	const BIDANG_IPS = 'IPS';
 	const BIDANG_TERAPAN = 'TERAPAN';
+
+	public $PASSWORD_REPEAT;
+	public $NEW_PASSWORD;
 	/**
 	 * @return string the associated database table name
 	 */
@@ -107,6 +110,8 @@ class Peserta extends CActiveRecord
 			array('NIM, NAMA, ID_PRODI, JENJANG, SEMESTER, EMAIL, HP, EMAIL, ALAMAT, ID_KOTA, JENIS_KELAMIN, TEMPAT_LAHIR, TANGGAL_LAHIR,IPK', 'required','on'=>'update-profil'),
 			array('JUDUL_KTI, BIDANG, ID_TOPIK, RINGKASAN', 'required', 'on'=>'update-kti-new,update-kti-edit'),
 			array('VIDEO_RINGKASAN','required','on'=>'update-video'),
+			array('EMAIL', 'required', 'on'=>'lupa-password'),
+			array('EMAIL','checkEmailLupaPassword','on'=>'lupa-password'),
 			array('ID_PT, ROLE, ID_PRODI, SEMESTER, ID_KOTA, ID_TOPIK, ID_USER, ROLE_USER, TAHAP_AWAL', 'numerical', 'integerOnly'=>true),
 			array('PIN, BIDANG', 'length', 'max'=>10),
 			array('TAHUN', 'length', 'max'=>4),
@@ -124,6 +129,21 @@ class Peserta extends CActiveRecord
 			// @todo Please remove those attributes that should not be searched.
 			array('ID_PESERTA, ID_PT, ROLE, PIN, TAHUN, NIM, NAMA, ID_PRODI, JENJANG, SEMESTER, IPK, EMAIL, HP, TEMPAT_LAHIR, TANGGAL_LAHIR, ALAMAT, ID_KOTA, WEBSITE, PHOTO, JUDUL_KTI, ID_TOPIK, BIDANG, RINGKASAN, VIDEO_RINGKASAN, VIDEO_KESEHARIAN, SURAT_PENGANTAR, URL_FORLAP, KTM, ID_USER, ROLE_USER, TANGGAL_INPUT, TANGGAL_UPDATE, TAHAP_AWAL', 'safe', 'on'=>'search'),
 		);
+	}
+
+	public function checkEmailLupaPassword(){
+		$criteria = new CDbCriteria;
+		$criteria->condition = 'EMAIL=:email AND TAHUN=:tahun';
+		$criteria->params = array(
+			':email'=>$this->EMAIL,
+			':tahun'=>Yii::app()->params['tahun']
+		);
+
+		$model = self::model()->find($criteria);
+
+		if($model===null){
+			$this->addError('EMAIL','Email yang Anda masukkan tidak ditemukan.');
+		}
 	}
 
 	/**
@@ -152,7 +172,7 @@ class Peserta extends CActiveRecord
 			'ID_PESERTA' => 'Id Peserta',
 			'ID_PT' => 'Asal Perguruan Tinggi',
 			'ROLE' => 'Role',
-			'PIN' => 'Pin',
+			'PIN' => 'PIN',
 			'TAHUN' => 'Tahun',
 			'NIM' => 'NIM/NPM',
 			'NAMA' => 'Nama Peserta',
@@ -203,6 +223,10 @@ class Peserta extends CActiveRecord
 		// @todo Please modify the following code to remove attributes that should not be searched.
 
 		$criteria=new CDbCriteria;
+		$criteria->condition = 'TAHUN=:tahun';
+		$criteria->params = array(
+			':tahun'=>Yii::app()->params['tahun']
+		);
 
 		$criteria->compare('ID_PESERTA',$this->ID_PESERTA);
 		$criteria->compare('ID_PT',$this->ID_PT);
@@ -337,6 +361,12 @@ class Peserta extends CActiveRecord
 			self::BIDANG_TERAPAN=>'Terapan'
 		);
 	}
+	public static function optionsJenjang(){
+		return array(
+			self::SARJANA=>self::SARJANA,
+			self::DIPLOMA=>self::DIPLOMA
+		);
+	}
 
 	//get get an
 	public function getWilayah(){
@@ -382,6 +412,47 @@ class Peserta extends CActiveRecord
 		return (!$this->isVideoEmpty() && !$this->isPrestasiEmpty() && !$this->isBiodataEmpty() && !$this->isKaryaTulisEmpty());
 	}
 
+	public function getLabelKelengkapan(){
+		$result = '';
+		if($this->isComplete()){
+			$result .= '<span class="label label-success"><i class="fa fa-check"></i> Complete.</span>';
+		}else{
+			$result .= '<span class="label label-danger"><i class="fa fa-remove"></i> Incomplete.</span>';
+		}
+
+		$result .= '<div class="margin-bottom-10"></div>';
+
+		$result .= '<ul class="list-unstyled">';
+
+		if(!$this->isBiodataEmpty()){
+			$result .= '<li><i class="fa fa-check"></i> Biodata</li>';
+		}else{
+			$result .= '<li><i class="fa fa-remove"></i> Biodata</li>';
+		}
+
+		if(!$this->isKaryaTulisEmpty()){
+			$result .= '<li><i class="fa fa-check"></i> Karya Tulis</li>';
+		}else{
+			$result .= '<li><i class="fa fa-remove"></i> Karya Tulis</li>';
+		}
+
+		if(!$this->isVideoEmpty()){
+			$result .= '<li><i class="fa fa-check"></i> Video</li>';
+		}else{
+			$result .= '<li><i class="fa fa-remove"></i> Video</li>';
+		}
+
+		if(!$this->isPrestasiEmpty()){
+			$result .= '<li><i class="fa fa-check"></i> Prestasi</li>';
+		}else{
+			$result .= '<li><i class="fa fa-remove"></i> Prestasi</li>';
+		}
+
+		$result .= '</ul>';
+
+		return $result;
+	}
+
 	public function getPrestasi(){
 		$criteria = new CDbCriteria;
 		$criteria->condition = 'ID_PESERTA=:id_peserta';
@@ -416,6 +487,17 @@ class Peserta extends CActiveRecord
 		}
 	}
 
+	public function getPhotoSource(){
+		$photopath = Yii::app()->basePath . '/../file/foto/' . $this->PHOTO;
+		if($this->PHOTO!=null && $this->PHOTO!='' && file_exists($photopath)){
+			$photourl = Yii::app()->request->baseUrl.'/file/foto/'.$this->PHOTO;
+			return $photourl;
+		}else{
+			$photourl = Yii::app()->request->baseUrl.'/images/profilethumb.png';
+			return $photourl;
+		}
+	}
+
 	public function getSocialMedia($id_sosial_media){
 		$criteria = new CDbCriteria;
 		$criteria->condition = 'ID_SOSIAL_MEDIA=:id_sosial_media AND ID_PESERTA=:peserta';
@@ -426,6 +508,31 @@ class Peserta extends CActiveRecord
 
 		$model = PesertaSosialMedia::model()->find($criteria);
 		return $model;
+	}
+
+	public function getProdiView(){
+		return $this->JENJANG.'<br>'.$this->Prodi->NAMA_PRODI.'<br> Semester: '.$this->SEMESTER;
+	}
+
+	public function getActionButton(){
+		$view = CHtml::link('<i class="fa fa-search"></i>',array('peserta/view','id'=>$this->ID_PESERTA),array(
+			'class'=>'btn btn-sm blue-sharp'
+		));
+
+		$update = CHtml::link('<i class="fa fa-pencil"></i>',array('peserta/update','id'=>$this->ID_PESERTA),array(
+			'class'=>'btn btn-sm blue-sharp'
+		));
+
+		$delete = CHtml::link('<i class="fa fa-trash"></i>','#',array(
+			'class'=>'btn btn-sm red-intense',
+			'confirm'=>'Anda akan menghapus peserta ini. Apakah Anda ingin melanjutkan?',
+			'submit'=>array('peserta/delete','id'=>$this->ID_PESERTA)
+		));
+
+		$buttons = $view;
+		$buttons .= $update;
+		$buttons .= $delete;
+		return $buttons;
 	}
 
 	public function sendEmailPeserta()
@@ -519,6 +626,61 @@ class Peserta extends CActiveRecord
 			$user = UserKopertis::model()->findByPk($this->ID_USER);
 			return $user;
 		}
+	}
+
+	public function sendEmailLupaPassword(){
+		$criteria = new CDbCriteria;
+		$criteria->condition = 'EMAIL=:email AND TAHUN=:tahun';
+		$criteria->params = array(
+			':email'=>$this->EMAIL,
+			':tahun'=>Yii::app()->params['tahun']
+		);
+		$user = self::model()->find($criteria);
+		$user->TOKEN = md5($this->ID_PESERTA.$this->EMAIL);
+		$user->save();
+		$this->TOKEN = $user->TOKEN;
+		$to = $this->EMAIL;
+        //$to = 'cethol@localhost';
+		$message = '
+		<html>
+			<head>
+				<title>Reset password sistem mawapres</title>
+				<style type="text/css">
+				body{
+					margin:0px;
+				}
+				.page{
+					width:80%;
+					margin:0px auto 0px auto;
+					border: 1px solid #CCC;
+					border-top:3px solid #09A;
+					padding: 10px;
+				}
+				</style>
+			</head>
+			<body>
+				<h3>Hello, ' . $user->NAMA.'</h3>
+				<p>Untuk reset password Anda, silahkan klik tautan berikut ini:</p>
+				<a href="http://mawapres.dikti.go.id/peserta/default/resetpassword/ref/'.$this->TOKEN.'">RESET PASSWORD</a>
+				<p>Terima kasih</p>
+			</body>
+		</html>
+		';
+        $subject = "Reset Password Sistem Mawapres";
+
+		// begin: send email using sendpulse
+		$sender = new SendPulseSender;
+
+        $to = array(
+            'email'=>$this->EMAIL
+        );
+        $from = array(
+            'name'=>SendPulseSender::SENDER_NAME,
+            'email'=>SendPulseSender::SENDER_EMAIL,
+        );
+
+        return $sender->sendMail($to,$from,$subject,$message);
+		// end: send email using sendpulse
 	}
 
 	//

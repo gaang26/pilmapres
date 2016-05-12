@@ -44,6 +44,77 @@ class DefaultController extends Controller
 		$this->render('login',array('model'=>$model));
 	}
 
+	public function actionUbahPassword(){
+		if(Yii::app()->user->isGuest){
+			$this->redirect(array('/site/index'));
+		}
+		$model = new UbahPasswordForm;
+        if (isset($_POST['UbahPasswordForm'])) {
+            $model->attributes = $_POST['UbahPasswordForm'];
+            if ($model->validate()) {
+                if ($model->cekOldPasswordPeserta($model->OLD)) {
+                    if ($model->savePasswordPeserta($model->NEW)) {
+                        Yii::app()->user->setFlash('info', MyFormatter::alertSuccess('<strong>Selamat!</strong> Password telah berhasil diubah.'));
+						$model->unsetAttributes();
+						//$this->redirect(array('index'));
+                    }
+                    else
+                        Yii::app()->user->setFlash('info', MyFormatter::alertError('<strong>Error!</strong> Password gagal diubah.'));
+                }
+                else {
+                    Yii::app()->user->setFlash('info', MyFormatter::alertError('<strong>Error!</strong> Password lama salah.'));
+                }
+            }
+        }
+        $this->render('ubahpassword/index', array('model' => $model));
+	}
+
+	public function actionLupaPassword(){
+		$model = new Peserta;
+		$model->scenario = 'lupa-password';
+
+		if(isset($_POST['Peserta'])){
+			$model->attributes = $_POST['Peserta'];
+
+			if($model->validate()){
+				$model->sendEmailLupaPassword();
+				Yii::app()->user->setFlash('info',MyFormatter::alertSuccess('<b>Sukses!</b> link reset password telah dikirim ke email '.$model->EMAIL.'. Silahkan cek email Anda kemudian klik link reset password yang tertera pada email tersebut.'));
+				$this->redirect(array('default/login'));
+			}
+		}
+
+		$this->render('lupapassword',array('model'=>$model));
+	}
+
+	public function actionResetpassword($ref){
+		$criteria = new CDbCriteria;
+		$criteria->condition = 'TOKEN=:token';
+		$criteria->params = array(
+			':token'=>$ref
+		);
+		$model = Peserta::model()->find($criteria);
+
+		if($model!==null){
+			$model->scenario = 'reset-password';
+			if(isset($_POST['Peserta'])){
+				$model->attributes = $_POST['Peserta'];
+
+				if($model->validate()){
+					$model->PASSWORD = md5($model->NEW_PASSWORD);
+					if($model->save()){
+						Yii::app()->user->setFlash('info',MyFormatter::alertSuccess('<b>Sukses!</b> password Anda telah berhasil diperbarui.'));
+						$this->redirect(array('default/login'));
+					}
+				}
+			}
+			$this->render('resetpassword',array(
+				'model'=>$model
+			));
+		}else{
+			$this->redirect(array('default/login'));
+		}
+	}
+
 	/**
 	 * Logs out the current user and redirect to homepage.
 	 */

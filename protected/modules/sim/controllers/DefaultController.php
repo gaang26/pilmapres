@@ -6,7 +6,13 @@ class DefaultController extends Controller
 		if(WebUser::isGuest() && !WebUser::isAdmin()){
 			$this->redirect(array('default/login'));
 		}else{
-			$this->render('index');
+			$userpt=new UserPT('search');
+	        $userpt->unsetAttributes();  // clear any default values
+	        if(isset($_GET['UserPT']))
+	            $userpt->attributes=$_GET['UserPT'];
+			$this->render('index',array(
+				'userpt'=>$userpt
+			));
 		}
 	}
 	/**
