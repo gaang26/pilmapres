@@ -49,8 +49,19 @@ class SimLoginForm extends CFormModel
 		if(!$this->hasErrors())
 		{
 			$this->_identity=new SimIdentity($this->email,$this->password);
-			if(!$this->_identity->authenticate())
-				$this->addError('password','Incorrect email or password.');
+			if(!$this->_identity->authenticate()){
+				switch ($this->_identity->errorCode){
+					case SimIdentity::ERROR_INACTIVE:
+						$this->addError('email','Akun sedang dibekukan atau sedang tidak aktif');
+						return FALSE;
+					case SimIdentity::ERROR_PASSWORD_INVALID:
+						$this->addError('password', 'Kesalahan Username atau Password');
+						return FALSE;
+					case SimIdentity::ERROR_USERNAME_INVALID:
+						$this->addError('password', 'Kesalahan Username atau Password');
+                        return FALSE;
+				}
+			}
 		}
 	}
 

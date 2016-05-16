@@ -24,7 +24,9 @@ class PesertaController extends Controller
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
 				'actions'=>array(
 					'index','view',
-					'create','update','admin','delete'
+					'create','update','admin','delete',
+					'unduhkti',
+					'prestasi'
 				),
 				'users'=>array('@'),
 				'roles'=>array(WebUser::ROLE_ADMIN)
@@ -35,14 +37,35 @@ class PesertaController extends Controller
 		);
 	}
 
+	public function actionUnduhkti($id){//$id = ID_PESERTA
+		$model = $this->loadModel($id);
+		$filename = $model->FILE_KTI;
+        $path = Yii::app()->basePath . '/../file/kti/' . $filename;
+        $filecontent = file_get_contents($path);
+        header("Content-Type: text/plain");
+        header("Content-disposition: attachment; filename=$filename");
+        header("Pragma: no-cache");
+        echo $filecontent;
+        exit;
+	}
+
+	public function actionPrestasi($id){
+		$model = $this->loadModelPrestasi($id);
+
+		$this->render('view_prestasi',array(
+			'model'=>$model
+		));
+	}
+
 	/**
 	 * Displays a particular model.
 	 * @param integer $id the ID of the model to be displayed
 	 */
 	public function actionView($id)
 	{
+		$model = $this->loadModel($id);
 		$this->render('view',array(
-			'model'=>$this->loadModel($id),
+			'model'=>$model,
 		));
 	}
 
@@ -132,6 +155,14 @@ class PesertaController extends Controller
 	public function loadModel($id)
 	{
 		$model=Peserta::model()->findByPk($id);
+		if($model===null)
+			throw new CHttpException(404,'The requested page does not exist.');
+		return $model;
+	}
+
+	public function loadModelPrestasi($id_prestasi)
+	{
+		$model=PesertaPrestasi::model()->findByPk($id_prestasi);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;

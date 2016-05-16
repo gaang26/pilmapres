@@ -26,8 +26,8 @@ class SimIdentity extends CUserIdentity
             $this->errorCode=self::ERROR_USERNAME_INVALID;
         else if($record->PASSWORD!==md5($this->password))
             $this->errorCode=self::ERROR_PASSWORD_INVALID;
-		// else if($record->STATUS==User::INACTIVE)
-		// 	$this->errorCode=self::ERROR_INACTIVE;
+		else if($record->STATUS==User::PENDING)
+			$this->errorCode=self::ERROR_INACTIVE;
         else
         {
 			$this->setState('isLogin', true);

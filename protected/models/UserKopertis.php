@@ -23,6 +23,10 @@
  */
 class UserKopertis extends CActiveRecord
 {
+	const ACTIVE = 1;
+	const PENDING = 0;
+	const REJECTED = -1;
+
 	public $PASSWORD_REPEAT;
 	public $NEW_PASSWORD;
 	/**
@@ -41,7 +45,7 @@ class UserKopertis extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('ID_KOPERTIS, EMAIL, PASSWORD, TAHUN, ROLE, TANGGAL_UPDATE', 'required','on'=>'daftar-baru,update-biodata'),
+			array('ID_KOPERTIS, EMAIL, NAMA, PASSWORD, PASSWORD_REPEAT, TAHUN, ROLE, TANGGAL_UPDATE', 'required','on'=>'create,daftar-baru,update-biodata'),
 			array('ID_KOPERTIS, ROLE, STATUS, VERIFIKATOR', 'numerical', 'integerOnly'=>true),
 			array('EMAIL, NAMA', 'length', 'max'=>100),
 			array('PASSWORD, TOKEN', 'length', 'max'=>50),
@@ -53,6 +57,7 @@ class UserKopertis extends CActiveRecord
 			array('ID_KOPERTIS, EMAIL', 'required', 'on'=>'lupa-password'),
 			array('NEW_PASSWORD, PASSWORD_REPEAT','required','on'=>'reset-password'),
 			array('PASSWORD_REPEAT', 'compare', 'compareAttribute'=>'NEW_PASSWORD','on'=>'reset-password','message'=>'Password tidak cocok'),
+			array('PASSWORD_REPEAT', 'compare', 'compareAttribute'=>'PASSWORD','on'=>'create','message'=>'Password tidak cocok'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('ID_USER, ID_KOPERTIS, EMAIL, PASSWORD, TOKEN, TAHUN, ROLE, NAMA, HP, TELP, STATUS, VERIFIKATOR, TANGGAL_INPUT, TANGGAL_UPDATE', 'safe', 'on'=>'search'),
@@ -172,6 +177,59 @@ class UserKopertis extends CActiveRecord
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
+	}
+
+	public function isActive(){
+		return $this->STATUS==self::ACTIVE;
+	}
+
+	public function isPending(){
+		return $this->STATUS==self::PENDING;
+	}
+
+	public function isRejected(){
+		return $this->STATUS==self::REJECTED;
+	}
+
+	public function getLabelStatus(){
+		if($this->isActive()){
+			return '<span class="label label-success">Active</span>';
+		}else if($this->isPending()){
+			return '<span class="label label-warning">Pending</span>';
+		}else if($this->isRejected()){
+			return '<span class="label label-danger">Rejected</span>';
+		}else{
+			return '-';
+		}
+	}
+
+	public static function optionsStatus(){
+		return array(
+			self::ACTIVE=>'Active',
+			self::PENDING=>'Pending'
+		);
+	}
+
+	public function getUpdateButton(){
+		$update =  CHtml::link('<i class="fa fa-pencil"></i> Koreksi',array('user/update','type'=>WebUser::ROLE_KOPERTIS,'id'=>$this->ID_USER),array(
+			'class'=>'btn btn-sm btn-success',
+		));
+
+		$button = $update;
+
+		return $button;
+	}
+
+	public function getDeleteButton(){
+		$delete =  CHtml::link('<i class="fa fa-trash"></i> Hapus','#',array(
+			'class'=>'btn btn-sm red',
+			'submit'=>array('user/delete','type'=>WebUser::ROLE_KOPERTIS,'id'=>$this->ID_USER),
+			'confirm'=>'Anda akan menghapus user ini. Apakah Anda ingin melanjutkan?'
+		));
+
+		$button = $delete;
+
+		return $button;
 	}
 
 	public function sendEmailLupaPassword(){

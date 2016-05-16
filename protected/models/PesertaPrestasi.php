@@ -265,7 +265,7 @@ class PesertaPrestasi extends CActiveRecord
 			$photourl = Yii::app()->request->baseUrl.'/file/prestasi/'.Yii::app()->params['tahun'].'/'.$this->SERTIFIKAT;
 			return '<img src="'.$photourl.'" alt="Photo"/>';
 		}else{
-			return 'TIDAK ADA SERTIFIKAT';
+			return '<div class="alert alert-warning">TIDAK ADA SERTIFIKAT</div>';
 		}
 	}
 }

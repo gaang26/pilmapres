@@ -20,6 +20,11 @@
  */
 class User extends CActiveRecord
 {
+	const ACTIVE = 1;
+	const PENDING = 0;
+	const REJECTED = -1;
+
+	public $PASSWORD_REPEAT;
 	/**
 	 * @return string the associated database table name
 	 */
@@ -36,12 +41,13 @@ class User extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('EMAIL, PASSWORD, ROLE, TANGGAL_UPDATE', 'required'),
+			array('NAMA, EMAIL, PASSWORD, PASSWORD_REPEAT, ROLE, TANGGAL_INPUT', 'required','on'=>'create'),
 			array('ROLE, STATUS', 'numerical', 'integerOnly'=>true),
 			array('EMAIL, NAMA', 'length', 'max'=>100),
 			array('PASSWORD', 'length', 'max'=>50),
 			array('HP, TELP', 'length', 'max'=>20),
 			array('TANGGAL_INPUT', 'safe'),
+			array('PASSWORD_REPEAT', 'compare', 'compareAttribute'=>'PASSWORD','on'=>'create','message'=>'Password tidak cocok'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('ID_USER, EMAIL, PASSWORD, ROLE, NAMA, HP, TELP, STATUS, TANGGAL_INPUT, TANGGAL_UPDATE', 'safe', 'on'=>'search'),
@@ -69,12 +75,13 @@ class User extends CActiveRecord
 			'ID_USER' => 'Id User',
 			'EMAIL' => 'Email',
 			'PASSWORD' => 'Password',
+			'PASSWORD_REPEAT' => 'Confirm  Password',
 			'ROLE' => 'Role',
 			'NAMA' => 'Nama',
-			'HP' => 'Hp',
+			'HP' => 'HP',
 			'TELP' => 'Telp',
 			'STATUS' => 'Status',
-			'TANGGAL_INPUT' => 'Tanggal Input',
+			'TANGGAL_INPUT' => 'Tanggal Entri',
 			'TANGGAL_UPDATE' => 'Tanggal Update',
 		);
 	}
@@ -122,5 +129,58 @@ class User extends CActiveRecord
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
+	}
+
+	public function isActive(){
+		return $this->STATUS==self::ACTIVE;
+	}
+
+	public function isPending(){
+		return $this->STATUS==self::PENDING;
+	}
+
+	public function isRejected(){
+		return $this->STATUS==self::REJECTED;
+	}
+
+	public function getLabelStatus(){
+		if($this->isActive()){
+			return '<span class="label label-success">Active</span>';
+		}else if($this->isPending()){
+			return '<span class="label label-warning">Pending</span>';
+		}else if($this->isRejected()){
+			return '<span class="label label-danger">Rejected</span>';
+		}else{
+			return '-';
+		}
+	}
+
+	public static function optionsStatus(){
+		return array(
+			self::ACTIVE=>'Active',
+			self::PENDING=>'Pending'
+		);
+	}
+
+	public function getUpdateButton(){
+		$update =  CHtml::link('<i class="fa fa-pencil"></i> Koreksi',array('user/update','type'=>WebUser::ROLE_ADMIN,'id'=>$this->ID_USER),array(
+			'class'=>'btn btn-sm btn-success',
+		));
+
+		$button = $update;
+
+		return $button;
+	}
+
+	public function getDeleteButton(){
+		$delete =  CHtml::link('<i class="fa fa-trash"></i> Hapus','#',array(
+			'class'=>'btn btn-sm red',
+			'submit'=>array('user/delete','type'=>WebUser::ROLE_ADMIN,'id'=>$this->ID_USER),
+			'confirm'=>'Anda akan menghapus user ini. Apakah Anda ingin melanjutkan?'
+		));
+
+		$button = $delete;
+
+		return $button;
 	}
 }

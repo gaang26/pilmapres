@@ -255,7 +255,7 @@ class UserPT extends CActiveRecord
 
 	public function getLabelStatus(){
 		if($this->isActive()){
-			return '<span class="label label-success">Aktif</span>';
+			return '<span class="label label-success">Active</span>';
 		}else if($this->isPending()){
 			return '<span class="label label-warning">Pending</span>';
 		}else if($this->isRejected()){
@@ -263,6 +263,36 @@ class UserPT extends CActiveRecord
 		}else{
 			return '-';
 		}
+	}
+
+	public static function optionsStatus(){
+		return array(
+			self::ACTIVE=>'Active',
+			self::PENDING=>'Pending',
+			self::REJECTED=>'Rejected',
+		);
+	}
+
+	public function getUpdateButton(){
+		$update =  CHtml::link('<i class="fa fa-pencil"></i> Koreksi',array('user/update','type'=>WebUser::ROLE_PT,'id'=>$this->ID_USER),array(
+			'class'=>'btn btn-sm btn-success',
+		));
+
+		$button = $update;
+
+		return $button;
+	}
+
+	public function getDeleteButton(){
+		$delete =  CHtml::link('<i class="fa fa-trash"></i> Hapus','#',array(
+			'class'=>'btn btn-sm red',
+			'submit'=>array('user/delete','type'=>WebUser::ROLE_PT,'id'=>$this->ID_USER),
+			'confirm'=>'Anda akan menghapus user ini. Apakah Anda ingin melanjutkan?'
+		));
+
+		$button = $delete;
+
+		return $button;
 	}
 
 	public function getAcceptButton(){

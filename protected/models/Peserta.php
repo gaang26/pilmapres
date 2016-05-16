@@ -239,6 +239,7 @@ class Peserta extends CActiveRecord
 		$criteria->compare('JENJANG',$this->JENJANG,true);
 		$criteria->compare('SEMESTER',$this->SEMESTER);
 		$criteria->compare('IPK',$this->IPK,true);
+		$criteria->compare('JENIS_KELAMIN',$this->JENIS_KELAMIN,true);
 		$criteria->compare('EMAIL',$this->EMAIL,true);
 		$criteria->compare('HP',$this->HP,true);
 		$criteria->compare('TEMPAT_LAHIR',$this->TEMPAT_LAHIR,true);
