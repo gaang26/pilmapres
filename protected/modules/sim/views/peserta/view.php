@@ -24,6 +24,11 @@ $this->breadcrumbs=array(
 
 			<div class="tab-content">
 				<div class="tab-pane active" id="profil">
+					<div class="text-right margin-bottom-10">
+						<?php echo CHtml::link('<i class="icon-pencil"></i> Edit Data',array('peserta/update','id'=>$model->ID_PESERTA),array(
+							'class'=>'btn green-meadow'
+						)); ?>
+					</div>
 					<?php $this->renderPartial('_profil',array('model'=>$model)) ?>
 				</div>
 				<div class="tab-pane" id="karyatulis">

@@ -286,4 +286,17 @@ class UserKopertis extends CActiveRecord
         return $sender->sendMail($to,$from,$subject,$message);
 		// end: send email using sendpulse
 	}
+
+	public function hasNoCandidate(){
+		$criteria = new CDbCriteria;
+		$criteria->condition = 'ID_USER=:id_user AND ROLE_USER=:role';
+		$criteria->params = array(
+			':id_user'=>$this->ID_USER,
+			':role'=>$this->ROLE
+		);
+
+		$peserta = Peserta::model()->count($criteria);
+
+		return $peserta==0;
+	}
 }

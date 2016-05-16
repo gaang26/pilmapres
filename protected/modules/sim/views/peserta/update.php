@@ -1,21 +1,12 @@
 <?php
 /* @var $this PesertaController */
 /* @var $model Peserta */
-
+$this->pageTitle = 'Edit Data Peserta';
 $this->breadcrumbs=array(
-	'Pesertas'=>array('index'),
-	$model->ID_PESERTA=>array('view','id'=>$model->ID_PESERTA),
-	'Update',
-);
-
-$this->menu=array(
-	array('label'=>'List Peserta', 'url'=>array('index')),
-	array('label'=>'Create Peserta', 'url'=>array('create')),
-	array('label'=>'View Peserta', 'url'=>array('view', 'id'=>$model->ID_PESERTA)),
-	array('label'=>'Manage Peserta', 'url'=>array('admin')),
+	'Peserta'=>array('peserta/index'),
+	$model->NAMA=>array('peserta/view','id'=>$model->ID_PESERTA),
+	$this->pageTitle,
 );
 ?>
-
-<h1>Update Peserta <?php echo $model->ID_PESERTA; ?></h1>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

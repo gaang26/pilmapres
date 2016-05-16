@@ -32,7 +32,7 @@ $('.search-form form').submit(function(){
             <?php echo CHtml::link('<i class="fa fa-search"></i> Cari User','#',array(
                 'class'=>'btn btn-circle default search-button'
             )); ?>
-            <?php echo CHtml::link('<i class="fa fa-plus"></i> Tambah User',array('user/create','type'=>WebUser::ROLE_KOPERTIS),array(
+            <?php echo CHtml::link('<i class="fa fa-plus"></i> Tambah User',array('user/create','type'=>WebUser::ROLE_PT),array(
                 'class'=>'btn btn-circle blue'
             )); ?>
         </div>

@@ -109,7 +109,35 @@ class UserController extends Controller
                 'model'=>$model,
             ));
         }else if($type==WebUser::ROLE_PT){
-            //
+            $model=new UserPT;
+            $model->scenario = 'create';
+            $model->ROLE = WebUser::ROLE_PT;
+
+            if(isset($_POST['UserPT']))
+            {
+                $model->attributes=$_POST['UserPT'];
+                $temp_password = $model->PASSWORD;
+                $temp_password_repeat = $model->PASSWORD_REPEAT;
+                $model->TANGGAL_INPUT = date('Y-m-d H:i:s');
+                $model->TANGGAL_UPDATE = date('Y-m-d H:i:s');
+                $model->TAHUN = Yii::app()->params['tahun'];
+                if($model->validate()){
+                    $model->PASSWORD = md5($model->PASSWORD);
+                    $model->PASSWORD_REPEAT = md5($model->PASSWORD_REPEAT);
+                    if($model->save()){
+                        //$model->sendConfirmationEmail();
+                        Yii::app()->user->setFlash('info',MyFormatter::alertSuccess('<b>Sukses!</b> User baru telah berhasil ditambahkan.'));
+                        $this->redirect(array('user/pt'));
+                    }
+                }else{
+                    $model->PASSWORD = $temp_password;
+                    $model->PASSWORD_REPEAT = $temp_password_repeat;
+                }
+            }
+
+            $this->render('pt/create',array(
+                'model'=>$model,
+            ));
         }else if($type==WebUser::ROLE_KOPERTIS){
             $model=new UserKopertis;
             $model->scenario = 'create';
@@ -215,14 +243,24 @@ class UserController extends Controller
             }
         }else if($type==WebUser::ROLE_PT){
             $model=$this->loadModelUserPT($id);
-            if($model->delete()){
-                Yii::app()->user->setFlash('info',MyFormatter::alertSuccess('<b>Sukses!</b> user telah berhasil dihapus.'));
+            if($model->hasNoCandidate()){
+                if($model->delete()){
+                    Yii::app()->user->setFlash('info',MyFormatter::alertSuccess('<b>Sukses!</b> user telah berhasil dihapus.'));
+                    $this->redirect(array('user/pt'));
+                }
+            }else{
+                Yii::app()->user->setFlash('info',MyFormatter::alertError('<b>Gagal!</b> user ini tidak dapat dihapus karena telah mendaftarkan kandidat mawapres.'));
                 $this->redirect(array('user/pt'));
             }
         }else if($type==WebUser::ROLE_KOPERTIS){
             $model=$this->loadModelUserKopertis($id);
-            if($model->delete()){
-                Yii::app()->user->setFlash('info',MyFormatter::alertSuccess('<b>Sukses!</b> user telah berhasil dihapus.'));
+            if($model->hasNoCandidate()){
+                if($model->delete()){
+                    Yii::app()->user->setFlash('info',MyFormatter::alertSuccess('<b>Sukses!</b> user telah berhasil dihapus.'));
+                    $this->redirect(array('user/kopertis'));
+                }
+            }else{
+                Yii::app()->user->setFlash('info',MyFormatter::alertError('<b>Gagal!</b> user ini tidak dapat dihapus karena telah mendaftarkan kandidat mawapres.'));
                 $this->redirect(array('user/kopertis'));
             }
         }else if($type==WebUser::ROLE_JURI){

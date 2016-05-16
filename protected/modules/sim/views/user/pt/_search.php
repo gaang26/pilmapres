@@ -24,19 +24,19 @@
                 <?php echo $form->textField($model,'NAMA',array('class'=>'form-control')); ?>
             </div>
         </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4 col-sm-4">
+            <div class="form-group">
+                <?php echo $form->label($model,'ID_PT'); ?>
+                <?php echo $form->dropDownList($model,'ID_PT',array(''=>'Semua')+MasterPT::optionsAll(),array('class'=>'form-control select2me')); ?>
+            </div>
+        </div>
         <div class="col-md-4 col-sm-4">
             <div class="form-group">
                 <?php echo $form->label($model,'STATUS'); ?>
                 <?php echo $form->dropDownList($model,'STATUS',array(''=>'Semua')+$model->optionsStatus(),array('class'=>'form-control')); ?>
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-8 col-sm-8">
-            <div class="form-group">
-                <?php echo $form->label($model,'ID_PT'); ?>
-                <?php echo $form->dropDownList($model,'ID_PT',array(''=>'Semua')+MasterPT::optionsAll(),array('class'=>'form-control select2me')); ?>
             </div>
         </div>
     </div>

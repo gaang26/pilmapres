@@ -49,6 +49,7 @@ class UserPT extends CActiveRecord
 			//array('ID_PT, EMAIL, PASSWORD, TAHUN, ROLE, TANGGAL_UPDATE', 'required'),
 			array('ID_PT, EMAIL, NAMA, PASSWORD, TAHUN, ROLE, HP, TANGGAL_UPDATE, PASSWORD_REPEAT', 'required','on'=>'daftar-baru','message'=>'{attribute} ini tidak boleh dikosongkan'),
 			array('ID_PT, EMAIL, NAMA, PASSWORD, TAHUN, ROLE, HP, TANGGAL_UPDATE', 'required','on'=>'update-biodata','message'=>'{attribute} ini tidak boleh dikosongkan'),
+			array('ID_PT, EMAIL, NAMA, PASSWORD, TAHUN, ROLE, TANGGAL_UPDATE, PASSWORD_REPEAT', 'required','on'=>'create','message'=>'{attribute} ini tidak boleh dikosongkan'),
 			array('ID_PT, EMAIL', 'required', 'on'=>'lupa-password'),
 			array('EMAIL','checkEmailLupaPassword','on'=>'lupa-password'),
 			array('NEW_PASSWORD, PASSWORD, PASSWORD_REPEAT','required','on'=>'reset-password'),
@@ -59,9 +60,9 @@ class UserPT extends CActiveRecord
 			array('HP, TELP', 'length', 'max'=>20),
 			array('TANGGAL_INPUT', 'safe'),
 			array('PASSWORD_REPEAT', 'compare', 'compareAttribute'=>'NEW_PASSWORD','on'=>'reset-password','message'=>'Password tidak cocok'),
-			array('PASSWORD_REPEAT', 'compare', 'compareAttribute'=>'PASSWORD','on'=>'daftar-baru','message'=>'Password tidak cocok'),
-			array('EMAIL,TAHUN','checkUniqueEmail','on'=>'daftar-baru,update-biodata'),
-			array('ID_PT,TAHUN','checkUniquePT','on'=>'daftar-baru'),
+			array('PASSWORD_REPEAT', 'compare', 'compareAttribute'=>'PASSWORD','on'=>'create,daftar-baru','message'=>'Password tidak cocok'),
+			array('EMAIL,TAHUN','checkUniqueEmail','on'=>'create,daftar-baru,update-biodata'),
+			array('ID_PT,TAHUN','checkUniquePT','on'=>'daftar-baru,create'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('ID_USER, ID_PT, EMAIL, PASSWORD, TAHUN, ROLE, NAMA, HP, TELP, STATUS, VERIFIKATOR, TANGGAL_INPUT, TANGGAL_UPDATE', 'safe', 'on'=>'search'),
@@ -144,7 +145,7 @@ class UserPT extends CActiveRecord
 			'EMAIL' => 'Email',
 			'PASSWORD' => 'Password',
 			'NEW_PASSWORD'=>'Password Baru',
-			'PASSWORD_REPEAT' => 'Konfirmasi Password',
+			'PASSWORD_REPEAT' => 'Confirm Password',
 			'TAHUN' => 'Tahun',
 			'ROLE' => 'Role',
 			'NAMA' => 'Nama Lengkap',
@@ -542,6 +543,19 @@ class UserPT extends CActiveRecord
         //     throw $e;
         // }
 		// End: proses pengiriman email menggunakan mandrill
+	}
+
+	public function hasNoCandidate(){
+		$criteria = new CDbCriteria;
+		$criteria->condition = 'ID_USER=:id_user AND ROLE_USER=:role';
+		$criteria->params = array(
+			':id_user'=>$this->ID_USER,
+			':role'=>$this->ROLE
+		);
+
+		$peserta = Peserta::model()->count($criteria);
+
+		return $peserta==0;
 	}
 
 }

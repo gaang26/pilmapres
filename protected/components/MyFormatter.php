@@ -11,7 +11,7 @@ class MyFormatter extends CFormatter {
     }
 
     public static function alertError($message) {
-        return '<div class="alert alert-error"><button type="button" class="close" data-dismiss="alert">×</button>' . $message . '</div>';
+        return '<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert">×</button>' . $message . '</div>';
     }
 
     public static function alertSuccess($message) {

@@ -15,222 +15,219 @@
 	'enableAjaxValidation'=>false,
 )); ?>
 
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
-
 	<?php echo $form->errorSummary($model); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'ID_PT'); ?>
-		<?php echo $form->textField($model,'ID_PT'); ?>
-		<?php echo $form->error($model,'ID_PT'); ?>
-	</div>
+	<!-- BEGIN: -->
+	<div class="portlet light bordered">
+		<div class="portlet-title">
+			<div class="caption">
+				<i class="fa fa-user font-blue-sharp"></i>
+				<span class="uppercase font-blue-sharp">Informasi Pribadi</span>
+			</div>
+		</div>
+		<div class="portlet-body">
+			<div class="form-group">
+				<?php echo $form->labelEx($model,'NAMA'); ?>
+				<?php echo $form->textField($model,'NAMA',array('class'=>'form-control')); ?>
+				<?php echo $form->error($model,'NAMA'); ?>
+			</div>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'ROLE'); ?>
-		<?php echo $form->textField($model,'ROLE'); ?>
-		<?php echo $form->error($model,'ROLE'); ?>
-	</div>
+			<div class="form-group">
+				<?php echo $form->labelEx($model,'EMAIL'); ?>
+				<?php echo $form->textField($model,'EMAIL',array('class'=>'form-control')); ?>
+				<?php echo $form->error($model,'EMAIL'); ?>
+			</div>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'PIN'); ?>
-		<?php echo $form->textField($model,'PIN',array('size'=>10,'maxlength'=>10)); ?>
-		<?php echo $form->error($model,'PIN'); ?>
-	</div>
+			<div class="form-group">
+				<?php echo $form->labelEx($model,'HP'); ?>
+				<?php echo $form->textField($model,'HP',array('class'=>'form-control')); ?>
+				<?php echo $form->error($model,'HP'); ?>
+			</div>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'PASSWORD'); ?>
-		<?php echo $form->passwordField($model,'PASSWORD',array('size'=>50,'maxlength'=>50)); ?>
-		<?php echo $form->error($model,'PASSWORD'); ?>
-	</div>
+			<div class="form-group">
+				<?php echo $form->labelEx($model,'JENIS_KELAMIN'); ?>
+				<?php echo $form->dropDownList($model,'JENIS_KELAMIN',$model->optionsJenisKelamin(),array(
+					'class'=>'form-control select2me',
+					'prompt'=>'--Pilih jenis kelamin--'
+				)); ?>
+				<?php echo $form->error($model,'JENIS_KELAMIN'); ?>
+			</div>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'TAHUN'); ?>
-		<?php echo $form->textField($model,'TAHUN',array('size'=>4,'maxlength'=>4)); ?>
-		<?php echo $form->error($model,'TAHUN'); ?>
-	</div>
+			<div class="form-group">
+				<?php echo $form->labelEx($model,'TEMPAT_LAHIR'); ?>
+				<?php echo $form->textField($model,'TEMPAT_LAHIR',array('class'=>'form-control')); ?>
+				<?php echo $form->error($model,'TEMPAT_LAHIR'); ?>
+			</div>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'NIM'); ?>
-		<?php echo $form->textField($model,'NIM',array('size'=>50,'maxlength'=>50)); ?>
-		<?php echo $form->error($model,'NIM'); ?>
-	</div>
+			<div class="form-group">
+				<?php echo $form->labelEx($model,'TANGGAL_LAHIR'); ?>
+				<?php echo $form->textField($model,'TANGGAL_LAHIR',array('class'=>'form-control tanggal_lahir')); ?>
+				<?php echo $form->error($model,'TANGGAL_LAHIR'); ?>
+			</div>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'NAMA'); ?>
-		<?php echo $form->textField($model,'NAMA',array('size'=>60,'maxlength'=>100)); ?>
-		<?php echo $form->error($model,'NAMA'); ?>
-	</div>
+			<div class="form-group">
+				<?php echo $form->labelEx($model,'ALAMAT'); ?>
+				<?php echo $form->textArea($model,'ALAMAT',array('class'=>'form-control')); ?>
+				<?php echo $form->error($model,'ALAMAT'); ?>
+			</div>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'ID_PRODI'); ?>
-		<?php echo $form->textField($model,'ID_PRODI'); ?>
-		<?php echo $form->error($model,'ID_PRODI'); ?>
-	</div>
+			<div class="form-group">
+				<?php echo $form->labelEx($model,'ID_KOTA'); ?>
+				<?php echo $form->dropDownList($model,'ID_KOTA',MasterKota::optionsAll(),array(
+					'class'=>'form-control select2me',
+					'prompt'=>'--Pilih kota--'
+				)); ?>
+				<?php echo $form->error($model,'ID_KOTA'); ?>
+			</div>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'JENJANG'); ?>
-		<?php echo $form->textField($model,'JENJANG',array('size'=>15,'maxlength'=>15)); ?>
-		<?php echo $form->error($model,'JENJANG'); ?>
+			<div class="form-group">
+				<?php echo $form->labelEx($model,'WEBSITE'); ?>
+				<?php echo $form->textField($model,'WEBSITE',array('class'=>'form-control')); ?>
+				<?php echo $form->error($model,'WEBSITE'); ?>
+			</div>
+		</div>
 	</div>
+	<!-- END: -->
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'SEMESTER'); ?>
-		<?php echo $form->textField($model,'SEMESTER'); ?>
-		<?php echo $form->error($model,'SEMESTER'); ?>
+	<!-- BEGIN: -->
+	<div class="portlet light bordered">
+		<div class="portlet-title">
+			<div class="caption">
+				<i class="fa fa-graduation-cap font-blue-sharp"></i>
+				<span class="uppercase font-blue-sharp">Akademik</span>
+			</div>
+		</div>
+		<div class="portlet-body">
+			<div class="form-group">
+				<?php echo $form->labelEx($model,'ID_PT'); ?>
+				<?php echo $form->dropDownList($model,'ID_PT',MasterPT::optionsAll(),array(
+					'class'=>'form-control select2me',
+					'prompt'=>'--Pilih perguruan tinggi--'
+				)); ?>
+				<?php echo $form->error($model,'ID_PT'); ?>
+			</div>
+
+			<div class="form-group">
+				<?php echo $form->labelEx($model,'NIM'); ?>
+				<?php echo $form->textField($model,'NIM',array('class'=>'form-control')); ?>
+				<?php echo $form->error($model,'NIM'); ?>
+			</div>
+
+			<div class="form-group">
+				<?php echo $form->labelEx($model,'ID_PRODI'); ?>
+				<?php echo $form->dropDownList($model,'ID_PRODI',MasterProdi::optionsAll(),array(
+					'class'=>'form-control select2me',
+					'prompt'=>'--Pilih jurusan--'
+				)); ?>
+				<?php echo $form->error($model,'ID_PRODI'); ?>
+			</div>
+
+			<div class="form-group">
+				<?php echo $form->labelEx($model,'JENJANG'); ?>
+				<?php echo $form->dropDownList($model,'JENJANG',$model->optionsJenjang(),array(
+					'class'=>'form-control select2me',
+					'prompt'=>'--Pilih jenjang--'
+				)); ?>
+				<?php echo $form->error($model,'JENJANG'); ?>
+			</div>
+
+			<div class="form-group">
+				<?php echo $form->labelEx($model,'SEMESTER'); ?>
+				<?php echo $form->textField($model,'SEMESTER',array('class'=>'form-control')); ?>
+				<?php echo $form->error($model,'SEMESTER'); ?>
+			</div>
+
+			<div class="form-group">
+				<?php echo $form->labelEx($model,'IPK'); ?>
+				<?php echo $form->textField($model,'IPK',array('class'=>'form-control')); ?>
+				<?php echo $form->error($model,'IPK'); ?>
+			</div>
+		</div>
 	</div>
+	<!-- END: -->
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'IPK'); ?>
-		<?php echo $form->textField($model,'IPK',array('size'=>4,'maxlength'=>4)); ?>
-		<?php echo $form->error($model,'IPK'); ?>
+
+	<!-- BEGIN: -->
+	<div class="portlet light bordered">
+		<div class="portlet-title">
+			<div class="caption">
+				<i class="fa fa-user font-blue-sharp"></i>
+				<span class="uppercase font-blue-sharp">Karya Tulis</span>
+			</div>
+		</div>
+		<div class="portlet-body">
+			<div class="form-group">
+				<?php echo $form->labelEx($model,'JUDUL_KTI'); ?>
+				<?php echo $form->textField($model,'JUDUL_KTI',array('class'=>'form-control')); ?>
+				<?php echo $form->error($model,'JUDUL_KTI'); ?>
+			</div>
+
+			<div class="form-group">
+				<?php echo $form->labelEx($model,'FILE_KTI'); ?>
+				<?php echo $form->textField($model,'FILE_KTI',array('class'=>'form-control')); ?>
+				<?php echo $form->error($model,'FILE_KTI'); ?>
+			</div>
+
+			<div class="form-group">
+				<?php echo $form->labelEx($model,'ID_TOPIK'); ?>
+				<?php echo $form->dropDownList($model,'ID_TOPIK',MasterTopik::optionsTopik($model->JENJANG),array(
+					'class'=>'form-control select2me',
+					'prompt'=>'--Pilih topik karya tulis'
+				)); ?>
+				<?php echo $form->error($model,'ID_TOPIK'); ?>
+			</div>
+
+			<div class="form-group">
+				<?php echo $form->labelEx($model,'BIDANG'); ?>
+				<?php echo $form->dropDownList($model,'BIDANG',$model->optionsBidang(),array(
+					'class'=>'form-control select2me',
+					'prompt'=>'--Pilih bidang karya tulis--'
+				)); ?>
+				<?php echo $form->error($model,'BIDANG'); ?>
+			</div>
+
+			<div class="form-group">
+				<?php echo $form->labelEx($model,'RINGKASAN'); ?>
+				<?php echo $form->textArea($model,'RINGKASAN',array('class'=>'form-control','rows'=>20)); ?>
+				<?php echo $form->error($model,'RINGKASAN'); ?>
+			</div>
+		</div>
 	</div>
+	<!-- END: -->
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'EMAIL'); ?>
-		<?php echo $form->textField($model,'EMAIL',array('size'=>60,'maxlength'=>100)); ?>
-		<?php echo $form->error($model,'EMAIL'); ?>
+
+	<!-- BEGIN: -->
+	<div class="portlet light bordered">
+		<div class="portlet-title">
+			<div class="caption">
+				<i class="fa fa-user font-blue-sharp"></i>
+				<span class="uppercase font-blue-sharp">Lainnya</span>
+			</div>
+		</div>
+		<div class="portlet-body">
+			<div class="form-group">
+				<?php echo $form->labelEx($model,'VIDEO_RINGKASAN'); ?>
+				<?php echo $form->textField($model,'VIDEO_RINGKASAN',array('class'=>'form-control')); ?>
+				<?php echo $form->error($model,'VIDEO_RINGKASAN'); ?>
+			</div>
+
+			<div class="form-group">
+				<?php echo $form->labelEx($model,'VIDEO_KESEHARIAN'); ?>
+				<?php echo $form->textField($model,'VIDEO_KESEHARIAN',array('class'=>'form-control')); ?>
+				<?php echo $form->error($model,'VIDEO_KESEHARIAN'); ?>
+			</div>
+
+			<div class="form-group">
+				<?php echo $form->labelEx($model,'URL_FORLAP'); ?>
+				<?php echo $form->textField($model,'URL_FORLAP',array('class'=>'form-control')); ?>
+				<?php echo $form->error($model,'URL_FORLAP'); ?>
+			</div>
+		</div>
 	</div>
+	<!-- END: -->
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'HP'); ?>
-		<?php echo $form->textField($model,'HP',array('size'=>20,'maxlength'=>20)); ?>
-		<?php echo $form->error($model,'HP'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'JENIS_KELAMIN'); ?>
-		<?php echo $form->textField($model,'JENIS_KELAMIN',array('size'=>1,'maxlength'=>1)); ?>
-		<?php echo $form->error($model,'JENIS_KELAMIN'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'TEMPAT_LAHIR'); ?>
-		<?php echo $form->textField($model,'TEMPAT_LAHIR',array('size'=>50,'maxlength'=>50)); ?>
-		<?php echo $form->error($model,'TEMPAT_LAHIR'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'TANGGAL_LAHIR'); ?>
-		<?php echo $form->textField($model,'TANGGAL_LAHIR'); ?>
-		<?php echo $form->error($model,'TANGGAL_LAHIR'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'ALAMAT'); ?>
-		<?php echo $form->textArea($model,'ALAMAT',array('rows'=>6, 'cols'=>50)); ?>
-		<?php echo $form->error($model,'ALAMAT'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'ID_KOTA'); ?>
-		<?php echo $form->textField($model,'ID_KOTA'); ?>
-		<?php echo $form->error($model,'ID_KOTA'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'WEBSITE'); ?>
-		<?php echo $form->textField($model,'WEBSITE',array('size'=>60,'maxlength'=>100)); ?>
-		<?php echo $form->error($model,'WEBSITE'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'PHOTO'); ?>
-		<?php echo $form->textField($model,'PHOTO',array('size'=>60,'maxlength'=>255)); ?>
-		<?php echo $form->error($model,'PHOTO'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'JUDUL_KTI'); ?>
-		<?php echo $form->textField($model,'JUDUL_KTI',array('size'=>60,'maxlength'=>500)); ?>
-		<?php echo $form->error($model,'JUDUL_KTI'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'FILE_KTI'); ?>
-		<?php echo $form->textField($model,'FILE_KTI',array('size'=>60,'maxlength'=>100)); ?>
-		<?php echo $form->error($model,'FILE_KTI'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'ID_TOPIK'); ?>
-		<?php echo $form->textField($model,'ID_TOPIK'); ?>
-		<?php echo $form->error($model,'ID_TOPIK'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'BIDANG'); ?>
-		<?php echo $form->textField($model,'BIDANG',array('size'=>10,'maxlength'=>10)); ?>
-		<?php echo $form->error($model,'BIDANG'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'RINGKASAN'); ?>
-		<?php echo $form->textArea($model,'RINGKASAN',array('rows'=>6, 'cols'=>50)); ?>
-		<?php echo $form->error($model,'RINGKASAN'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'VIDEO_RINGKASAN'); ?>
-		<?php echo $form->textField($model,'VIDEO_RINGKASAN',array('size'=>60,'maxlength'=>255)); ?>
-		<?php echo $form->error($model,'VIDEO_RINGKASAN'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'VIDEO_KESEHARIAN'); ?>
-		<?php echo $form->textField($model,'VIDEO_KESEHARIAN',array('size'=>60,'maxlength'=>255)); ?>
-		<?php echo $form->error($model,'VIDEO_KESEHARIAN'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'SURAT_PENGANTAR'); ?>
-		<?php echo $form->textField($model,'SURAT_PENGANTAR',array('size'=>60,'maxlength'=>255)); ?>
-		<?php echo $form->error($model,'SURAT_PENGANTAR'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'URL_FORLAP'); ?>
-		<?php echo $form->textField($model,'URL_FORLAP',array('size'=>60,'maxlength'=>255)); ?>
-		<?php echo $form->error($model,'URL_FORLAP'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'KTM'); ?>
-		<?php echo $form->textField($model,'KTM',array('size'=>60,'maxlength'=>255)); ?>
-		<?php echo $form->error($model,'KTM'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'ID_USER'); ?>
-		<?php echo $form->textField($model,'ID_USER'); ?>
-		<?php echo $form->error($model,'ID_USER'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'ROLE_USER'); ?>
-		<?php echo $form->textField($model,'ROLE_USER'); ?>
-		<?php echo $form->error($model,'ROLE_USER'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'TANGGAL_INPUT'); ?>
-		<?php echo $form->textField($model,'TANGGAL_INPUT'); ?>
-		<?php echo $form->error($model,'TANGGAL_INPUT'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'TANGGAL_UPDATE'); ?>
-		<?php echo $form->textField($model,'TANGGAL_UPDATE'); ?>
-		<?php echo $form->error($model,'TANGGAL_UPDATE'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'TAHAP_AWAL'); ?>
-		<?php echo $form->textField($model,'TAHAP_AWAL'); ?>
-		<?php echo $form->error($model,'TAHAP_AWAL'); ?>
-	</div>
-
-	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+	<div class="form-group">
+		<?php echo CHtml::submitButton('SIMPAN PERUBAHAN',array('class'=>'btn btn-primary')); ?>
 	</div>
 
 <?php $this->endWidget(); ?>
