@@ -72,7 +72,7 @@
 
 		<div class="form-group">
 			<?php echo $form->labelEx($model,'password',array('class'=>'control-label visible-ie8 visible-ie9')); ?>
-			<?php echo $form->passwordField($model,'password',array('class'=>'form-control form-control-solid placeholder-no-fix','placeholder'=>'Username')); ?>
+			<?php echo $form->passwordField($model,'password',array('class'=>'form-control form-control-solid placeholder-no-fix','placeholder'=>'Password')); ?>
 			<?php echo $form->error($model,'password'); ?>
 		</div>
 
