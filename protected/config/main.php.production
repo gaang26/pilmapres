@@ -44,7 +44,7 @@ return array(
 			'allowAutoLogin'=>true,
 		),
 		'format'=>array(
-			'class'=>'MyFormatter'
+			'class'=>'MyFormatter',
 		),
 		// uncomment the following to enable URLs in path-format
 
@@ -68,10 +68,10 @@ return array(
 		// uncomment the following to use a MySQL database
 
 		'db'=>array(
-			'connectionString' => 'mysql:host=localhost;dbname=mawapres',
+			'connectionString' => 'mysql:host=localhost;dbname=mawapres_2016',
 			'emulatePrepare' => true,
-			'username' => 'root',
-			'password' => 'root',
+			'username' => 'mawapres',
+			'password' => 'mawapresok',
 			'charset' => 'utf8',
 		),
 		'errorHandler'=>array(
