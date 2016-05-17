@@ -684,6 +684,19 @@ class Peserta extends CActiveRecord
 		// end: send email using sendpulse
 	}
 
+	public static function getJumlah($jenjang='SEMUA'){
+		if($jenjang=='SEMUA'){
+			return self::model()->count();
+		}else{
+			$criteria = new CDbCriteria;
+			$criteria->condition = 'JENJANG=:jenjang';
+			$criteria->params = array(
+				':jenjang'=>$jenjang
+			);
+			return self::model()->count($criteria);
+		}
+	}
+
 	//
 	// public function getImage(){
 	// 	if($this->PHOTO==null || $this->PHOTO==''){

@@ -18,7 +18,7 @@ $baseUrl = Yii::app()->theme->baseUrl;
 		</div>
 		<div class="details">
 			<div class="number">
-				670.54
+				<?php echo Peserta::getJumlah(); ?>
 			</div>
 			<div class="desc">
 				Semua Peserta
@@ -33,7 +33,7 @@ $baseUrl = Yii::app()->theme->baseUrl;
 		</div>
 		<div class="details">
 			<div class="number">
-				670.54
+				<?php echo Peserta::getJumlah(Peserta::SARJANA); ?>
 			</div>
 			<div class="desc">
 				Peserta Sarjana
@@ -48,7 +48,7 @@ $baseUrl = Yii::app()->theme->baseUrl;
 		</div>
 		<div class="details">
 			<div class="number">
-				670.54
+				<?php echo Peserta::getJumlah(Peserta::DIPLOMA); ?>
 			</div>
 			<div class="desc">
 				Peserta Diploma
