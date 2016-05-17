@@ -30,7 +30,7 @@
     <link href="<?php echo $baseUrl;?>/assets/css/style-responsive.css" rel="stylesheet" type="text/css"/>
     <!-- END GLOBAL MANDATORY STYLES -->
     <link href="<?php echo $baseUrl;?>/assets/css/themes/blue.css" rel="stylesheet" type="text/css" id="style_color"/>
-    <link rel="shortcut icon" href="<?php echo Yii::app()->request->baseUrl;?>/images/favicon.png" />
+    <link rel="shortcut icon" href="<?php echo Yii::app()->request->baseUrl;?>/images/ristekfavicon.png" />
 
     <script type="text/javascript" src="<?php echo Yii::app()->theme->baseUrl; ?>/js/pdfviewer/jquery.gdocsviewer.js"></script>
     <link href="<?php echo Yii::app()->request->baseUrl;?>/css/form.css" rel="stylesheet" type="text/css"/>
