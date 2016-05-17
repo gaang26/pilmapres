@@ -130,6 +130,7 @@
 
     $cs->scriptMap=array(
         'jquery.js'=>$baseUrl.'/assets/global/plugins/jquery.min.js',
+	'jquery.min.js'=>$baseUrl.'/assets/global/plugins/jquery.min.js'
     );
 
     $cs->registerScriptFile('jquery.js');
