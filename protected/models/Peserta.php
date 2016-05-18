@@ -430,8 +430,17 @@ class Peserta extends CActiveRecord
 	public function isVideoEmpty(){
 		return $this->VIDEO_RINGKASAN==null || $this->VIDEO_RINGKASAN=='';
 	}
+
+	public function isKTMEmpty(){
+		return $this->KTM==null || $this->KTM=='';
+	}
+
+	public function isPengantarEmpty(){
+		return $this->SURAT_PENGANTAR==null || $this->SURAT_PENGANTAR=='';
+	}
+
 	public function isComplete(){
-		return (!$this->isVideoEmpty() && !$this->isPrestasiEmpty() && !$this->isBiodataEmpty() && !$this->isKaryaTulisEmpty());
+		return (!$this->isKTMEmpty() && !$this->isPengantarEmpty() && !$this->isVideoEmpty() && !$this->isPrestasiEmpty() && !$this->isBiodataEmpty() && !$this->isKaryaTulisEmpty());
 	}
 
 	public function getLabelKelengkapan(){
@@ -445,6 +454,18 @@ class Peserta extends CActiveRecord
 		$result .= '<div class="margin-bottom-10"></div>';
 
 		$result .= '<ul class="list-unstyled">';
+
+		if(!$this->isKTMEmpty()){
+			$result .= '<li><i class="fa fa-check"></i> KTM</li>';
+		}else{
+			$result .= '<li><i class="fa fa-remove"></i> KTM</li>';
+		}
+
+		if(!$this->isPengantarEmpty()){
+			$result .= '<li><i class="fa fa-check"></i> Pengantar</li>';
+		}else{
+			$result .= '<li><i class="fa fa-remove"></i> Pengantar</li>';
+		}
 
 		if(!$this->isBiodataEmpty()){
 			$result .= '<li><i class="fa fa-check"></i> Biodata</li>';

@@ -22,11 +22,20 @@
                 'JENJANG',
                 'SEMESTER',
                 'IPK',
-                'SURAT_PENGANTAR',
                 array(
                     'name'=>'URL_FORLAP',
                     'type'=>'raw',
-                    'value'=>CHtml::link('Link Profil Forlap',$model->URL_FORLAP,array('target'=>'_blank'))
+                    'value'=>CHtml::link('LINK PROFIL FORLAP',$model->URL_FORLAP,array('target'=>'_blank'))
+                ),
+                array(
+                    'name'=>'KTM',
+                    'type'=>'raw',
+                    'value'=>CHtml::link('SCAN KTM','#',array('onclick'=>'showKTM()'))
+                ),
+                array(
+                    'name'=>'SURAT_PENGANTAR',
+                    'type'=>'raw',
+                    'value'=>CHtml::link('SCAN SURAT PENGANTAR','#',array('onclick'=>'showPengantar()'))
                 )
             ),
         )); ?>
@@ -97,3 +106,64 @@
         Belum ada data
     </div>
 <?php endif; ?>
+
+<div class="modal bs-modal-lg" id="file-preview-modal" tabindex="-1" role="basic" aria-hidden="true" style="display: none;" >
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+				<h4 class="modal-title"><span id="modalTitle"></span></h4>
+			</div>
+			<div class="modal-body">
+				<div id="modal-content" style="overflow:auto;">
+
+				</div>
+			</div>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+
+<script type="text/javascript">
+// $(document).ready(function(){
+//     showModal();
+// })
+function showKTM(){
+    var url = '<?php echo Yii::app()->createUrl("/sim/peserta/ktm"); ?>';
+    var id = '<?php echo $model->ID_PESERTA; ?>';
+    $.ajax({
+        url: url,
+        data: 'id='+id,
+        type: 'get',
+        beforeSend:function(){
+            showModal();
+        },
+        success: function(data){
+            var result = $.parseJSON(data);
+            $('#modal-content').html(result.html);
+            $('#modalTitle').html(result.title);
+        }
+    });
+}
+function showPengantar(){
+    var url = '<?php echo Yii::app()->createUrl("/sim/peserta/pengantar"); ?>';
+    var id = '<?php echo $model->ID_PESERTA; ?>';
+    $.ajax({
+        url: url,
+        data: 'id='+id,
+        type: 'get',
+        beforeSend:function(){
+            showModal();
+        },
+        success: function(data){
+            var result = $.parseJSON(data);
+            $('#modal-content').html(result.html);
+            $('#modalTitle').html(result.title);
+        }
+    });
+}
+function showModal(){
+    $('#file-preview-modal').modal('show');
+}
+</script>

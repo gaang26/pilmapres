@@ -1,6 +1,6 @@
 <?php
 
-class PesertaController extends Controller
+class JadwalController extends Controller
 {
 	/**
 	 * @return array action filters
@@ -23,11 +23,8 @@ class PesertaController extends Controller
 		return array(
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
 				'actions'=>array(
-					'index','view',
-					'create','update','admin','delete',
-					'unduhkti',
-					'prestasi',
-					'ktm','pengantar'
+					'buka','tutup',
+					'create','update','index','view','delete'
 				),
 				'users'=>array('@'),
 				'roles'=>array(WebUser::ROLE_ADMIN)
@@ -38,57 +35,28 @@ class PesertaController extends Controller
 		);
 	}
 
-	public function actionKtm($id){
+	public function actionBuka($id){
 		$model = $this->loadModel($id);
-
-		$data = array();
-
-		$data['title'] = 'FILE SCAN KTM';
-		$data['html'] = $model->getKTM();
-
-		echo json_encode($data);
+		$model->STATUS = Jadwal::ACTIVE;
+		if($model->save()){
+			$this->redirect(array('index'));
+		}
 	}
-
-	public function actionPengantar($id){
+	public function actionTutup($id){
 		$model = $this->loadModel($id);
-
-		$data = array();
-
-		$data['title'] = 'FILE SCAN SURAT PENGANTAR';
-		$data['html'] = $model->getPengantar();
-
-		echo json_encode($data);
+		$model->STATUS = Jadwal::INACTIVE;
+		if($model->save()){
+			$this->redirect(array('index'));
+		}
 	}
-
-	public function actionUnduhkti($id){//$id = ID_PESERTA
-		$model = $this->loadModel($id);
-		$filename = $model->FILE_KTI;
-        $path = Yii::app()->basePath . '/../file/kti/' . $filename;
-        $filecontent = file_get_contents($path);
-        header("Content-Type: text/plain");
-        header("Content-disposition: attachment; filename=$filename");
-        header("Pragma: no-cache");
-        echo $filecontent;
-        exit;
-	}
-
-	public function actionPrestasi($id){
-		$model = $this->loadModelPrestasi($id);
-
-		$this->render('view_prestasi',array(
-			'model'=>$model
-		));
-	}
-
 	/**
 	 * Displays a particular model.
 	 * @param integer $id the ID of the model to be displayed
 	 */
 	public function actionView($id)
 	{
-		$model = $this->loadModel($id);
 		$this->render('view',array(
-			'model'=>$model,
+			'model'=>$this->loadModel($id),
 		));
 	}
 
@@ -98,16 +66,16 @@ class PesertaController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model=new Peserta;
+		$model=new Jadwal;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Peserta']))
+		if(isset($_POST['Jadwal']))
 		{
-			$model->attributes=$_POST['Peserta'];
+			$model->attributes=$_POST['Jadwal'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->ID_PESERTA));
+				$this->redirect(array('view','id'=>$model->ID_JADWAL));
 		}
 
 		$this->render('create',array(
@@ -127,11 +95,11 @@ class PesertaController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Peserta']))
+		if(isset($_POST['Jadwal']))
 		{
-			$model->attributes=$_POST['Peserta'];
+			$model->attributes=$_POST['Jadwal'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->ID_PESERTA));
+				$this->redirect(array('view','id'=>$model->ID_JADWAL));
 		}
 
 		$this->render('update',array(
@@ -150,7 +118,7 @@ class PesertaController extends Controller
 
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 		if(!isset($_GET['ajax']))
-			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('index'));
+			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
 	}
 
 	/**
@@ -158,10 +126,10 @@ class PesertaController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$model=new Peserta('search');
+		$model=new Jadwal('search');
 		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['Peserta']))
-			$model->attributes=$_GET['Peserta'];
+		if(isset($_GET['Jadwal']))
+			$model->attributes=$_GET['Jadwal'];
 
 		$this->render('index',array(
 			'model'=>$model,
@@ -172,20 +140,12 @@ class PesertaController extends Controller
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.
 	 * @param integer $id the ID of the model to be loaded
-	 * @return Peserta the loaded model
+	 * @return Jadwal the loaded model
 	 * @throws CHttpException
 	 */
 	public function loadModel($id)
 	{
-		$model=Peserta::model()->findByPk($id);
-		if($model===null)
-			throw new CHttpException(404,'The requested page does not exist.');
-		return $model;
-	}
-
-	public function loadModelPrestasi($id_prestasi)
-	{
-		$model=PesertaPrestasi::model()->findByPk($id_prestasi);
+		$model=Jadwal::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
@@ -193,11 +153,11 @@ class PesertaController extends Controller
 
 	/**
 	 * Performs the AJAX validation.
-	 * @param Peserta $model the model to be validated
+	 * @param Jadwal $model the model to be validated
 	 */
 	protected function performAjaxValidation($model)
 	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='peserta-form')
+		if(isset($_POST['ajax']) && $_POST['ajax']==='jadwal-form')
 		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
