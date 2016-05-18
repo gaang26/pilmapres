@@ -207,7 +207,7 @@ $user_pendaftar = $model->getUserPendaftar();
                             <div>
                                 <?php echo $form->labelEx($model,'PHOTO'); ?>
                                 <div class="">
-                                    <button type="button" class="btn green" name="button" onclick="$('#unggah-file').toggle()"><i class="icon-pencil"></i> PERBARUI FOTO</button>
+                                    <button type="button" class="btn mini green" name="button" onclick="$('#unggah-file').toggle()"><i class="icon-pencil"></i> PERBARUI FOTO</button>
                                 </div>
                             </div>
                             <?php
@@ -222,11 +222,79 @@ $user_pendaftar = $model->getUserPendaftar();
                     </div>
                 </div>
 
+                <h4>Scan KTM</h4>
+                <blockquote class="note"><small>Unggah scan KTM Anda dalam format gambar dengan ukuran maksimal 100KB</small>
+                </blockquote>
+                <div class="row-fluid">
+                    <div class="span3">
+                        <div class="">
+                            <div class="v-card text-center">
+                                <div class="image-container">
+                                    <?php echo $model->getKTM(); ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="span9">
+                        <?php
+                        if($model->KTM!=null||$model->KTM!=''){
+                            ?>
+                            <div>
+                                <?php echo $form->labelEx($model,'KTM'); ?>
+                                <div class="">
+                                    <button type="button" class="btn mini green" name="button" onclick="$('#unggah-file-ktm').toggle()"><i class="icon-pencil"></i> PERBARUI KTM</button>
+                                </div>
+                            </div>
+                            <?php
+                        }
+                        ?>
+                        <div class="row" style="<?php echo ($model->KTM!=null||$model->KTM!='')?'display:none':''; ?>" id="unggah-file-ktm">
+                            <?php echo $form->labelEx($model,'KTM'); ?>
+                            <small>Scan SKTM dalam format jpg/jpeg/png dengan ukuran maks 100KB</small><br>
+                            <?php echo $form->fileField($model,'KTM',array('class'=>'uniform-file')); ?>
+                            <?php echo $form->error($model,'KTM'); ?>
+                        </div>
+                    </div>
+                </div>
 
+                <h4>Scan Surat Pengantar</h4>
+                <blockquote class="note"><small>Unggah scan surat pengantar dalam format gambar dengan ukuran maksimal 300KB</small>
+                </blockquote>
+                <div class="row-fluid">
+                    <div class="span3">
+                        <div class="">
+                            <div class="v-card text-center">
+                                <div class="image-container">
+                                    <?php echo $model->getPengantar(); ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="span9">
+                        <?php
+                        if($model->SURAT_PENGANTAR!=null||$model->SURAT_PENGANTAR!=''){
+                            ?>
+                            <div>
+                                <?php echo $form->labelEx($model,'SURAT_PENGANTAR'); ?>
+                                <div class="">
+                                    <button type="button" class="btn mini green" name="button" onclick="$('#unggah-file-surat-pengantar').toggle()"><i class="icon-pencil"></i> PERBARUI FOTO</button>
+                                </div>
+                            </div>
+                            <?php
+                        }
+                        ?>
+                        <div class="row" style="<?php echo ($model->SURAT_PENGANTAR!=null||$model->SURAT_PENGANTAR!='')?'display:none':''; ?>" id="unggah-file-surat-pengantar">
+                            <?php echo $form->labelEx($model,'SURAT_PENGANTAR'); ?>
+                            <small>Foto dalam format jpg/jpeg/png dengan ukuran maks 300KB</small><br>
+                            <?php echo $form->fileField($model,'SURAT_PENGANTAR',array('class'=>'uniform-file')); ?>
+                            <?php echo $form->error($model,'SURAT_PENGANTAR'); ?>
+                        </div>
+                    </div>
+                </div>
 
                 <hr>
                 <div class="row buttons">
-                    <?php echo CHtml::submitButton('SIMPAN BIODATA',array('class'=>'btn blue btn-large btn-block')); ?>
+                    <?php echo CHtml::submitButton('SIMPAN BIODATA',array('class'=>'btn blue large btn-block')); ?>
                 </div>
 
             </div>

@@ -67,6 +67,26 @@ class BiodataController extends Controller
 				$model->PHOTO = CUploadedFile::getInstance($model, 'PHOTO');
 			}
 
+			if (CUploadedFile::getInstance($model, 'KTM') != NULL) {
+				//jika sebelumnya telah mengupload file kti
+				if ($model->KTM != NULL && file_exists(Yii::app()->basePath . '/../file/ktm/' . $model->KTM)) {
+					// maka dihapus filenya, diganti dengan yang baru
+					unlink(Yii::app()->basePath . '/../file/ktm/' . $model->KTM);
+				}
+				//mengambil value dari fileupload
+				$model->KTM = CUploadedFile::getInstance($model, 'KTM');
+			}
+
+			if (CUploadedFile::getInstance($model, 'SURAT_PENGANTAR') != NULL) {
+				//jika sebelumnya telah mengupload file kti
+				if ($model->SURAT_PENGANTAR != NULL && file_exists(Yii::app()->basePath . '/../file/pengantar/' . $model->SURAT_PENGANTAR)) {
+					// maka dihapus filenya, diganti dengan yang baru
+					unlink(Yii::app()->basePath . '/../file/pengantar/' . $model->SURAT_PENGANTAR);
+				}
+				//mengambil value dari fileupload
+				$model->SURAT_PENGANTAR = CUploadedFile::getInstance($model, 'SURAT_PENGANTAR');
+			}
+
 			if($model->validate()){
 				//proses upload dan menyimpan dalam database
                 if (CUploadedFile::getInstance($model, 'PHOTO') != NULL) {
@@ -78,6 +98,27 @@ class BiodataController extends Controller
                         $model->setAttribute('PHOTO', $nama_file); //memberikan nama lampiran sesuai dengan nama file yang diupload
                     }
                 }
+
+				if (CUploadedFile::getInstance($model, 'KTM') != NULL) {
+                    if ($model->KTM) {
+						$nama = strtoupper(str_replace(' ','_',$model->NAMA));
+                        $nama_file = $model->JENJANG.'_'.$nama.'_'.$model->PIN.'_KTM_'.str_replace(' ','_',$model->KTM);
+                        //simpan file ke server
+                        $model->KTM->saveAs(Yii::app()->basePath . '/../file/ktm/' . $nama_file);
+                        $model->setAttribute('KTM', $nama_file); //memberikan nama lampiran sesuai dengan nama file yang diupload
+                    }
+                }
+
+				if (CUploadedFile::getInstance($model, 'SURAT_PENGANTAR') != NULL) {
+                    if ($model->SURAT_PENGANTAR) {
+						$nama = strtoupper(str_replace(' ','_',$model->NAMA));
+                        $nama_file = $model->JENJANG.'_'.$nama.'_'.$model->PIN.'_SURAT_PENGANTAR_'.str_replace(' ','_',$model->SURAT_PENGANTAR);
+                        //simpan file ke server
+                        $model->SURAT_PENGANTAR->saveAs(Yii::app()->basePath . '/../file/pengantar/' . $nama_file);
+                        $model->setAttribute('SURAT_PENGANTAR', $nama_file); //memberikan nama lampiran sesuai dengan nama file yang diupload
+                    }
+                }
+
 				if($model->save()){
 					foreach (MasterSosialMedia::getAll() as $datamaster) {
 						$existing = $model->getSocialMedia($datamaster->ID_SOSIAL_MEDIA);

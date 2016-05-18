@@ -106,6 +106,27 @@ class Peserta extends CActiveRecord
 				'tooLarge'=>'Ukuran maksimal 300 KB',
                 'allowEmpty'=>true,
 			),
+
+			array(
+                'KTM',
+                'file',
+				'types'=>'jpg,jpeg,png',
+				'on'=>'update-profil',
+				'maxSize'=>1024 * 100 * 1,//300KB
+				'tooLarge'=>'Ukuran maksimal 100 KB',
+                'allowEmpty'=>true,
+			),
+
+			array(
+                'SURAT_PENGANTAR',
+                'file',
+				'types'=>'jpg,jpeg,png',
+				'on'=>'update-profil',
+				'maxSize'=>1024 * 300 * 1,//300KB
+				'tooLarge'=>'Ukuran maksimal 300 KB',
+                'allowEmpty'=>true,
+			),
+
 			array('ID_PT, ROLE, PIN, TAHUN, NIM, NAMA, ID_PRODI, JENJANG, SEMESTER, EMAIL, PASSWORD', 'required','on'=>'daftar'),
 			array('NIM, NAMA, ID_PRODI, JENJANG, SEMESTER, EMAIL, HP, EMAIL, ALAMAT, ID_KOTA, JENIS_KELAMIN, TEMPAT_LAHIR, TANGGAL_LAHIR,IPK', 'required','on'=>'update-profil'),
 			array('JUDUL_KTI, BIDANG, ID_TOPIK, RINGKASAN', 'required', 'on'=>'update-kti-new,update-kti-edit'),
@@ -195,7 +216,7 @@ class Peserta extends CActiveRecord
 			'RINGKASAN' => 'Ringkasan Karya Tulis Dalam Bahasa Asing (Bukan Abstrak)',
 			'VIDEO_RINGKASAN' => 'Video Kemampuan Bahasa Inggris',
 			'VIDEO_KESEHARIAN' => 'Video Keseharian',
-			'SURAT_PENGANTAR' => 'Surat Pengantar',
+			'SURAT_PENGANTAR' => 'Scan Surat Pengantar',
 			'URL_FORLAP' => 'URL Forlap',
 			'KTM' => 'Scan KTM',
 			'ID_USER' => 'User Pendaftar',
@@ -485,6 +506,28 @@ class Peserta extends CActiveRecord
 		}else{
 			$photourl = Yii::app()->request->baseUrl.'/images/profilethumb.png';
 			return '<img src="'.$photourl.'" alt="Photo"/>';
+		}
+	}
+
+	public function getKTM(){
+		$photopath = Yii::app()->basePath . '/../file/ktm/' . $this->KTM;
+		if($this->KTM!=null && $this->KTM!='' && file_exists($photopath)){
+			$photourl = Yii::app()->request->baseUrl.'/file/ktm/'.$this->KTM;
+			return '<img src="'.$photourl.'" alt="file_ktm"/>';
+		}else{
+			$photourl = Yii::app()->request->baseUrl.'/images/profilethumb.png';
+			return '<img src="'.$photourl.'" alt="file_ktm"/>';
+		}
+	}
+
+	public function getPengantar(){
+		$photopath = Yii::app()->basePath . '/../file/pengantar/' . $this->SURAT_PENGANTAR;
+		if($this->SURAT_PENGANTAR!=null && $this->SURAT_PENGANTAR!='' && file_exists($photopath)){
+			$photourl = Yii::app()->request->baseUrl.'/file/pengantar/'.$this->SURAT_PENGANTAR;
+			return '<img src="'.$photourl.'" alt="file_pengantar"/>';
+		}else{
+			$photourl = Yii::app()->request->baseUrl.'/images/profilethumb.png';
+			return '<img src="'.$photourl.'" alt="file_pengantar"/>';
 		}
 	}
 

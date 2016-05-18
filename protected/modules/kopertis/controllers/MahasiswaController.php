@@ -22,7 +22,7 @@ class MahasiswaController extends Controller
 	{
 		return array(
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('daftar','view','prestasi','unduhkti'),
+				'actions'=>array('daftar','view','prestasi','unduhkti','ktm','pengantar'),
 				'users'=>array('@'),
 				'roles'=>array(WebUser::ROLE_KOPERTIS)
 			),
@@ -30,6 +30,28 @@ class MahasiswaController extends Controller
 				'users'=>array('*'),
 			),
 		);
+	}
+
+	public function actionKtm($id){
+		$model = $this->loadModel($id);
+
+		$data = array();
+
+		$data['title'] = 'FILE SCAN KTM';
+		$data['html'] = $model->getKTM();
+
+		echo json_encode($data);
+	}
+
+	public function actionPengantar($id){
+		$model = $this->loadModel($id);
+
+		$data = array();
+
+		$data['title'] = 'FILE SCAN SURAT PENGANTAR';
+		$data['html'] = $model->getPengantar();
+
+		echo json_encode($data);
 	}
 
 	public function actionDaftar(){
@@ -198,10 +220,12 @@ class MahasiswaController extends Controller
 	public function loadModel($id)
 	{
 		$criteria = new CDbCriteria;
-		$criteria->condition = 'ID_PESERTA=:peserta AND TAHUN=:tahun';
+		$criteria->condition = 'ID_PESERTA=:peserta AND TAHUN=:tahun AND ID_USER=:id_user AND ROLE_USER=:role_user';
 		$criteria->params = array(
 			':peserta'=>$id,
-			':tahun'=>Yii::app()->params['tahun']
+			':tahun'=>Yii::app()->params['tahun'],
+			':id_user'=>Yii::app()->user->getState('id_user'),
+			':role_user'=>Yii::app()->user->getState('role')
 		);
 		$model=Peserta::model()->find($criteria);
 		if($model===null)
