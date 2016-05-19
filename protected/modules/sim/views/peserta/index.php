@@ -31,6 +31,9 @@ $('.search-form form').submit(function(){
 			<?php echo CHtml::link('<i class="fa fa-search"></i> Cari Peserta','#',array(
 				'class'=>'search-button btn blue-sharp btn-circle'
 			)); ?>
+			<?php echo CHtml::link('<i class="fa fa-file-excel-o"></i> Unduh Peserta',array('peserta/export'),array(
+				'class'=>'btn btn-circle yellow'
+			)); ?>
 		</div>
 	</div>
 	<div class="portlet-body">

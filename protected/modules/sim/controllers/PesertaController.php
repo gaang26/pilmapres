@@ -27,7 +27,8 @@ class PesertaController extends Controller
 					'create','update','admin','delete',
 					'unduhkti',
 					'prestasi',
-					'ktm','pengantar'
+					'ktm','pengantar',
+					'export'
 				),
 				'users'=>array('@'),
 				'roles'=>array(WebUser::ROLE_ADMIN)
@@ -37,6 +38,37 @@ class PesertaController extends Controller
 			),
 		);
 	}
+
+	public function actionExport($jenjang='all')
+    {
+		if($jenjang=='all'){
+			$criteria = new CDbCriteria;
+	        $criteria->condition = 'TAHUN=:tahun';
+	        $criteria->params = array(':tahun'=>Yii::app()->params['tahun']);
+	        $criteria->order = 'NAMA ASC';
+	        $model = Peserta::model()->findAll($criteria);
+
+			$filename='Data-Peserta-Mawapres-Nasional-'.Yii::app()->params['tahun'].'.xls';
+		}else{
+			$criteria = new CDbCriteria;
+	        $criteria->condition = 'JENJANG=:jenjang AND TAHUN=:tahun';
+	        $criteria->params = array(':jenjang'=>$jenjang,':tahun'=>Yii::app()->params['tahun']);
+	        $criteria->order = 'NAMA ASC';
+	        $model = Peserta::model()->findAll($criteria);
+
+			$filename='Data-Peserta-Mawapres-Nasional-'.$jenjang.'-'.Yii::app()->params['tahun'].'.xls';
+		}
+
+
+        header("Cache-Control: no-cache, no-store, must-revalidate");
+        header("Content-Type: application/vnd.ms-excel");
+        header("Content-Disposition: attachment; filename=".$filename);
+
+        $this->renderPartial('export_view',array(
+            'model'=>$model,
+        ));
+        exit();
+    }
 
 	public function actionKtm($id){
 		$model = $this->loadModel($id);

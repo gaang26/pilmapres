@@ -496,6 +496,55 @@ class Peserta extends CActiveRecord
 		return $result;
 	}
 
+	public function getStatusKTM(){
+		if(!$this->isKTMEmpty()){
+			return 'ADA';
+		}else{
+			return 'BELUM ADA';
+		}
+	}
+
+	public function getStatusPengantar(){
+		if(!$this->isPengantarEmpty()){
+			return 'ADA';
+		}else{
+			return 'BELUM ADA';
+		}
+	}
+
+	public function getStatusBiodata(){
+		if(!$this->isBiodataEmpty()){
+			return 'LENGKAP';
+		}else{
+			return 'BELUM LENGKAP';
+		}
+	}
+
+	public function getStatusKaryaTulis(){
+		if(!$this->isKaryaTulisEmpty()){
+			return 'ADA';
+		}else{
+			return 'BELUM ADA';
+		}
+	}
+
+	public function getStatusPrestasi(){
+		if(!$this->isPrestasiEmpty()){
+			return 'ADA';
+		}else{
+			return 'BELUM ADA';
+		}
+	}
+
+	public function getStatusVideo(){
+		if(!$this->isVideoEmpty()){
+			return 'ADA';
+		}else{
+			return 'BELUM ADA';
+		}
+	}
+
+
 	public function getPrestasi(){
 		$criteria = new CDbCriteria;
 		$criteria->condition = 'ID_PESERTA=:id_peserta';
