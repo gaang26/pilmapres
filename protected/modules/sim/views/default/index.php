@@ -84,7 +84,7 @@ $baseUrl = Yii::app()->theme->baseUrl;
 		        'header' => '',
 		        'selectedPageCssClass' => 'active',
 		        'hiddenPageCssClass' => 'disabled',
-		        'htmlOptions' => array('class' => ''),
+		        'htmlOptions' => array('class' => 'pagination'),
 		    ),
 		    'pagerCssClass' => 'pagination',
 		    //end bootstrap styling

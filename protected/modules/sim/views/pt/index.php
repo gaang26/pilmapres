@@ -1,7 +1,7 @@
 <?php
-/* @var $this BeritaController */
-/* @var $model Berita */
-$this->pageTitle = 'Manajemen Berita';
+/* @var $this PtController */
+/* @var $model MasterPT */
+$this->pageTitle = 'Manajemen Perguruan Tinggi';
 $this->breadcrumbs=array(
 	$this->pageTitle
 );
@@ -12,7 +12,7 @@ $('.search-button').click(function(){
 	return false;
 });
 $('.search-form form').submit(function(){
-	$('#berita-grid').yiiGridView('update', {
+	$('#master-pt-grid').yiiGridView('update', {
 		data: $(this).serialize()
 	});
 	return false;
@@ -25,16 +25,17 @@ $('.search-form form').submit(function(){
 <div class="portlet light bordered">
 	<div class="portlet-title">
 		<div class="caption">
-			<i class="fa fa-file font-blue-sharp"></i>
-			<span class="uppercase font-blue-sharp"><?php echo $this->pageTitle ?></span>
+			<i class="fa fa-list font-blue-sharp"></i>
+			<span class="uppercase font-blue-sharp"><?php echo $this->pageTitle;?></span>
 		</div>
 		<div class="actions">
-			<?php echo CHtml::link('<i class="fa fa-search"></i> Cari Berita','#',array('class'=>'btn btn-circle default search-button')); ?>
-			<?php echo CHtml::link('<i class="fa fa-plus"></i> Buat Berita',array('berita/create'),array('class'=>'btn btn-circle blue')); ?>
+			<?php echo CHtml::link('<i class="fa fa-search"></i> Cari Perguruan Tinggi','#',array('class'=>'btn btn-circle default search-button')); ?>
+			<?php echo CHtml::link('<i class="fa fa-plus"></i> Tambah Perguruan Tinggi',array('pt/create'),array(
+				'class'=>'btn btn-circle blue'
+			)); ?>
 		</div>
 	</div>
 	<div class="portlet-body">
-
 		<div class="search-form" style="display:none">
 		<?php $this->renderPartial('_search',array(
 			'model'=>$model,
@@ -42,7 +43,7 @@ $('.search-form form').submit(function(){
 		</div><!-- search-form -->
 
 		<?php $this->widget('zii.widgets.grid.CGridView', array(
-			'id'=>'berita-grid',
+			'id'=>'master-pt-grid',
 			'dataProvider'=>$model->search(),
 			//bootstrap styling
 			'itemsCssClass'=>'table table-bordered table-striped',
@@ -55,15 +56,24 @@ $('.search-form form').submit(function(){
 			'pagerCssClass' => 'pagination',
 			//end bootstrap styling
 			'columns'=>array(
+				'ID_PT',
+				'KODE_PT',
+				'NAMA',
 				array(
-					'name'=>'JUDUL',
+					'name'=>'IS_NEGERI',
 					'type'=>'raw',
-					'value'=>'CHtml::link($data->JUDUL,array("berita/update","id"=>$data->ID_BERITA))'
+					'value'=>'$data->getLabelNegeri()'
 				),
-				//'BERITA',
-				'STATUS',
-				'TANGGAL_INPUT',
-				'TANGGAL_UPDATE',
+				array(
+					'name'=>'KOPERTIS',
+					'type'=>'raw',
+					'value'=>'$data->getLabelKopertis()'
+				),
+				array(
+					'name'=>'STATUS',
+					'type'=>'raw',
+					'value'=>'$data->getLabelStatus()'
+				)
 			),
 		)); ?>
 	</div>

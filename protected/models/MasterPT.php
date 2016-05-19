@@ -21,6 +21,9 @@ class MasterPT extends CActiveRecord
 {
 	const SWASTA=0;
     const NEGERI=1;
+
+	const ACTIVE = 1;
+	const INACTIVE = 0;
 	/**
 	 * @return string the associated database table name
 	 */
@@ -69,10 +72,10 @@ class MasterPT extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'ID_PT' => 'Id Pt',
-			'KODE_PT' => 'Kode Pt',
-			'NAMA' => 'Nama',
-			'IS_NEGERI' => 'Is Negeri',
+			'ID_PT' => 'ID PT',
+			'KODE_PT' => 'Kode PDPT',
+			'NAMA' => 'Nama PT',
+			'IS_NEGERI' => 'Negeri/Swasta',
 			'KOPERTIS' => 'Kopertis',
 			'STATUS' => 'Status',
 		);
@@ -119,17 +122,59 @@ class MasterPT extends CActiveRecord
 		return parent::model($className);
 	}
 
+	public static function optionsNegeri(){
+		return array(
+			self::NEGERI=>'Negeri',
+			self::SWASTA=>'Swasta'
+		);
+	}
+
+	public static function optionsStatus(){
+		return array(
+			self::ACTIVE=>'Aktif',
+			self::INACTIVE=>'Tidak Aktif',
+		);
+	}
+
+	public function getLabelNegeri(){
+		if($this->IS_NEGERI==self::NEGERI){
+			return 'Negeri';
+		}else{
+			return 'Swasta';
+		}
+	}
+
+	public function getLabelKopertis(){
+		if($this->KOPERTIS==0){
+			return '-';
+		}else{
+			return 'Kopertis '.$this->KOPERTIS;
+		}
+	}
+
+	public function getLabelStatus(){
+		if($this->STATUS==self::ACTIVE){
+			return '<span class="label label-success">Aktif</span>';
+		}else{
+			return '<span class="label label-danger">Tidak Aktif</span>';
+		}
+	}
+
 	public static function optionsAll(){
 		$criteria = new CDbCriteria;
-		$criteria->condition = 'LENGTH(KODE_PT) > 5';
+		$criteria->condition = 'LENGTH(KODE_PT) > 5 AND STATUS=:status';
+		$criteria->params = array(
+			':status'=>self::ACTIVE
+		);
 		return CHtml::listData(self::model()->findAll($criteria),'ID_PT','NAMA');
 	}
 
 	public static function optionsAllByKopertis($id_kopertis){
 		$criteria = new CDbCriteria;
-		$criteria->condition = 'LENGTH(KODE_PT) > 5 AND KOPERTIS=:id_kopertis';
+		$criteria->condition = 'LENGTH(KODE_PT) > 5 AND KOPERTIS=:id_kopertis AND STATUS=:status';
 		$criteria->params = array(
-			':id_kopertis'=>$id_kopertis
+			':id_kopertis'=>$id_kopertis,
+			':status'=>self::ACTIVE
 		);
 		return CHtml::listData(self::model()->findAll($criteria),'ID_PT','NAMA');
 	}

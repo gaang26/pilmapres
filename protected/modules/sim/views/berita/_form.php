@@ -60,7 +60,12 @@ $(document).ready(function(){
 
 		</div>
 		<div class="col-md-9">
-			<?php echo CHtml::submitButton('SIMPAN BERITA',array('class'=>'btn btn-lg btn-primary')); ?>
+			<?php echo CHtml::submitButton('SIMPAN BERITA',array('class'=>'btn btn-primary')); ?>
+			<?php echo CHtml::link('<i class="fa fa-trash"></i> HAPUS BERITA INI','#',array(
+				'class'=>'btn red',
+				'submit'=>array('berita/delete','id'=>$model->ID_BERITA),
+				'confirm'=>'Anda akan menghapus berita ini. Proses ini tidak dapat dikembalikan. Apakah Anda yakin ingin melanjutkan?'
+			)); ?>
 		</div>
 	</div>
 

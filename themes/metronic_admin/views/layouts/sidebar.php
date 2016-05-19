@@ -20,7 +20,7 @@
             <li class="<?php echo ($this->id=='jadwal' && $this->action->id=='index')?'active':''?>">
                 <?php echo CHtml::link('<i class="icon-calendar"></i> <span class="title">Jadwal</span>',array('jadwal/index')); ?>
             </li>
-            <li class="<?php echo ($this->id=='berita' && $this->action->id=='index')?'active':''?>">
+            <li class="<?php echo ($this->id=='berita')?'active':''?>">
                 <?php echo CHtml::link('<i class="icon-info"></i> <span class="title">Berita & Informasi</span>',array('berita/index')); ?>
             </li>
             <li class="<?php echo ($this->id=='user')?'active':''?>">
