@@ -19,38 +19,59 @@
 
 	<?php echo $form->errorSummary($model); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'KODE_PT'); ?>
-		<?php echo $form->textField($model,'KODE_PT',array('size'=>6,'maxlength'=>6)); ?>
-		<?php echo $form->error($model,'KODE_PT'); ?>
+	<div class="form-group row">
+		<?php echo $form->labelEx($model,'KODE_PT',array('class'=>'col-md-3')); ?>
+		<div class="col-md-9">
+			<?php echo $form->textField($model,'KODE_PT',array('class'=>'form-control')); ?>
+			<?php echo $form->error($model,'KODE_PT'); ?>
+		</div>
 	</div>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'NAMA'); ?>
-		<?php echo $form->textField($model,'NAMA',array('size'=>60,'maxlength'=>255)); ?>
-		<?php echo $form->error($model,'NAMA'); ?>
+	<div class="form-group row">
+		<?php echo $form->labelEx($model,'NAMA',array('class'=>'col-md-3')); ?>
+		<div class="col-md-9">
+			<?php echo $form->textField($model,'NAMA',array('class'=>'form-control')); ?>
+			<?php echo $form->error($model,'NAMA'); ?>
+		</div>
 	</div>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'IS_NEGERI'); ?>
-		<?php echo $form->textField($model,'IS_NEGERI'); ?>
-		<?php echo $form->error($model,'IS_NEGERI'); ?>
+	<div class="form-group row">
+		<?php echo $form->labelEx($model,'IS_NEGERI',array('class'=>'col-md-3')); ?>
+		<div class="col-md-9">
+			<?php echo $form->dropDownList($model,'IS_NEGERI',$model->optionsNegeri(),array(
+				'class'=>'form-control',
+				'prompt'=>'--Pilih jenis PT--'
+			)); ?>
+			<?php echo $form->error($model,'IS_NEGERI'); ?>
+		</div>
 	</div>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'KOPERTIS'); ?>
-		<?php echo $form->textField($model,'KOPERTIS'); ?>
-		<?php echo $form->error($model,'KOPERTIS'); ?>
+	<div class="form-group row">
+		<?php echo $form->labelEx($model,'KOPERTIS',array('class'=>'col-md-3')); ?>
+		<div class="col-md-9">
+			<?php echo $form->dropDownList($model,'KOPERTIS',MasterKopertis::optionsAll(),array(
+				'class'=>'form-control',
+				'prompt'=>'--Pilih kopertis--'
+			)); ?>
+			<?php echo $form->error($model,'KOPERTIS'); ?>
+		</div>
 	</div>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'STATUS'); ?>
-		<?php echo $form->textField($model,'STATUS',array('size'=>1,'maxlength'=>1)); ?>
-		<?php echo $form->error($model,'STATUS'); ?>
+	<div class="form-group row">
+		<?php echo $form->labelEx($model,'STATUS',array('class'=>'col-md-3')); ?>
+		<div class="col-md-9">
+			<?php echo $form->dropDownList($model,'STATUS',$model->optionsStatus(),array('class'=>'form-control')); ?>
+			<?php echo $form->error($model,'STATUS'); ?>
+		</div>
 	</div>
 
-	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+	<div class="form-group row buttons">
+		<div class="col-md-3">
+
+		</div>
+		<div class="col-md-9">
+			<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save',array('class'=>'btn blue')); ?>
+		</div>
 	</div>
 
 <?php $this->endWidget(); ?>

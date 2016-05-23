@@ -59,8 +59,11 @@ class PtController extends Controller
 		if(isset($_POST['MasterPT']))
 		{
 			$model->attributes=$_POST['MasterPT'];
+			if($model->IS_NEGERI==MasterPT::NEGERI){
+				$model->KOPERTIS = 0;
+			}
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->ID_PT));
+				$this->redirect(array('index'));
 		}
 
 		$this->render('create',array(
@@ -83,8 +86,11 @@ class PtController extends Controller
 		if(isset($_POST['MasterPT']))
 		{
 			$model->attributes=$_POST['MasterPT'];
+			if($model->IS_NEGERI==MasterPT::NEGERI){
+				$model->KOPERTIS = 0;
+			}
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->ID_PT));
+				$this->redirect(array('index'));
 		}
 
 		$this->render('update',array(

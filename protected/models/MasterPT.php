@@ -40,7 +40,7 @@ class MasterPT extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('KODE_PT', 'required'),
+			array('KODE_PT,IS_NEGERI,KOPERTIS,NAMA', 'required'),
 			array('IS_NEGERI, KOPERTIS', 'numerical', 'integerOnly'=>true),
 			array('KODE_PT', 'length', 'max'=>6),
 			array('NAMA', 'length', 'max'=>255),
