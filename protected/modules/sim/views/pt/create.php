@@ -7,15 +7,12 @@ $this->breadcrumbs=array(
 	$this->pageTitle
 );
 ?>
-
-
-
 <!-- BEGIN: -->
 <div class="portlet light bordered">
 	<div class="portlet-title">
 		<div class="caption">
 			<i class="fa fa-plus font-blue-sharp"></i>
-			<span class="uppercase font-blue-sharp"><?php echo $this->pageTitle?></span>
+			<span class="uppercase font-blue-sharp"><?php echo $this->pageTitle ?></span>
 		</div>
 	</div>
 	<div class="portlet-body">

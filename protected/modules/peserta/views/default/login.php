@@ -19,6 +19,11 @@ $this->breadcrumbs=array(
 		</blockquote>
 	</div>
 	<div class="span6">
+		<?php
+		if(!Jadwal::isDaftarPesertaOpen()){
+			echo '<div class="alert alert-error">PENDAFTARAN PESERTA TELAH DITUTUP!</div>';
+		}else{
+		?>
 		<div class="well well-smoke bordered-dashed-1">
 			<?php echo Yii::app()->user->getFlash('info'); ?>
 			<h2>Login Peserta</h2>
@@ -69,6 +74,7 @@ $this->breadcrumbs=array(
 
 				</div>
 			</div>
+			<?php } ?>
 		</div>
 	</div>
 </div>

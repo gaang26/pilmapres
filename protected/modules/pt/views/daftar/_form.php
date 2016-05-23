@@ -28,7 +28,7 @@
         <?php echo $form->error($model,'ID_PT'); ?>
 
         <div>
-            <?php echo CHtml::link('Nama Perguruan Tinggi Anda tidak tercantum?',array('daftar/ptbaru')); ?>
+            <?php echo CHtml::link('Nama Perguruan Tinggi Anda tidak tercantum?',array('#helpModal'),array('data-toggle'=>'modal'));?>
         </div>
     </div>
 

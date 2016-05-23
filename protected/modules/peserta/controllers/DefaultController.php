@@ -100,7 +100,7 @@ class DefaultController extends Controller
 				$model->attributes = $_POST['Peserta'];
 
 				if($model->validate()){
-					$model->PASSWORD = md5($model->NEW_PASSWORD);
+					$model->PASSWORD = $model->NEW_PASSWORD;
 					if($model->save()){
 						Yii::app()->user->setFlash('info',MyFormatter::alertSuccess('<b>Sukses!</b> password Anda telah berhasil diperbarui.'));
 						$this->redirect(array('default/login'));

@@ -7,8 +7,10 @@ $this->pageTitle = 'Beranda Perguruan Tinggi';
 // );
 ?>
 
+
 <div class="row-fluid">
 	<div class="span8 offset2">
+		<?php echo Yii::app()->user->getFlash('info'); ?>
 		<div class="alert alert-info">
 			<?php
 			if(WebUser::isPTN()){

@@ -55,6 +55,10 @@ class MahasiswaController extends Controller
 	}
 
 	public function actionDaftar($jenjang){
+		if(!Jadwal::isDaftarPesertaOpen()){
+			Yii::app()->user->setFlash('info',MyFormatter::alertError('Pendaftaran peserta telah ditutup.'));
+			$this->redirect(array('default/index'));
+		}
 		if($jenjang!=Peserta::SARJANA && $jenjang!=Peserta::DIPLOMA){
 			echo "SALAH JENJANG";
 		}else{

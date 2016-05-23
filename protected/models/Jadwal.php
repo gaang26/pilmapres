@@ -18,6 +18,8 @@ class Jadwal extends CActiveRecord
 {
     const ACTIVE = 1;
     const INACTIVE = 0;
+
+    const DAFTAR_PESERTA = 1;
     /**
      * @return string the associated database table name
      */
@@ -138,5 +140,10 @@ class Jadwal extends CActiveRecord
 
 
         return $button;
+    }
+
+    public static function isDaftarPesertaOpen(){
+        $model = self::model()->findByPk(self::DAFTAR_PESERTA);
+        return $model->STATUS==self::ACTIVE;
     }
 }
