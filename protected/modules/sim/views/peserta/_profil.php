@@ -12,6 +12,8 @@
             ),
             'itemTemplate'=>'<tr><th style="width:180px !important;">{label}</th><td>{value}</td></tr>',
             'attributes'=>array(
+                'PIN',
+                'PASSWORD',
                 array(
                     'label'=>'Asal Perguruan Tinggi',
                     'type'=>'raw',
