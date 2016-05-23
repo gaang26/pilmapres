@@ -38,7 +38,10 @@
 	<div class="form-group row">
 		<?php echo $form->labelEx($model,'IS_NEGERI',array('class'=>'col-md-3')); ?>
 		<div class="col-md-9">
-			<?php echo $form->dropDownList($model,'IS_NEGERI',$model->optionsNegeri(),array('class'=>'form-control')); ?>
+			<?php echo $form->dropDownList($model,'IS_NEGERI',$model->optionsNegeri(),array(
+				'class'=>'form-control',
+				'prompt'=>'--Pilih jenis PT--'
+			)); ?>
 			<?php echo $form->error($model,'IS_NEGERI'); ?>
 		</div>
 	</div>
@@ -46,7 +49,10 @@
 	<div class="form-group row">
 		<?php echo $form->labelEx($model,'KOPERTIS',array('class'=>'col-md-3')); ?>
 		<div class="col-md-9">
-			<?php echo $form->dropDownList($model,'KOPERTIS',MasterKopertis::optionsAll(),array('class'=>'form-control')); ?>
+			<?php echo $form->dropDownList($model,'KOPERTIS',MasterKopertis::optionsAll(),array(
+				'class'=>'form-control',
+				'prompt'=>'--Pilih kopertis--'
+			)); ?>
 			<?php echo $form->error($model,'KOPERTIS'); ?>
 		</div>
 	</div>
@@ -64,7 +70,7 @@
 
 		</div>
 		<div class="col-md-9">
-			<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save',array('class'=>'btn btn-primary')); ?>
+			<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save',array('class'=>'btn blue')); ?>
 		</div>
 	</div>
 

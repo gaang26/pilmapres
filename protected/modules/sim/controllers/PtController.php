@@ -62,9 +62,8 @@ class PtController extends Controller
 			if($model->IS_NEGERI==MasterPT::NEGERI){
 				$model->KOPERTIS = 0;
 			}
-			if($model->save()){
+			if($model->save())
 				$this->redirect(array('index'));
-			}
 		}
 
 		$this->render('create',array(
@@ -90,9 +89,8 @@ class PtController extends Controller
 			if($model->IS_NEGERI==MasterPT::NEGERI){
 				$model->KOPERTIS = 0;
 			}
-			if($model->save()){
+			if($model->save())
 				$this->redirect(array('index'));
-			}
 		}
 
 		$this->render('update',array(

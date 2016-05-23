@@ -44,7 +44,7 @@
                     </li>
                 </ul>
             </li>
-            <li class="<?php echo ($this->id=='pt' && $this->action->id=='index')?'active':''?>">
+            <li class="<?php echo ($this->id=='pt')?'active':''?>">
                 <?php echo CHtml::link('<i class="icon-list"></i> <span class="title">Perguruan Tinggi</span>',array('pt/index')); ?>
             </li>
             <!-- <li class="active">

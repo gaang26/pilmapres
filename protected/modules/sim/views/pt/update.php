@@ -1,13 +1,12 @@
 <?php
 /* @var $this PtController */
 /* @var $model MasterPT */
-$this->pageTitle = 'Update PT';
+$this->pageTitle = 'Edit Perguruan Tinggi';
 $this->breadcrumbs=array(
 	'Manajemen PT'=>array('index'),
 	$this->pageTitle
 );
 ?>
-
 <!-- BEGIN: -->
 <div class="portlet light bordered">
 	<div class="portlet-title">
