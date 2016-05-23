@@ -37,6 +37,9 @@
             <div class="row">
                 <?php echo $form->labelEx($model,'EMAIL'); ?>
                 <?php echo $form->textField($model,'EMAIL',array('class'=>'input-block-level')); ?>
+                <p class="hint">
+                    Dianjurkan untuk menggunakan email dengan domain perguruan tinggi. Misalnya: kemahasiswaan@itb.ac.id
+                </p>
                 <?php echo $form->error($model,'EMAIL'); ?>
             </div>
         </div>
