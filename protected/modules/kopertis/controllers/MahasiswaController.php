@@ -55,6 +55,10 @@ class MahasiswaController extends Controller
 	}
 
 	public function actionDaftar(){
+		if(!Jadwal::isDaftarPesertaOpen()){
+			Yii::app()->user->setFlash('info',MyFormatter::alertError('Pendaftaran peserta telah ditutup.'));
+			$this->redirect(array('default/index'));
+		}
 		$kopertis = MasterKopertis::model()->findByPk(Yii::app()->user->getState('id_kopertis'));
 		$peserta = Peserta::getPeserta(Yii::app()->user->getState('id_user'),Yii::app()->user->getState('role'));
 		if(count($peserta) < $kopertis->KUOTA){ //jika masih memenuhi kuota

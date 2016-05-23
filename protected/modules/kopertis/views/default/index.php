@@ -9,6 +9,7 @@ $this->pageTitle = 'Beranda Kopertis ';
 
 <div class="row-fluid">
 	<div class="span8 offset2">
+		<?php echo Yii::app()->user->getFlash('info'); ?>
 		<h3>Selamat Datang, <?php echo Yii::app()->user->nama; ?></h3>
 		<div class="alert alert-info">
 			<h5>Anda dapat mendaftarkan sebanyak <?php echo Yii::app()->user->getState('kuota'); ?> mahasiswa berprestasi tingkat SARJANA. Kuota ini telah ditetapkan pada pedoman sarjana.</h5>
