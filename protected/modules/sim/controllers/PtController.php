@@ -59,8 +59,12 @@ class PtController extends Controller
 		if(isset($_POST['MasterPT']))
 		{
 			$model->attributes=$_POST['MasterPT'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->ID_PT));
+			if($model->IS_NEGERI==MasterPT::NEGERI){
+				$model->KOPERTIS = 0;
+			}
+			if($model->save()){
+				$this->redirect(array('index'));
+			}
 		}
 
 		$this->render('create',array(
@@ -83,8 +87,12 @@ class PtController extends Controller
 		if(isset($_POST['MasterPT']))
 		{
 			$model->attributes=$_POST['MasterPT'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->ID_PT));
+			if($model->IS_NEGERI==MasterPT::NEGERI){
+				$model->KOPERTIS = 0;
+			}
+			if($model->save()){
+				$this->redirect(array('index'));
+			}
 		}
 
 		$this->render('update',array(
@@ -103,7 +111,7 @@ class PtController extends Controller
 
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 		if(!isset($_GET['ajax']))
-			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('index'));
 	}
 
 	/**

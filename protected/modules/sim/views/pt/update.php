@@ -1,21 +1,23 @@
 <?php
 /* @var $this PtController */
 /* @var $model MasterPT */
-
+$this->pageTitle = 'Update PT';
 $this->breadcrumbs=array(
-	'Master Pts'=>array('index'),
-	$model->ID_PT=>array('view','id'=>$model->ID_PT),
-	'Update',
-);
-
-$this->menu=array(
-	array('label'=>'List MasterPT', 'url'=>array('index')),
-	array('label'=>'Create MasterPT', 'url'=>array('create')),
-	array('label'=>'View MasterPT', 'url'=>array('view', 'id'=>$model->ID_PT)),
-	array('label'=>'Manage MasterPT', 'url'=>array('admin')),
+	'Manajemen PT'=>array('index'),
+	$this->pageTitle
 );
 ?>
 
-<h1>Update MasterPT <?php echo $model->ID_PT; ?></h1>
-
-<?php $this->renderPartial('_form', array('model'=>$model)); ?>
+<!-- BEGIN: -->
+<div class="portlet light bordered">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-plus font-blue-sharp"></i>
+			<span class="uppercase font-blue-sharp"><?php echo $this->pageTitle ?></span>
+		</div>
+	</div>
+	<div class="portlet-body">
+		<?php $this->renderPartial('_form', array('model'=>$model)); ?>
+	</div>
+</div>
+<!-- END: -->

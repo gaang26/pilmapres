@@ -58,7 +58,11 @@ $('.search-form form').submit(function(){
 			'columns'=>array(
 				'ID_PT',
 				'KODE_PT',
-				'NAMA',
+				array(
+					'name'=>'NAMA',
+					'type'=>'raw',
+					'value'=>'CHtml::link($data->NAMA,array("pt/update","id"=>$data->ID_PT))'
+				),
 				array(
 					'name'=>'IS_NEGERI',
 					'type'=>'raw',
