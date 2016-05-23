@@ -8,6 +8,7 @@ class DefaultController extends Controller
 	}
 
 	public function actionError(){
+		$this->layout = '\layouts\blank';
 		if($error=Yii::app()->errorHandler->error)
 		{
 			if(Yii::app()->request->isAjaxRequest)

@@ -14,39 +14,46 @@
             <li class="<?php echo ($this->id=='default' && $this->action->id=='index')?'active':''?>">
                 <?php echo CHtml::link('<i class="icon-home"></i> <span class="title">Dashboard</span>',array('default/index')); ?>
             </li>
-            <li class="<?php echo ($this->id=='peserta')?'active':''?>">
-                <?php echo CHtml::link('<i class="icon-graduation"></i> <span class="title">Peserta</span>',array('peserta/index')); ?>
-            </li>
-            <li class="<?php echo ($this->id=='jadwal' && $this->action->id=='index')?'active':''?>">
-                <?php echo CHtml::link('<i class="icon-calendar"></i> <span class="title">Jadwal</span>',array('jadwal/index')); ?>
-            </li>
-            <li class="<?php echo ($this->id=='berita')?'active':''?>">
-                <?php echo CHtml::link('<i class="icon-info"></i> <span class="title">Berita & Informasi</span>',array('berita/index')); ?>
-            </li>
-            <li class="<?php echo ($this->id=='user')?'active':''?>">
-                <a href="javascript:;">
-                <i class="icon-users"></i>
-                <span class="title">Manajemen User</span>
-                <span class="arrow "></span>
-                </a>
-                <ul class="sub-menu">
-                    <li class="<?php echo ($this->id=='user' && $this->action->id=='admin')?'active':''?>">
-                        <?php echo CHtml::link('<i class="icon-user"></i> <span class="title">User Admin</span>',array('user/admin')); ?>
-                    </li>
-                    <li class="<?php echo ($this->id=='user' && $this->action->id=='juri')?'active':''?>">
-                        <?php echo CHtml::link('<i class="icon-user"></i> <span class="title">User Juri</span>',array('user/juri')); ?>
-                    </li>
-                    <li class="<?php echo ($this->id=='user' && $this->action->id=='kopertis')?'active':''?>">
-                        <?php echo CHtml::link('<i class="icon-user"></i> <span class="title">User Kopertis</span>',array('user/kopertis')); ?>
-                    </li>
-                    <li class="<?php echo ($this->id=='user' && $this->action->id=='pt')?'active':''?>">
-                        <?php echo CHtml::link('<i class="icon-user"></i> <span class="title">User Perguruan Tinggi</span>',array('user/pt')); ?>
-                    </li>
-                </ul>
-            </li>
-            <li class="<?php echo ($this->id=='pt')?'active':''?>">
-                <?php echo CHtml::link('<i class="icon-list"></i> <span class="title">Perguruan Tinggi</span>',array('pt/index')); ?>
-            </li>
+
+            <?php if(WebUser::isAdmin()): ?>
+                <li class="<?php echo ($this->id=='peserta')?'active':''?>">
+                    <?php echo CHtml::link('<i class="icon-graduation"></i> <span class="title">Peserta</span>',array('peserta/index')); ?>
+                </li>
+                <li class="<?php echo ($this->id=='jadwal' && $this->action->id=='index')?'active':''?>">
+                    <?php echo CHtml::link('<i class="icon-calendar"></i> <span class="title">Jadwal</span>',array('jadwal/index')); ?>
+                </li>
+                <li class="<?php echo ($this->id=='berita')?'active':''?>">
+                    <?php echo CHtml::link('<i class="icon-info"></i> <span class="title">Berita & Informasi</span>',array('berita/index')); ?>
+                </li>
+                <li class="<?php echo ($this->id=='user')?'active':''?>">
+                    <a href="javascript:;">
+                    <i class="icon-users"></i>
+                    <span class="title">Manajemen User</span>
+                    <span class="arrow "></span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li class="<?php echo ($this->id=='user' && $this->action->id=='admin')?'active':''?>">
+                            <?php echo CHtml::link('<i class="icon-user"></i> <span class="title">User Admin</span>',array('user/admin')); ?>
+                        </li>
+                        <li class="<?php echo ($this->id=='user' && $this->action->id=='juri')?'active':''?>">
+                            <?php echo CHtml::link('<i class="icon-user"></i> <span class="title">User Juri</span>',array('user/juri')); ?>
+                        </li>
+                        <li class="<?php echo ($this->id=='user' && $this->action->id=='kopertis')?'active':''?>">
+                            <?php echo CHtml::link('<i class="icon-user"></i> <span class="title">User Kopertis</span>',array('user/kopertis')); ?>
+                        </li>
+                        <li class="<?php echo ($this->id=='user' && $this->action->id=='pt')?'active':''?>">
+                            <?php echo CHtml::link('<i class="icon-user"></i> <span class="title">User Perguruan Tinggi</span>',array('user/pt')); ?>
+                        </li>
+                    </ul>
+                </li>
+                <li class="<?php echo ($this->id=='pt')?'active':''?>">
+                    <?php echo CHtml::link('<i class="icon-list"></i> <span class="title">Perguruan Tinggi</span>',array('pt/index')); ?>
+                </li>
+            <?php else: ?>
+                <li class="<?php echo ($this->id=='peserta')?'active':''?>">
+                    <?php echo CHtml::link('<i class="icon-graduation"></i> <span class="title">Peserta</span>',array('peserta/index')); ?>
+                </li>
+            <?php endif; ?>
             <!-- <li class="active">
                 <a href="index.html">
                 <i class="icon-list"></i>

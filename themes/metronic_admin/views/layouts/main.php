@@ -24,6 +24,7 @@
     <link href="<?php echo $baseUrl; ?>/assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css"/>
     <!-- END GLOBAL MANDATORY STYLES -->
 
+    <script type="text/javascript" src="<?php echo Yii::app()->theme->baseUrl; ?>/js/pdfviewer/jquery.gdocsviewer.js"></script>
     <link href="<?php echo $baseUrl; ?>/assets/global/plugins/select2/select2.css" rel="stylesheet" type="text/css"/>
 
     <!-- BEGIN THEME STYLES -->
