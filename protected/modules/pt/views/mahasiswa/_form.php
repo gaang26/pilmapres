@@ -61,6 +61,9 @@
 			<div class="row">
 				<?php echo $form->labelEx($model,'IPK'); ?>
 				<?php echo $form->textField($model,'IPK',array('class'=>'input-block-level')); ?>
+				<p class="hint">
+					Masukkan IPK peserta dalam format desimal. Misalnya: 3.51 (pemisah desimal tanda titik bukan koma)
+				</p>
 				<?php echo $form->error($model,'IPK'); ?>
 			</div>
 		</div>
