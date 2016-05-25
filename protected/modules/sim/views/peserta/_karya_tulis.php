@@ -25,7 +25,7 @@
     <h4>File Karya Tulis Ilmiah</h4>
     <a class="btn blue" href="javascript:void(0)" onclick="readFile()"><i class="fa fa-eye"></i> BACA FILE KARYA TULIS ILMIAH</a>
     <?php echo CHtml::link('<i class="fa fa-download"></i> UNDUH FILE KTI',array('peserta/unduhkti','id'=>$model->ID_PESERTA),array('class'=>'btn btn-success')) ?>
-    <br><small>*Jika file tidak terbaca, silahkan tekan tombol "BACA FILE KARYA TULIS ILMIAH" berulang kali sampai file dapat terbaca.</small><br> <a href="http://mawapres.dikti.go.id/file/portofolio/<?php echo str_replace('+','%20',urlencode($model->FILE_KTI)); ?>" id="embedURL"></a>
+    <br><small>*Jika file tidak terbaca, silahkan tekan tombol "BACA FILE KARYA TULIS ILMIAH" berulang kali sampai file dapat terbaca.</small><br> <a href="http://mawapres.dikti.go.id/file/kti/<?php echo str_replace('+','%20',urlencode($model->FILE_KTI)); ?>" id="embedURL"></a>
 </div>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
