@@ -121,7 +121,7 @@ $peserta_diploma = Peserta::getPeserta($user,$role_user,Peserta::DIPLOMA);
 	<?php }else{ ?>
 		<div class="span4 offset4">
 			<div class="well well-smoke bordered-dashed-1 text-center">
-				<?php echo CHtml::link('<i class="icon-plus"></i> DAFTARKAN MAHASISWA DIPLOMA',array('register/new'),array(
+				<?php echo CHtml::link('<i class="icon-plus"></i> DAFTARKAN MAHASISWA DIPLOMA',array('mahasiswa/daftar','jenjang'=>Peserta::DIPLOMA),array(
 					'class'=>'btn blue'
 				)); ?>
 			</div>
