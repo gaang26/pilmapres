@@ -23,10 +23,12 @@
 				<?php echo $form->textField($model,'NAMA',array('size'=>60,'maxlength'=>100,'class'=>'form-control')); ?>
 			</div>
 
-			<div class="form-group">
-				<?php echo $form->label($model,'JENIS_KELAMIN'); ?>
-				<?php echo $form->dropDownList($model,'JENIS_KELAMIN',array(''=>'Semua')+$model->optionsJenisKelamin(),array('class'=>'form-control select2me')); ?>
-			</div>
+			<?php if($this->action->id=='index'): ?>
+				<div class="form-group">
+					<?php echo $form->label($model,'JENIS_KELAMIN'); ?>
+					<?php echo $form->dropDownList($model,'JENIS_KELAMIN',array(''=>'Semua')+$model->optionsJenisKelamin(),array('class'=>'form-control select2me')); ?>
+				</div>
+			<?php endif;?>
 		</div>
 		<div class="col-xs-12 col-md-4">
 			<div class="form-group">
@@ -34,10 +36,12 @@
 				<?php echo $form->dropDownList($model,'ID_PT',array(''=>'Semua')+MasterPT::optionsAll(),array('class'=>'form-control select2me')); ?>
 			</div>
 
-			<div class="form-group">
-				<?php echo $form->label($model,'JENJANG'); ?>
-				<?php echo $form->dropDownList($model,'JENJANG',array(''=>'Semua')+$model->optionsJenjang(),array('class'=>'form-control select2me')); ?>
-			</div>
+			<?php if($this->action->id=='index'): ?>
+				<div class="form-group">
+					<?php echo $form->label($model,'JENJANG'); ?>
+					<?php echo $form->dropDownList($model,'JENJANG',array(''=>'Semua')+$model->optionsJenjang(),array('class'=>'form-control select2me')); ?>
+				</div>
+			<?php endif; ?>
 
 			<div class="form-group">
 				<?php echo $form->label($model,'ID_PRODI'); ?>

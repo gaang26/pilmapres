@@ -44,7 +44,7 @@ $('.search-form form').submit(function(){
 		</div><!-- search-form -->
 		<?php $this->widget('zii.widgets.grid.CGridView', array(
 			'id'=>'peserta-grid',
-			'dataProvider'=>$model->search(),
+			'dataProvider'=>$model->searchDiploma(),
 			//bootstrap styling
 			'itemsCssClass'=>'table table-bordered table-striped',
 			'pager' => array(

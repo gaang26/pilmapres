@@ -28,7 +28,8 @@ class PesertaController extends Controller
 					'unduhkti',
 					'prestasi',
 					'ktm','pengantar',
-					'export'
+					'export',
+					'sarjana','diploma'
 				),
 				'users'=>array('*'),
 				//'roles'=>array(WebUser::ROLE_ADMIN)
@@ -199,6 +200,32 @@ class PesertaController extends Controller
 			'model'=>$model,
 		));
 	}
+
+	public function actionSarjana()
+	{
+		$model=new Peserta('search');
+		$model->unsetAttributes();  // clear any default values
+		if(isset($_GET['Peserta']))
+			$model->attributes=$_GET['Peserta'];
+
+		$this->render('index_sarjana',array(
+			'model'=>$model,
+		));
+	}
+
+	public function actionDiploma()
+	{
+		$model=new Peserta('search');
+		$model->unsetAttributes();  // clear any default values
+		if(isset($_GET['Peserta']))
+			$model->attributes=$_GET['Peserta'];
+
+		$this->render('index_diploma',array(
+			'model'=>$model,
+		));
+	}
+
+
 
 	/**
 	 * Returns the data model based on the primary key given in the GET variable.

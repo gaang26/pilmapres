@@ -50,8 +50,14 @@
                     <?php echo CHtml::link('<i class="icon-list"></i> <span class="title">Perguruan Tinggi</span>',array('pt/index')); ?>
                 </li>
             <?php else: ?>
-                <li class="<?php echo ($this->id=='peserta')?'active':''?>">
-                    <?php echo CHtml::link('<i class="icon-graduation"></i> <span class="title">Peserta</span>',array('peserta/index')); ?>
+                <li class="<?php echo ($this->id=='peserta' && $this->action->id=='index')?'active':''?>">
+                    <?php echo CHtml::link('<i class="icon-graduation"></i> <span class="title">Semua Peserta</span>',array('peserta/index')); ?>
+                </li>
+                <li class="<?php echo ($this->id=='peserta' && $this->action->id=='sarjana')?'active':''?>">
+                    <?php echo CHtml::link('<i class="icon-graduation"></i> <span class="title">Peserta Sarjana</span>',array('peserta/sarjana')); ?>
+                </li>
+                <li class="<?php echo ($this->id=='peserta' && $this->action->id=='diploma')?'active':''?>">
+                    <?php echo CHtml::link('<i class="icon-graduation"></i> <span class="title">Peserta Diploma</span>',array('peserta/diploma')); ?>
                 </li>
             <?php endif; ?>
             <!-- <li class="active">

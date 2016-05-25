@@ -289,6 +289,108 @@ class Peserta extends CActiveRecord
 		));
 	}
 
+	public function searchSarjana()
+	{
+		// @todo Please modify the following code to remove attributes that should not be searched.
+
+		$criteria=new CDbCriteria;
+		$criteria->condition = 'JENJANG=:sarjana AND TAHUN=:tahun';
+		$criteria->params = array(
+			':tahun'=>Yii::app()->params['tahun'],
+			':sarjana'=>self::SARJANA
+		);
+
+		$criteria->compare('ID_PESERTA',$this->ID_PESERTA);
+		$criteria->compare('ID_PT',$this->ID_PT);
+		$criteria->compare('ROLE',$this->ROLE);
+		$criteria->compare('PIN',$this->PIN,true);
+		$criteria->compare('TAHUN',$this->TAHUN,true);
+		$criteria->compare('NIM',$this->NIM,true);
+		$criteria->compare('NAMA',$this->NAMA,true);
+		$criteria->compare('ID_PRODI',$this->ID_PRODI);
+		$criteria->compare('JENJANG',$this->JENJANG,true);
+		$criteria->compare('SEMESTER',$this->SEMESTER);
+		$criteria->compare('IPK',$this->IPK,true);
+		$criteria->compare('JENIS_KELAMIN',$this->JENIS_KELAMIN,true);
+		$criteria->compare('EMAIL',$this->EMAIL,true);
+		$criteria->compare('HP',$this->HP,true);
+		$criteria->compare('TEMPAT_LAHIR',$this->TEMPAT_LAHIR,true);
+		$criteria->compare('TANGGAL_LAHIR',$this->TANGGAL_LAHIR,true);
+		$criteria->compare('ALAMAT',$this->ALAMAT,true);
+		$criteria->compare('ID_KOTA',$this->ID_KOTA);
+		$criteria->compare('WEBSITE',$this->WEBSITE,true);
+		$criteria->compare('PHOTO',$this->PHOTO,true);
+		$criteria->compare('JUDUL_KTI',$this->JUDUL_KTI,true);
+		$criteria->compare('ID_TOPIK',$this->ID_TOPIK);
+		$criteria->compare('BIDANG',$this->BIDANG,true);
+		$criteria->compare('RINGKASAN',$this->RINGKASAN,true);
+		$criteria->compare('VIDEO_RINGKASAN',$this->VIDEO_RINGKASAN,true);
+		$criteria->compare('VIDEO_KESEHARIAN',$this->VIDEO_KESEHARIAN,true);
+		$criteria->compare('SURAT_PENGANTAR',$this->SURAT_PENGANTAR,true);
+		$criteria->compare('URL_FORLAP',$this->URL_FORLAP,true);
+		$criteria->compare('KTM',$this->KTM,true);
+		$criteria->compare('ID_USER',$this->ID_USER);
+		$criteria->compare('ROLE_USER',$this->ROLE_USER);
+		$criteria->compare('TANGGAL_INPUT',$this->TANGGAL_INPUT,true);
+		$criteria->compare('TANGGAL_UPDATE',$this->TANGGAL_UPDATE,true);
+		$criteria->compare('TAHAP_AWAL',$this->TAHAP_AWAL);
+
+		return new CActiveDataProvider($this, array(
+			'criteria'=>$criteria,
+		));
+	}
+
+	public function searchDiploma()
+	{
+		// @todo Please modify the following code to remove attributes that should not be searched.
+
+		$criteria=new CDbCriteria;
+		$criteria->condition = 'JENJANG=:diploma AND TAHUN=:tahun';
+		$criteria->params = array(
+			':tahun'=>Yii::app()->params['tahun'],
+			':diploma'=>self::DIPLOMA
+		);
+
+		$criteria->compare('ID_PESERTA',$this->ID_PESERTA);
+		$criteria->compare('ID_PT',$this->ID_PT);
+		$criteria->compare('ROLE',$this->ROLE);
+		$criteria->compare('PIN',$this->PIN,true);
+		$criteria->compare('TAHUN',$this->TAHUN,true);
+		$criteria->compare('NIM',$this->NIM,true);
+		$criteria->compare('NAMA',$this->NAMA,true);
+		$criteria->compare('ID_PRODI',$this->ID_PRODI);
+		$criteria->compare('JENJANG',$this->JENJANG,true);
+		$criteria->compare('SEMESTER',$this->SEMESTER);
+		$criteria->compare('IPK',$this->IPK,true);
+		$criteria->compare('JENIS_KELAMIN',$this->JENIS_KELAMIN,true);
+		$criteria->compare('EMAIL',$this->EMAIL,true);
+		$criteria->compare('HP',$this->HP,true);
+		$criteria->compare('TEMPAT_LAHIR',$this->TEMPAT_LAHIR,true);
+		$criteria->compare('TANGGAL_LAHIR',$this->TANGGAL_LAHIR,true);
+		$criteria->compare('ALAMAT',$this->ALAMAT,true);
+		$criteria->compare('ID_KOTA',$this->ID_KOTA);
+		$criteria->compare('WEBSITE',$this->WEBSITE,true);
+		$criteria->compare('PHOTO',$this->PHOTO,true);
+		$criteria->compare('JUDUL_KTI',$this->JUDUL_KTI,true);
+		$criteria->compare('ID_TOPIK',$this->ID_TOPIK);
+		$criteria->compare('BIDANG',$this->BIDANG,true);
+		$criteria->compare('RINGKASAN',$this->RINGKASAN,true);
+		$criteria->compare('VIDEO_RINGKASAN',$this->VIDEO_RINGKASAN,true);
+		$criteria->compare('VIDEO_KESEHARIAN',$this->VIDEO_KESEHARIAN,true);
+		$criteria->compare('SURAT_PENGANTAR',$this->SURAT_PENGANTAR,true);
+		$criteria->compare('URL_FORLAP',$this->URL_FORLAP,true);
+		$criteria->compare('KTM',$this->KTM,true);
+		$criteria->compare('ID_USER',$this->ID_USER);
+		$criteria->compare('ROLE_USER',$this->ROLE_USER);
+		$criteria->compare('TANGGAL_INPUT',$this->TANGGAL_INPUT,true);
+		$criteria->compare('TANGGAL_UPDATE',$this->TANGGAL_UPDATE,true);
+		$criteria->compare('TAHAP_AWAL',$this->TAHAP_AWAL);
+
+		return new CActiveDataProvider($this, array(
+			'criteria'=>$criteria,
+		));
+	}
+
 	/**
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
@@ -633,19 +735,19 @@ class Peserta extends CActiveRecord
 			'class'=>'btn btn-sm blue-sharp'
 		));
 
-		$update = CHtml::link('<i class="fa fa-pencil"></i>',array('peserta/update','id'=>$this->ID_PESERTA),array(
-			'class'=>'btn btn-sm blue-sharp'
-		));
-
-		$delete = CHtml::link('<i class="fa fa-trash"></i>','#',array(
-			'class'=>'btn btn-sm red-intense',
-			'confirm'=>'Anda akan menghapus peserta ini. Apakah Anda ingin melanjutkan?',
-			'submit'=>array('peserta/delete','id'=>$this->ID_PESERTA)
-		));
+		// $update = CHtml::link('<i class="fa fa-pencil"></i>',array('peserta/update','id'=>$this->ID_PESERTA),array(
+		// 	'class'=>'btn btn-sm blue-sharp'
+		// ));
+		//
+		// $delete = CHtml::link('<i class="fa fa-trash"></i>','#',array(
+		// 	'class'=>'btn btn-sm red-intense',
+		// 	'confirm'=>'Anda akan menghapus peserta ini. Apakah Anda ingin melanjutkan?',
+		// 	'submit'=>array('peserta/delete','id'=>$this->ID_PESERTA)
+		// ));
 
 		$buttons = $view;
-		$buttons .= $update;
-		$buttons .= $delete;
+		//$buttons .= $update;
+		//$buttons .= $delete;
 		return $buttons;
 	}
 
