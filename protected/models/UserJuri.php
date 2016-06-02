@@ -22,6 +22,8 @@
  */
 class UserJuri extends CActiveRecord
 {
+	const PENDING = 0;
+	const ACTIVE = 1;
 	/**
 	 * @return string the associated database table name
 	 */
@@ -58,8 +60,8 @@ class UserJuri extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'iDPT' => array(self::BELONGS_TO, 'MasterPt', 'ID_PT'),
-			'iDBIDANG' => array(self::BELONGS_TO, 'MasterBidangJuri', 'ID_BIDANG'),
+			'PT' => array(self::BELONGS_TO, 'MasterPt', 'ID_PT'),
+			'Bidang' => array(self::BELONGS_TO, 'MasterBidangJuri', 'ID_BIDANG'),
 		);
 	}
 
@@ -127,5 +129,14 @@ class UserJuri extends CActiveRecord
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
+	}
+
+	public static function optionsAll(){
+		$criteria = new CDbCriteria;
+		$criteria->condition = 'STATUS=:status';
+		$criteria->params = array(
+			':status'=>self::ACTIVE
+		);
+		return CHtml::listData(self::model()->findAll($criteria),'EMAIL','NAMA');
 	}
 }

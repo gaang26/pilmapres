@@ -146,7 +146,7 @@
                             <img src="<?php echo $baseUrl; ?>/assets/admin/layout6/img/avatar1.jpg" alt="">
                         </button>
                         <ul class="dropdown-menu-v2" role="menu">
-                            <li class="active">
+                            <!-- <li class="active">
                                 <a href="profile.html">My Profile <span class="badge badge-danger">1</span> </a>
                             </li>
                             <li>
@@ -154,10 +154,9 @@
                             </li>
                             <li>
                                 <a href="todo.html">My Tasks</a>
-                            </li>
-                            <li class="divider"></li>
+                            </li> -->
                             <li>
-                                <a href="lock_screen.html">Lock Screen</a>
+                                <?php echo CHtml::link('Ganti Password',array('default/gantipassword')); ?>
                             </li>
                             <li>
                                 <?php echo CHtml::link('Sign Out',array('default/logout')); ?>

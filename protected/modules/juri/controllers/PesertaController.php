@@ -31,8 +31,8 @@ class PesertaController extends Controller
 					'export',
 					'sarjana','diploma'
 				),
-				'users'=>array('*'),
-				//'roles'=>array(WebUser::ROLE_ADMIN)
+				'users'=>array('@'),
+				'roles'=>array(WebUser::ROLE_JURI)
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
@@ -191,37 +191,76 @@ class PesertaController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$model=new Peserta('search');
-		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['Peserta']))
-			$model->attributes=$_GET['Peserta'];
+		// $model=new Peserta('search');
+		// $model->unsetAttributes();  // clear any default values
+		// if(isset($_GET['Peserta']))
+		// 	$model->attributes=$_GET['Peserta'];
+		//
+		// $this->render('index_datatables',array(
+		// 	'model'=>$model,
+		// ));
 
-		$this->render('index',array(
-			'model'=>$model,
+
+		$dataProvider=new CActiveDataProvider('Peserta',array(
+			'criteria'=>array(
+				'condition'=>'TAHUN=:tahun',
+				'params'=>array(
+					':tahun'=>Yii::app()->params['tahun']
+				),
+				'order'=>'NAMA ASC'
+			),
+			//'pagination'=>false
+		));
+
+		$this->render('index_datatables',array(
+			'dataProvider'=>$dataProvider
 		));
 	}
 
 	public function actionSarjana()
 	{
-		$model=new Peserta('search');
-		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['Peserta']))
-			$model->attributes=$_GET['Peserta'];
+		// $model=new Peserta('search');
+		// $model->unsetAttributes();  // clear any default values
+		// if(isset($_GET['Peserta']))
+		// 	$model->attributes=$_GET['Peserta'];
+		//
+		// $this->render('index_sarjana',array(
+		// 	'model'=>$model,
+		// ));
 
-		$this->render('index_sarjana',array(
-			'model'=>$model,
+		$dataProvider=new CActiveDataProvider('Peserta',array(
+			'criteria'=>array(
+				'condition'=>'TAHUN=:tahun AND JENJANG=:jenjang',
+				'params'=>array(
+					':tahun'=>Yii::app()->params['tahun'],
+					':jenjang'=>Peserta::SARJANA
+				),
+				'order'=>'NAMA ASC'
+			),
+			//'pagination'=>false
+		));
+
+		$this->render('index_datatables_sarjana',array(
+			'dataProvider'=>$dataProvider
 		));
 	}
 
 	public function actionDiploma()
 	{
-		$model=new Peserta('search');
-		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['Peserta']))
-			$model->attributes=$_GET['Peserta'];
+		$dataProvider=new CActiveDataProvider('Peserta',array(
+			'criteria'=>array(
+				'condition'=>'TAHUN=:tahun AND JENJANG=:jenjang',
+				'params'=>array(
+					':tahun'=>Yii::app()->params['tahun'],
+					':jenjang'=>Peserta::DIPLOMA
+				),
+				'order'=>'NAMA ASC'
+			),
+			//'pagination'=>false
+		));
 
-		$this->render('index_diploma',array(
-			'model'=>$model,
+		$this->render('index_datatables_diploma',array(
+			'dataProvider'=>$dataProvider
 		));
 	}
 

@@ -14,13 +14,13 @@
 	<div class="row">
 		<div class="col-xs-12 col-md-4">
 			<div class="form-group">
-				<?php echo $form->label($model,'PIN'); ?>
-				<?php echo $form->textField($model,'PIN',array('size'=>10,'maxlength'=>10,'class'=>'form-control')); ?>
+				<?php echo $form->label($model,'NAMA'); ?>
+				<?php echo $form->textField($model,'NAMA',array('size'=>60,'maxlength'=>100,'class'=>'form-control')); ?>
 			</div>
 
 			<div class="form-group">
-				<?php echo $form->label($model,'NAMA'); ?>
-				<?php echo $form->textField($model,'NAMA',array('size'=>60,'maxlength'=>100,'class'=>'form-control')); ?>
+				<?php echo $form->label($model,'PIN'); ?>
+				<?php echo $form->textField($model,'PIN',array('size'=>10,'maxlength'=>10,'class'=>'form-control')); ?>
 			</div>
 
 			<?php if($this->action->id=='index'): ?>
