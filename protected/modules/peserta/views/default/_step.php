@@ -1,3 +1,13 @@
+<div class="row-fluid">
+    <div class="span8 offset2">
+        <div class="alert alert-warning">
+            <h5>PERHATIAN!</h5>
+            <p>
+                Pastikan Anda mengunggah file karya tulis ilmiah dengan benar dan sesuai dengan format yang telah ditentukan (format pdf).
+            </p>
+        </div>
+    </div>
+</div>
 <?php
 $status_biodata = '';
 $status_kti = '';
