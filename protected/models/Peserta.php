@@ -129,7 +129,7 @@ class Peserta extends CActiveRecord
 
 			array('ID_PT, ROLE, PIN, TAHUN, NIM, NAMA, ID_PRODI, JENJANG, SEMESTER, EMAIL, PASSWORD', 'required','on'=>'daftar'),
 			array('NIM, NAMA, ID_PRODI, JENJANG, SEMESTER, EMAIL, HP, EMAIL, ALAMAT, ID_KOTA, JENIS_KELAMIN, TEMPAT_LAHIR, TANGGAL_LAHIR,IPK', 'required','on'=>'update-profil'),
-			array('JUDUL_KTI, BIDANG, ID_TOPIK, RINGKASAN', 'required', 'on'=>'update-kti-new,update-kti-edit'),
+			array('JUDUL_KTI, BIDANG, ID_TOPIK, RINGKASAN', 'required', 'on'=>'update-kti-isi,update-kti-edit'),
 			array('VIDEO_RINGKASAN','required','on'=>'update-video'),
 			array('EMAIL', 'required', 'on'=>'lupa-password'),
 			array('EMAIL','checkEmailLupaPassword','on'=>'lupa-password'),
