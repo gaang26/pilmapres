@@ -73,7 +73,7 @@ class KtiController extends Controller
                 if (CUploadedFile::getInstance($model, 'FILE_KTI') != NULL) {
                     if ($model->FILE_KTI) {
 						$nama = strtoupper(str_replace(' ','_',$model->NAMA));
-                        $nama_file = $model->JENJANG.'_'.$model->BIDANG.'_'.$nama.'_'.$model->PIN.'_KTI.pdf');
+                        $nama_file = $model->JENJANG.'_'.$model->BIDANG.'_'.$nama.'_'.$model->PIN.'_KTI.pdf';
                         //simpan file ke server
                         $model->FILE_KTI->saveAs(Yii::app()->basePath . '/../file/kti/' . $nama_file);
                         $model->setAttribute('FILE_KTI', $nama_file); //memberikan nama lampiran sesuai dengan nama file yang diupload
