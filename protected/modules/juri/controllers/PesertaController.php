@@ -209,7 +209,7 @@ class PesertaController extends Controller
 				),
 				'order'=>'NAMA ASC'
 			),
-			//'pagination'=>false
+			'pagination'=>false
 		));
 
 		$this->render('index_datatables',array(
@@ -237,7 +237,7 @@ class PesertaController extends Controller
 				),
 				'order'=>'NAMA ASC'
 			),
-			//'pagination'=>false
+			'pagination'=>false
 		));
 
 		$this->render('index_datatables_sarjana',array(
@@ -256,7 +256,7 @@ class PesertaController extends Controller
 				),
 				'order'=>'NAMA ASC'
 			),
-			//'pagination'=>false
+			'pagination'=>false
 		));
 
 		$this->render('index_datatables_diploma',array(
