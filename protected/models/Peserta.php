@@ -82,7 +82,7 @@ class Peserta extends CActiveRecord
                 'FILE_KTI',
                 'file',
 				'types'=>'pdf',
-				'on'=>'update-kti-new',
+				'on'=>'update-kti-isi',
 				'maxSize'=>1024 * 1024 * 10,//10Mb
 				'tooLarge'=>'Ukuran maksimal 10 MB',
                 'allowEmpty'=>false,
