@@ -79,8 +79,8 @@ class PesertaPrestasi extends CActiveRecord
 			array('NAMA_PRESTASI, LEMBAGA', 'length', 'max'=>100),
 			array('PENCAPAIAN', 'length', 'max'=>255),
 			array('TAHUN', 'length', 'max'=>4),
-			array('SERTIFIKAT', 'length', 'max'=>255),
-			array('TANGGAL_INPUT, KETERANGAN', 'safe'),
+			//array('SERTIFIKAT', 'length', 'max'=>255),
+			array('TANGGAL_INPUT, KETERANGAN, SERTIFIKAT', 'safe'),
 			array('PRIORITAS','checkUniqueOrder'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
