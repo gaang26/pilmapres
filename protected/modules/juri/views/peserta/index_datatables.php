@@ -7,6 +7,54 @@ $this->breadcrumbs=array(
 );
 ?>
 
+<div class="row">
+	<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+		<a class="dashboard-stat dashboard-stat-light green-haze" href="<?php echo Yii::app()->createUrl("/juri/peserta/sarjana")?>">
+		<div class="visual">
+			<i class="fa fa-graduation-cap fa-icon-medium"></i>
+		</div>
+		<div class="details">
+			<div class="number">
+				<?php echo Peserta::getJumlah(Peserta::SARJANA); ?>
+			</div>
+			<div class="desc">
+				Lihat Peserta Sarjana
+			</div>
+		</div>
+		</a>
+	</div>
+	<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+		<a class="dashboard-stat dashboard-stat-light green-haze" href="<?php echo Yii::app()->createUrl("/juri/peserta/diploma")?>">
+		<div class="visual">
+			<i class="fa fa-graduation-cap fa-icon-medium"></i>
+		</div>
+		<div class="details">
+			<div class="number">
+				<?php echo Peserta::getJumlah(Peserta::DIPLOMA); ?>
+			</div>
+			<div class="desc">
+				Lihat Peserta Diploma
+			</div>
+		</div>
+		</a>
+	</div>
+	<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+		<a class="dashboard-stat dashboard-stat-light green-haze" href="javascript:;">
+		<div class="visual">
+			<i class="fa fa-graduation-cap fa-icon-medium"></i>
+		</div>
+		<div class="details">
+			<div class="number">
+				<?php echo Peserta::getJumlah(); ?>
+			</div>
+			<div class="desc">
+				Lihat Semua Peserta
+			</div>
+		</div>
+		</a>
+	</div>
+</div>
+
 <!-- BEGIN: -->
 <div class="portlet light bordered">
     <div class="portlet-title">
@@ -73,5 +121,7 @@ $(document).ready(function(){
             [2, "asc"]
         ]
     });
+
+	$('.input-small').attr('class','form-control input-inline');
 })
 </script>

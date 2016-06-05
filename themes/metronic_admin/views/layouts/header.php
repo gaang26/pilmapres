@@ -143,7 +143,7 @@
                     <!-- BEGIN USER PROFILE -->
                     <div class="btn-group-img btn-group">
                         <button type="button" class="btn btn-sm dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                            <img src="<?php echo $baseUrl; ?>/assets/admin/layout6/img/avatar1.jpg" alt="">
+                            <img src="<?php echo Yii::app()->request->baseUrl; ?>/images/deadpool.jpg" alt="">
                         </button>
                         <ul class="dropdown-menu-v2" role="menu">
                             <!-- <li class="active">

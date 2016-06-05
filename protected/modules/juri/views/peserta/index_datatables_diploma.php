@@ -73,5 +73,7 @@ $(document).ready(function(){
             [2, "asc"]
         ]
     });
+
+	$('.input-small').attr('class','form-control input-inline');
 })
 </script>

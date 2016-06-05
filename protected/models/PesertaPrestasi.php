@@ -245,7 +245,7 @@ class PesertaPrestasi extends CActiveRecord
 	public function getLabelTingkat(){
 		switch ($this->TINGKAT) {
 			case self::TINGKAT_INTERNASIONAL:
-				return '<span class="label label-important">Internasional</span>';
+				return '<span class="label label-important label-danger">Internasional</span>';
 				break;
 			case self::TINGKAT_NASIONAL:
 				return '<span class="label label-info">Nasional</span>';;
