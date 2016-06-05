@@ -254,7 +254,7 @@ class PesertaPrestasi extends CActiveRecord
 				return '<span class="label label-warning">Propinsi</span>';;
 				break;
 			case self::TINGKAT_REGIONAL:
-				return '<span class="label">Regional</span>';;
+				return '<span class="label label-default">Regional</span>';;
 				break;
 		}
 	}

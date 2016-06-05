@@ -6,7 +6,7 @@ $this->breadcrumbs = array(
 );
 ?>
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-12">
         <?php echo Yii::app()->user->getFlash('info'); ?>
         <div class="">
 
@@ -60,7 +60,10 @@ $this->breadcrumbs = array(
 
         </div>
     </div>
-    <div class="col-md-6">
+</div>
+
+<div class="row">
+    <div class="col-md-12">
         <?php echo $model->getSertifikat(); ?>
     </div>
 </div>
