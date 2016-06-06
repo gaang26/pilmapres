@@ -52,7 +52,8 @@ class PTLoginForm extends CFormModel
 			if(!$this->_identity->authenticate()){
 				switch ($this->_identity->errorCode){
 					case PTIdentity::ERROR_PENDING:
-						$this->addError('email','Akun Anda belum diverifikasi. Proses verifikasi dilakukan maksimal 1x24 jam hari kerja.');
+						$this->addError('email','Pendaftaran peserta telah ditutup. Silahkan cek jadwal.');
+						//$this->addError('email','Akun Anda belum diverifikasi. Proses verifikasi dilakukan maksimal 1x24 jam hari kerja.');
 						return FALSE;
 					case PTIdentity::ERROR_REJECTED:
 						$this->addError('email','Kesalahan Username atau Password.');
