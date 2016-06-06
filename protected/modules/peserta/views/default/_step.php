@@ -1,11 +1,22 @@
+<?php $peserta = Peserta::model()->findByPk(Yii::app()->user->getState('id_peserta')); ?>
 <div class="row-fluid">
     <div class="span8 offset2">
-        <div class="alert alert-warning">
+        <!-- <div class="alert alert-warning">
             <h5>PERHATIAN!</h5>
             <p>
                 Pastikan Anda mengunggah file karya tulis ilmiah dengan benar dan sesuai dengan format yang telah ditentukan (format pdf).
             </p>
+        </div> -->
+        <div class="text-center">
+            <?php
+            if($peserta->isComplete()){
+    			echo '<h4>Berkas telah lengkap!</h4>';
+    		}else{
+                echo '<h4>Lengkapi Berkas Anda!</h4>';
+            }
+            ?>
         </div>
+
     </div>
 </div>
 <?php
@@ -18,8 +29,6 @@ $number_biodata = '1';
 $number_kti = '2';
 $number_video = '3';
 $number_prestasi = '4';
-
-$peserta = Peserta::model()->findByPk(Yii::app()->user->getState('id_peserta'));
 
 if(!$peserta->isBiodataEmpty()){
     $status_biodata = 'done';
