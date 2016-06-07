@@ -60,7 +60,7 @@ class UserJuri extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'PT' => array(self::BELONGS_TO, 'MasterPt', 'ID_PT'),
+			'PT' => array(self::BELONGS_TO, 'MasterPT', 'ID_PT'),
 			'Bidang' => array(self::BELONGS_TO, 'MasterBidangJuri', 'ID_BIDANG'),
 		);
 	}
