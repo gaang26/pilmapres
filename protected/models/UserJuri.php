@@ -72,11 +72,11 @@ class UserJuri extends CActiveRecord
 	{
 		return array(
 			'ID_USER' => 'Id User',
-			'ID_PT' => 'Id Pt',
+			'ID_PT' => 'Asal Perguruan Tinggi',
 			'EMAIL' => 'Email',
 			'PASSWORD' => 'Password',
 			'ROLE' => 'Role',
-			'ID_BIDANG' => 'Id Bidang',
+			'ID_BIDANG' => 'Bidang',
 			'NAMA' => 'Nama',
 			'HP' => 'Hp',
 			'STATUS' => 'Status',
@@ -117,6 +117,9 @@ class UserJuri extends CActiveRecord
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
+			'sort'=>array(
+				'defaultOrder'=>'NAMA ASC'
+			)
 		));
 	}
 
@@ -131,6 +134,14 @@ class UserJuri extends CActiveRecord
 		return parent::model($className);
 	}
 
+	public function isActive(){
+		return $this->STATUS==self::ACTIVE;
+	}
+
+	public function isPending(){
+		return $this->STATUS==self::PENDING;
+	}
+
 	public static function optionsAll(){
 		$criteria = new CDbCriteria;
 		$criteria->condition = 'STATUS=:status';
@@ -138,5 +149,44 @@ class UserJuri extends CActiveRecord
 			':status'=>self::ACTIVE
 		);
 		return CHtml::listData(self::model()->findAll($criteria),'EMAIL','NAMA');
+	}
+
+	public function getLabelStatus(){
+		if($this->isActive()){
+			return '<span class="label label-success">Active</span>';
+		}else if($this->isPending()){
+			return '<span class="label label-warning">Pending</span>';
+		}else{
+			return '-';
+		}
+	}
+
+	public static function optionsStatus(){
+		return array(
+			self::ACTIVE=>'Active',
+			self::PENDING=>'Pending',
+		);
+	}
+
+	public function getUpdateButton(){
+		$update =  CHtml::link('<i class="fa fa-pencil"></i> Koreksi',array('user/update','type'=>WebUser::ROLE_JURI,'id'=>$this->ID_USER),array(
+			'class'=>'btn btn-sm btn-success',
+		));
+
+		$button = $update;
+
+		return $button;
+	}
+
+	public function getDeleteButton(){
+		$delete =  CHtml::link('<i class="fa fa-trash"></i> Hapus','#',array(
+			'class'=>'btn btn-sm red',
+			'submit'=>array('user/delete','type'=>WebUser::ROLE_JURI,'id'=>$this->ID_USER),
+			'confirm'=>'Anda akan menghapus user ini. Apakah Anda ingin melanjutkan?'
+		));
+
+		$button = $delete;
+
+		return $button;
 	}
 }

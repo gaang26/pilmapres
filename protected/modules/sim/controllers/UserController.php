@@ -69,6 +69,17 @@ class UserController extends Controller
         ]);
     }
 
+    public function actionJuri(){
+        $model=new UserJuri('search');
+        $model->unsetAttributes();  // clear any default values
+        if(isset($_GET['UserJuri']))
+            $model->attributes=$_GET['UserJuri'];
+
+        $this->render('juri/index',array(
+            'user'=>$model,
+        ));
+    }
+
     public function actionIndex()
     {
         $this->render('index');
@@ -228,7 +239,20 @@ class UserController extends Controller
                 'model'=>$model,
             ));
         }else if($type==WebUser::ROLE_JURI){
-            //
+            $model=$this->loadModelUserJuri($id);
+
+            if(isset($_POST['UserJuri']))
+            {
+                $model->attributes=$_POST['UserJuri'];
+                if($model->save()){
+                    Yii::app()->user->setFlash('info',MyFormatter::alertSuccess('<b>Sukses!</b> Perubahan user telah berhasil disimpan.'));
+                    $this->redirect(array('user/juri'));
+                }
+            }
+
+            $this->render('juri/update',array(
+                'model'=>$model,
+            ));
         }else{
             //
         }
