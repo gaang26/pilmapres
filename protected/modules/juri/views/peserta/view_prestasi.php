@@ -63,7 +63,7 @@ $this->breadcrumbs = array(
 </div>
 
 <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-12 text-center">
         <?php echo $model->getSertifikat(); ?>
     </div>
 </div>
