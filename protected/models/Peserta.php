@@ -918,7 +918,7 @@ class Peserta extends CActiveRecord
 		$criteria->params = array(
 			':tahun'=>Yii::app()->params['tahun'],
 			':jenjang'=>$jenjang,
-			':lolos'=>0
+			':lolos'=>1
 		);
 		$criteria->order = 'NAMA ASC';
 
