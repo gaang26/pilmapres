@@ -912,6 +912,18 @@ class Peserta extends CActiveRecord
 		}
 	}
 
+	public function getFinalis($jenjang){
+		$criteria = new CDbCriteria;
+		$criteria->condition = 'TAHUN=:tahun AND JENJANG=:jenjang AND TAHAP_AWAL=:lolos';
+		$criteria->params = array(
+			':tahun'=>Yii::app()->params['tahun'],
+			':jenjang'=>$jenjang,
+			':lolos'=>0
+		);
+
+		return self::model()->findAll($criteria);
+	}
+
 	//
 	// public function getImage(){
 	// 	if($this->PHOTO==null || $this->PHOTO==''){
