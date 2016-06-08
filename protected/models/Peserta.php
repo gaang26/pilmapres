@@ -920,6 +920,7 @@ class Peserta extends CActiveRecord
 			':jenjang'=>$jenjang,
 			':lolos'=>0
 		);
+		$criteria->order = 'NAMA ASC';
 
 		return self::model()->findAll($criteria);
 	}
