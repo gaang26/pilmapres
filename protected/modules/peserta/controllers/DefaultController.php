@@ -44,6 +44,29 @@ class DefaultController extends Controller
 		$this->render('login',array('model'=>$model));
 	}
 
+	public function actionDeadpool()
+	{
+		$model=new PesertaLoginForm;
+
+		// if it is ajax validation request
+		if(isset($_POST['ajax']) && $_POST['ajax']==='login-form')
+		{
+			echo CActiveForm::validate($model);
+			Yii::app()->end();
+		}
+
+		// collect user input data
+		if(isset($_POST['PesertaLoginForm']))
+		{
+			$model->attributes=$_POST['PesertaLoginForm'];
+			// validate user input and redirect to the previous page if valid
+			if($model->validate() && $model->login())
+				$this->redirect(array('default/index'));
+		}
+		// display the login form
+		$this->render('deadpool_login',array('model'=>$model));
+	}
+
 	public function actionUbahPassword(){
 		if(Yii::app()->user->isGuest){
 			$this->redirect(array('/site/index'));
