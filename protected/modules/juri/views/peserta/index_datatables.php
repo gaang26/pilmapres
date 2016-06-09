@@ -115,7 +115,7 @@ $(document).ready(function(){
             'targets': [0,4,5,6]
         }, {
             "searchable": false,
-            "targets": [0,4,5,6]
+            "targets": [0,4,6]
         }],
         "order": [
             [2, "asc"]
