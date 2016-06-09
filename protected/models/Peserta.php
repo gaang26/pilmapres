@@ -928,6 +928,20 @@ class Peserta extends CActiveRecord
 		return self::model()->findAll($criteria);
 	}
 
+	public function getKomentar($bidang){
+		$criteria = new CDbCriteria;
+		$criteria->condition = 'BIDANG=:bidang AND ID_PESERTA=:peserta AND STATUS=:status';
+		$criteria->params = array(
+			':bidang'=>$bidang,
+			':peserta'=>$this->ID_PESERTA,
+			':status'=>1
+		);
+		$criteria->order = 'TANGGAL_INPUT DESC';
+
+		$model = Komentar::model()->findAll($criteria);
+		return $model;
+	}
+
 	//
 	// public function getImage(){
 	// 	if($this->PHOTO==null || $this->PHOTO==''){

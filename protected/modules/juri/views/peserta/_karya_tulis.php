@@ -44,6 +44,38 @@
 )); ?>
 
 
+<!-- BEGIN: -->
+<div class="portlet light bordered">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-comments-o font-blue-sharp"></i>
+            <span class="uppercase font-blue-sharp">Komentar Juri Karya Tulis Ilmiah</span>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <?php $this->renderPartial('komentar/_form',array(
+            'komentar'=>$komentar,
+            'model'=>$model,
+            'bidang'=>Komentar::KTI,
+        )); ?>
+
+        <hr>
+
+        <div class="">
+            <?php if(count($model->getKomentar(Komentar::KTI))>0): ?>
+                <?php foreach($model->getKomentar(Komentar::KTI) as $data): ?>
+                    <blockquote>
+                        <h4 style="margin-top:0px;padding-top:0px;"><?php echo $data->KOMENTAR; ?></h4>
+                        <small>Oleh <?php echo $data->Juri->NAMA; ?> pada <?php echo $data->getTanggalInputFormatted(); ?></small>
+                    </blockquote>
+                    <hr>
+                <?php endforeach; ?>
+            <?php endif; ?>
+        </div>
+    </div>
+</div>
+<!-- END: -->
+
 <script type="text/javascript">
 function readFile(){
     var screenResolution = $(window).height();

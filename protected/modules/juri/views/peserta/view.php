@@ -8,7 +8,7 @@ $this->breadcrumbs=array(
 );
 ?>
 
-<?php Yii::app()->user->getFlash('info'); ?>
+<?php echo Yii::app()->user->getFlash('info'); ?>
 
 <div class="row">
 
@@ -27,13 +27,13 @@ $this->breadcrumbs=array(
 					<?php $this->renderPartial('_profil',array('model'=>$model)) ?>
 				</div>
 				<div class="tab-pane" id="karyatulis">
-					<?php $this->renderPartial('_karya_tulis',array('model'=>$model)) ?>
+					<?php $this->renderPartial('_karya_tulis',array('model'=>$model,'komentar'=>$komentar)) ?>
 				</div>
 				<div class="tab-pane" id="prestasi">
-					<?php $this->renderPartial('_prestasi',array('model'=>$model)) ?>
+					<?php $this->renderPartial('_prestasi',array('model'=>$model,'komentar'=>$komentar)) ?>
 				</div>
 				<div class="tab-pane" id="video">
-					<?php $this->renderPartial('_video',array('model'=>$model)) ?>
+					<?php $this->renderPartial('_video',array('model'=>$model,'komentar'=>$komentar)) ?>
 				</div>
 			</div>
 		</div>

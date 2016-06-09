@@ -120,8 +120,32 @@ class PesertaController extends Controller
 	public function actionView($id)
 	{
 		$model = $this->loadModel($id);
+
+		$komentar = new Komentar;
+		$komentar->ID_PESERTA = $model->ID_PESERTA;
+		$komentar->ID_JURI = Yii::app()->user->getState('id_user');
+
+		if(isset($_POST['Komentar'])){
+			$komentar->attributes = $_POST['Komentar'];
+			$komentar->TANGGAL_INPUT = date('Y-m-d H:i:s');
+			if($komentar->save()){
+				Yii::app()->user->setFlash('info',MyFormatter::alertSuccess('<b>Sukses!</b> komentar telah berhasil disimpan.'));
+				$komentar->KOMENTAR = '';
+				if($komentar->BIDANG==Komentar::KTI){
+					$this->redirect(array('peserta/view','id'=>$id,'#'=>'karyatulis'));
+				}else if($komentar->BIDANG==Komentar::PRESTASI){
+					$this->redirect(array('peserta/view','id'=>$id,'#'=>'prestasi'));
+				}else if($komentar->BIDANG==Komentar::VIDEO){
+					$this->redirect(array('peserta/view','id'=>$id,'#'=>'video'));
+				}else{
+					$this->redirect(array('peserta/view','id'=>$id));
+				}
+			}
+		}
+
 		$this->render('view',array(
 			'model'=>$model,
+			'komentar'=>$komentar
 		));
 	}
 
