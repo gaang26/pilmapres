@@ -7,15 +7,9 @@ $this->pageTitle=Yii::app()->name;
 <?php $this->renderPartial('home/slider'); ?>
 
 <div class="row-fluid">
-    <div class="span8 offset2">
-        <div class="alert alert-error">
-            <h4>PERHATIAN!</h4>
-            <p>
-                Bagi peserta yang belum melengkapi berkas, diberikan kesempatan untuk melengkapi berkas paling lambat tanggal 7 Juni 2016 Pukul 24:00 WIB.
-            </p>
-            <p>
-                Jika Anda mengalami kendala teknis silahkan hubungi: <b>mawapres.dikti@gmail.com</b>
-            </p>
+    <div class="span8 offset2 margin-top-20">
+        <div class="alert alert-error text-center">
+            <h4>PENDAFTARAN PESERTA TELAH DITUTUP.</h4>
         </div>
     </div>
 </div>
