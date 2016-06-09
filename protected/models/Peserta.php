@@ -60,6 +60,9 @@ class Peserta extends CActiveRecord
 	const BIDANG_IPS = 'IPS';
 	const BIDANG_TERAPAN = 'TERAPAN';
 
+	const LOLOS = 1;
+	const TIDAK_LOLOS = 0;
+
 	public $PASSWORD_REPEAT;
 	public $NEW_PASSWORD;
 	/**
@@ -918,7 +921,7 @@ class Peserta extends CActiveRecord
 		$criteria->params = array(
 			':tahun'=>Yii::app()->params['tahun'],
 			':jenjang'=>$jenjang,
-			':lolos'=>1
+			':lolos'=>self::LOLOS
 		);
 		$criteria->order = 'NAMA ASC';
 

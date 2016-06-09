@@ -21,9 +21,14 @@ class FinalisController extends Controller
 
     public function actionView($id){
         $model = $this->loadPesertaModel($id);
-        $this->render('view',array(
-            'model'=>$model
-        ));
+        if($model->TAHAP_AWAL==Peserta::LOLOS){
+            $this->render('view',array(
+                'model'=>$model
+            ));
+        }else{
+            $this->redirect(array('index'));
+        }
+
     }
 
     public function loadModelPrestasi($id_prestasi)
