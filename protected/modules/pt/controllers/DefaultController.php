@@ -16,7 +16,7 @@ class DefaultController extends Controller
 	public function actionLogin()
 	{
 		if(!Jadwal::isDaftarPesertaOpen()){
-			$this->redirect(array('site/index'));
+			$this->redirect(array('/site/index'));
 		}
 		$model=new PTLoginForm;
 
