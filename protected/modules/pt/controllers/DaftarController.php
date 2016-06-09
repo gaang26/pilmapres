@@ -3,6 +3,9 @@
 class DaftarController extends Controller
 {
 	public function actionIndex(){
+		if(!Jadwal::isDaftarPesertaOpen()){
+			$this->redirect(array('site/index'));
+		}
         $model = new UserPT;
         $model->scenario = 'daftar-baru';
         $model->ROLE = WebUser::ROLE_PT;
