@@ -54,4 +54,29 @@ class DefaultController extends Controller
 				$this->render('error', $error);
 		}
 	}
+
+	public function actionGantiPassword(){
+		if(Yii::app()->user->isGuest){
+			$this->redirect(array('/site/index'));
+		}
+		$model = new UbahPasswordForm;
+        if (isset($_POST['UbahPasswordForm'])) {
+            $model->attributes = $_POST['UbahPasswordForm'];
+            if ($model->validate()) {
+                if ($model->cekOldPasswordJuri($model->OLD)) {
+                    if ($model->savePasswordJuri($model->NEW)) {
+                        Yii::app()->user->setFlash('info', MyFormatter::alertSuccess('<strong>Selamat!</strong> Password telah berhasil diubah.'));
+						$model->unsetAttributes();
+						//$this->redirect(array('index'));
+                    }
+                    else
+                        Yii::app()->user->setFlash('info', MyFormatter::alertError('<strong>Error!</strong> Password gagal diubah.'));
+                }
+                else {
+                    Yii::app()->user->setFlash('info', MyFormatter::alertError('<strong>Error!</strong> Password lama salah.'));
+                }
+            }
+        }
+        $this->render('ubahpassword/index', array('model' => $model));
+	}
 }

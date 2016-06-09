@@ -88,10 +88,7 @@ class UbahPasswordForm extends CFormModel
 	}
 
 	public function cekOldPasswordJuri(){
-		$criteria = new CDbCriteria;
-		$criteria->condition = 'USERNAME=:username';
-		$criteria->params = array(':username'=>Yii::app()->user->id);
-		$model = Juri::model()->find($criteria);
+		$model=UserJuri::model()->findByPk(Yii::app()->user->getState('id_user'));
 
 		if($this->OLD!=$model->PASSWORD){
 			return false;
@@ -102,11 +99,7 @@ class UbahPasswordForm extends CFormModel
 
 	public function savePasswordJuri()
 	{
-		$criteria = new CDbCriteria;
-		$criteria->condition = 'USERNAME=:username';
-		$criteria->params = array(':username'=>Yii::app()->user->id);
-		$model = Juri::model()->find($criteria);
-
+		$model=UserJuri::model()->findByPk(Yii::app()->user->getState('id_user'));
 		$model->setAttribute('PASSWORD',$this->NEW);
 		if($model->save())
 			return true;
