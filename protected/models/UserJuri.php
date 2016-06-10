@@ -148,6 +148,7 @@ class UserJuri extends CActiveRecord
 		$criteria->params = array(
 			':status'=>self::ACTIVE
 		);
+		$criteria->order = 'NAMA ASC';
 		return CHtml::listData(self::model()->findAll($criteria),'EMAIL','NAMA');
 	}
 
