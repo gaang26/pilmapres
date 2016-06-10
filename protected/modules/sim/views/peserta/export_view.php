@@ -19,6 +19,7 @@
         <th>Email</th>
         <th>HP</th>
         <th>Jenis Kelamin</th>
+        <th>Kopertis</th>
     </tr>
     <?php
     $i=1;
@@ -45,6 +46,7 @@
         <td><?php echo $data->EMAIL; ?></td>
         <td><?php echo $data->HP; ?></td>
         <td><?php echo $data->JENIS_KELAMIN; ?></td>
+        <td><?php echo $data->PT->KOPERTIS; ?></td>
     </tr>
     <?php
     $i++;
