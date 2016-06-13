@@ -23,8 +23,8 @@ $this->breadcrumbs=array(
                     <th>PIN</th>
                     <th>Nama Peserta</th>
                     <th>Asal Perguruan Tinggi</th>
-                    <th>Prodi</th>
-                    <th>Kelengkapan</th>
+					<th>Bidang</th>
+                    <th>Jenjang</th>
                     <th></th>
                 </tr>
             </thead>
@@ -67,7 +67,7 @@ $(document).ready(function(){
             'targets': [0,4,5,6]
         }, {
             "searchable": false,
-            "targets": [0,4,5,6]
+            "targets": [0,6]
         }],
         "order": [
             [2, "asc"]

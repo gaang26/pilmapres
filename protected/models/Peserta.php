@@ -548,6 +548,10 @@ class Peserta extends CActiveRecord
 		return (!$this->isKTMEmpty() && !$this->isPengantarEmpty() && !$this->isVideoEmpty() && !$this->isPrestasiEmpty() && !$this->isBiodataEmpty() && !$this->isKaryaTulisEmpty());
 	}
 
+	public function isCompleteJuri(){
+		return (!$this->isVideoEmpty() && !$this->isPrestasiEmpty() && !$this->isBiodataEmpty() && !$this->isKaryaTulisEmpty());
+	}
+
 	public function getLabelKelengkapan(){
 		$result = '';
 		if($this->isComplete()){

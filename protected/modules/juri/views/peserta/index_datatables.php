@@ -15,7 +15,7 @@ $this->breadcrumbs=array(
 		</div>
 		<div class="details">
 			<div class="number">
-				<?php echo Peserta::getJumlah(Peserta::SARJANA); ?>
+				114<?php //echo Peserta::getJumlah(Peserta::SARJANA); ?>
 			</div>
 			<div class="desc">
 				Lihat Peserta Sarjana
@@ -30,7 +30,7 @@ $this->breadcrumbs=array(
 		</div>
 		<div class="details">
 			<div class="number">
-				<?php echo Peserta::getJumlah(Peserta::DIPLOMA); ?>
+				63<?php //echo Peserta::getJumlah(Peserta::DIPLOMA); ?>
 			</div>
 			<div class="desc">
 				Lihat Peserta Diploma
@@ -45,7 +45,7 @@ $this->breadcrumbs=array(
 		</div>
 		<div class="details">
 			<div class="number">
-				<?php echo Peserta::getJumlah(); ?>
+				177<?php //echo Peserta::getJumlah(); ?>
 			</div>
 			<div class="desc">
 				Lihat Semua Peserta
@@ -71,8 +71,8 @@ $this->breadcrumbs=array(
                     <th>PIN</th>
                     <th>Nama Peserta</th>
                     <th>Asal Perguruan Tinggi</th>
-                    <th>Prodi</th>
-                    <th>Kelengkapan</th>
+					<th>Bidang</th>
+                    <th>Jenjang</th>
                     <th></th>
                 </tr>
             </thead>
@@ -115,7 +115,7 @@ $(document).ready(function(){
             'targets': [0,4,5,6]
         }, {
             "searchable": false,
-            "targets": [0,4,6]
+            "targets": [0,6]
         }],
         "order": [
             [2, "asc"]
