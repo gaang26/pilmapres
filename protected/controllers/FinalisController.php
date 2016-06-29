@@ -21,8 +21,8 @@ class FinalisController extends Controller
     }
 
     public function actionSurat(){
-		$filename = "PETUNJUK_TEKNIS_BIDIKMISI_SEKOLAH_".Yii::app()->params["tahun"].".pdf";
-		$path = Yii::app()->basePath.'/../file/formatfile/'.$filename;
+		$filename = "Surat_Pengumuman_Finalis_Mawapres_2016.pdf";
+		$path = Yii::app()->basePath.'/../file/pendukung/2016/'.$filename;
 		$filecontent=file_get_contents($path);
 		header("Content-Type: text/plain");
 		header("Content-disposition: attachment; filename=$filename");
