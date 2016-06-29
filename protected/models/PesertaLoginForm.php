@@ -27,6 +27,7 @@ class PesertaLoginForm extends CFormModel
 			array('rememberMe', 'boolean'),
 			// password needs to be authenticated
 			array('password', 'authenticate'),
+			array('password', 'authenticateFinalis','on'=>'login-finalis')
 		);
 	}
 
@@ -65,6 +66,41 @@ class PesertaLoginForm extends CFormModel
 		{
 			$this->_identity=new PesertaIdentity($this->pin,$this->password);
 			$this->_identity->authenticate();
+		}
+		if($this->_identity->errorCode===PesertaIdentity::ERROR_NONE)
+		{
+			$duration=$this->rememberMe ? 3600*24*30 : 0; // 30 days
+			Yii::app()->user->login($this->_identity,$duration);
+			return true;
+		}
+		else
+			return false;
+	}
+
+	/**
+	 * Authenticates the password.
+	 * This is the 'authenticate' validator as declared in rules().
+	 */
+	public function authenticateFinalis($attribute,$params)
+	{
+		if(!$this->hasErrors())
+		{
+			$this->_identity=new PesertaIdentity($this->pin,$this->password);
+			if(!$this->_identity->authenticateFinalis())
+				$this->addError('password','Incorrect pin or password.');
+		}
+	}
+
+	/**
+	 * Logs in the user using the given pin and password in the model.
+	 * @return boolean whether login is successful
+	 */
+	public function loginFinalis()
+	{
+		if($this->_identity===null)
+		{
+			$this->_identity=new PesertaIdentity($this->pin,$this->password);
+			$this->_identity->authenticateFinalis();
 		}
 		if($this->_identity->errorCode===PesertaIdentity::ERROR_NONE)
 		{

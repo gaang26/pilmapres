@@ -20,6 +20,8 @@ class Jadwal extends CActiveRecord
     const INACTIVE = 0;
 
     const DAFTAR_PESERTA = 1;
+    const PENGUMUMAN_FINALIS = 3;
+    const MASUKAN_PUBLIK = 4;
     /**
      * @return string the associated database table name
      */
@@ -144,6 +146,16 @@ class Jadwal extends CActiveRecord
 
     public static function isDaftarPesertaOpen(){
         $model = self::model()->findByPk(self::DAFTAR_PESERTA);
+        return $model->STATUS==self::ACTIVE;
+    }
+
+    public static function isPengumumanOpen(){
+        $model = self::model()->findByPk(self::PENGUMUMAN_FINALIS);
+        return $model->STATUS==self::ACTIVE;
+    }
+
+    public static function isMasukanPublicOpen(){
+        $model = self::model()->findByPk(self::MASUKAN_PUBLIK);
         return $model->STATUS==self::ACTIVE;
     }
 }

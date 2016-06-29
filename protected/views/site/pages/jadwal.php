@@ -40,7 +40,7 @@
                         Masukan publik
                     </td>
                     <td>
-                        11 - 20 Juli 2016
+                        11 - 27 Juli 2016
                     </td>
                 </tr>
                 <tr>
@@ -48,7 +48,7 @@
                         Penilaian Nasional (Tahap Akhir)
                     </td>
                     <td>
-                        20 - 23 Juli 2016
+                        18 - 21 Agustus 2016
                     </td>
                 </tr>
                 <tr>
@@ -56,7 +56,7 @@
                         Penganugerahan Mahasiswa Berprestasi
                     </td>
                     <td>
-                        23 Juli 2016
+                        21 Agustuss 2016
                     </td>
                 </tr>
             </table>

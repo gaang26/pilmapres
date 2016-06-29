@@ -50,6 +50,9 @@ class WebUser extends CWebUser {
     {
         return (Yii::app()->user->getState('role')==WebUser::ROLE_PESERTA);
     }
+    public static function isFinalis(){
+        return Yii::app()->user->getState('isFinalis');
+    }
     public static function isGuest()
     {
         return Yii::app()->user->isGuest;

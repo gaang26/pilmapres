@@ -14,7 +14,7 @@
             <p>
                 Pedoman mawapres 2016 jenjang sarjana dapat diunduh melalui tautan dibawah ini
             </p>
-            <a href="<?php echo Yii::app()->request->baseUrl;?>/file/pendukung/2016/PEDOMAN_MAWAPRES_SARJANA_2016.pdf" target="_blank" class="btn red btn-block"><i class="icon-download-alt"></i> UNDUH PEDOMAN SARJANA</a>
+            <a href="<?php echo Yii::app()->request->baseUrl;?>/file/pendukung/2016/PEDOMAN_MAWAPRES_SARJANA_2016.pdf" target="_blank" class="btn default btn-block"><i class="icon-download-alt"></i> UNDUH PEDOMAN SARJANA</a>
         </div>
     </div>
     <div class="span4">
@@ -23,7 +23,7 @@
             <p>
                 Pedoman mawapres 2016 jenjang diploma dapat diunduh melalui tautan dibawah ini
             </p>
-            <a href="<?php echo Yii::app()->request->baseUrl;?>/file/pendukung/2016/PEDOMAN_MAWAPRES_DIPLOMA_2016.pdf" target="_blank" class="btn red btn-block"><i class="icon-download-alt"></i> UNDUH PEDOMAN DIPLOMA</a>
+            <a href="<?php echo Yii::app()->request->baseUrl;?>/file/pendukung/2016/PEDOMAN_MAWAPRES_DIPLOMA_2016.pdf" target="_blank" class="btn default btn-block"><i class="icon-download-alt"></i> UNDUH PEDOMAN DIPLOMA</a>
         </div>
     </div>
 </div>
