@@ -48,7 +48,7 @@
                         Penilaian Nasional (Tahap Akhir)
                     </td>
                     <td>
-                        18 - 21 Agustus 2016
+                        14 - 17 Agustus 2016
                     </td>
                 </tr>
                 <tr>
@@ -56,7 +56,7 @@
                         Penganugerahan Mahasiswa Berprestasi
                     </td>
                     <td>
-                        21 Agustuss 2016
+                        17 Agustuss 2016
                     </td>
                 </tr>
             </table>
