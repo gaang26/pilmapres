@@ -24,7 +24,7 @@ $this->pageTitle='Finalis Mawapres Tahun '.Yii::app()->params['tahun'];
                     Kepada perguruan tinggi dan peserta yang telah ditetapkan sebagai Finalis Mahasiswa Berprestasi Tingkat Nasional Tahun 2016 kami ucapkan selamat, dan kepada yang belum berhasil hal ini merupakan pengalaman yang sangat berharga sebagai pembelajaran mengukir prestasi mahasiswa di masa yang akan datang.
                 </p>
                 <p>
-                    Kepada para Finalis Mahasiswa Berprestasi Tingkat Nasional Tahun 2016 agar segera mempersiapkan diri guna mengikuti pemilihan Mahasiswa Berprestasi Tingkat Nasional Tahap Akhir yang akan diselenggarakan tanggal 18 Agustus s.d. 21 Agustus 2016 di Yogyakarta. Undangan akan disampaikan dalam waktu yang tidak terlalu lama.
+                    Kepada para Finalis Mahasiswa Berprestasi Tingkat Nasional Tahun 2016 agar segera mempersiapkan diri guna mengikuti pemilihan Mahasiswa Berprestasi Tingkat Nasional Tahap Akhir yang akan diselenggarakan tanggal 14 Agustus s.d. 17 Agustus 2016 di Yogyakarta. Undangan akan disampaikan dalam waktu yang tidak terlalu lama.
                 </p>
                 <hr>
                 <p class="text-center">
