@@ -1,12 +1,12 @@
 <?php
 /* @var $this SiteController */
 
-$this->pageTitle=Yii::app()->name;
+$this->pageTitle='Beranda';
 ?>
 
 <?php $this->renderPartial('home/slider'); ?>
 
-<div class="row-fluid">
+<!-- <div class="row-fluid">
     <div class="span8 offset2 margin-top-20">
         <?php if(Jadwal::isPengumumanOpen()): ?>
             <div class="well text-center">
@@ -22,7 +22,12 @@ $this->pageTitle=Yii::app()->name;
             </div>
         <?php endif; ?>
     </div>
-</div>
+</div> -->
+
+<?php $this->renderPartial('home/finalis',array(
+    'sarjana'=>Peserta::getFinalis(Peserta::SARJANA),
+    'diploma'=>Peserta::getFinalis(Peserta::DIPLOMA)
+)); ?>
 
 
 <?php $this->renderPartial('home/tema'); ?>
