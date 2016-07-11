@@ -46,10 +46,10 @@
                 <div class="well text-left">
                     <h4>Masukan Publik</h4>
                     <p>
-                        Dalam rangka mendorong peningkatan dan iklim kompetisi mahasiswa, salah satu program yang dilaksanakan oleh Ditjen Pembelajaran dan Kemahasiswaan adalah Pemilihan Mahasiswa Berprestasi. Salah satu kriteria pemilihan adalah kompetensi mahasiswa dalam menulis artikel ilmiah yang salah satu syaratnya adalah "merupakan karya sendiri dan tidak mengandung plagiasi".
+                        Dalam rangka mendorong peningkatan budaya akademik khususnya kompetisi di kalangan mahasiswa, salah satu program yang dilaksanakan oleh Ditjen Pembelajaran dan Kemahasiswaan adalah Pemilihan Mahasiswa Berprestasi. Salah satu kriteria pemilihan adalah kompetensi mahasiswa dalam menulis artikel ilmiah yang salah satu syaratnya adalah "merupakan karya sendiri dan tidak mengandung plagiasi".
                     </p>
                     <p>
-                        Sehubungan dengan sebagai upaya untuk memenuhi kriteria tersebut panitia pemilihan, selain melakukan "tracker" terkait plagiarisme, juga melakukan uji publik untuk mendapatkan masukan dan atau laporan dari masyarakat. Berikut adalah 31 karya tulis para finalis untuk mendapatkan masukan atau laporan.
+                        Sebagai upaya untuk memenuhi kriteria tersebut panitia pemilihan, selain melakukan "tracker" terkait plagiarisme, juga melakukan uji publik untuk mendapatkan masukan dan atau laporan dari masyarakat. Berikut adalah 31 karya tulis para finalis untuk mendapatkan masukan atau laporan.
                     </p>
                     <p>
                         Berikut adalah 31 karya tulis para finalis untuk mendapatkan masukan atau laporan.
