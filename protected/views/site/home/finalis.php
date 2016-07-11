@@ -37,7 +37,31 @@
                         'class'=>'btn red btn-lg'
                     )); ?>
                 </p>
+                <p class="bold text-center text-error">
+    				Pengisian konfirmasi kehadiran paling lambat tanggal 18 Juli 2016 Pukul 24:00 WIB
+    			</p>
             </div>
+            <?php if(Jadwal::isMasukanPublicOpen()): ?>
+                <hr>
+                <div class="well text-left">
+                    <h4>Masukan Publik</h4>
+                    <p>
+                        Dalam rangka mendorong peningkatan dan iklim kompetisi mahasiswa, salah satu program yang dilaksanakan oleh Ditjen Pembelajaran dan Kemahasiswaan adalah Pemilihan Mahasiswa Berprestasi. Salah satu kriteria pemilihan adalah kompetensi mahasiswa dalam menulis artikel ilmiah yang salah satu syaratnya adalah "merupakan karya sendiri dan tidak mengandung plagiasi".
+                    </p>
+                    <p>
+                        Sehubungan dengan sebagai upaya untuk memenuhi kriteria tersebut panitia pemilihan, selain melakukan "tracker" terkait plagiarisme, juga melakukan uji publik untuk mendapatkan masukan dan atau laporan dari masyarakat. Berikut adalah 31 karya tulis para finalis untuk mendapatkan masukan atau laporan.
+                    </p>
+                    <p>
+                        Berikut adalah 31 karya tulis para finalis untuk mendapatkan masukan atau laporan.
+                    </p>
+                    <p>
+                        Terima kasih.
+                    </p>
+                    <p style="color:#999999;"><small>
+                        Untuk memberi masukan publik, silahkan memilih menu "Review KTI" pada kolom sebelah kanan pada daftar finalis dibawah. Kemudian Anda dapat memberi masukan pada kolom komentar pada bagian bawah laman.
+                    </small></p>
+                </div>
+            <?php endif; ?>
             <hr>
             <div class="tabbable">
                 <ul class="nav nav-tabs">
