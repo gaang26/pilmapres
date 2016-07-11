@@ -11,7 +11,7 @@ $this->breadcrumbs=array(
 
 <div class="row-fluid">
 	<div class="span6 offset3">
-		<?php if(!Jadwal::isPengumumanOpen()): ?>
+		<?php if(Jadwal::isPengumumanOpen()): ?>
 			<div class="well well-smoke bordered-dashed-1">
 				<?php echo Yii::app()->user->getFlash('info'); ?>
 				<h2>Login Finalis</h2>

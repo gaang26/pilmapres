@@ -3,13 +3,13 @@
 class FinalisController extends Controller
 {
     public function actionKonfirmasi(){
-        // if(Yii::app()->user->isGuest || !WebUser::isFinalis()){
-        //     $this->redirect(array('finalis/login'));
-        // }else{
-        //     $this->render('konfirmasi');
-        // }
+        if(Yii::app()->user->isGuest || !WebUser::isFinalis()){
+            $this->redirect(array('finalis/login'));
+        }else{
+            $this->render('konfirmasi');
+        }
 
-        $this->render('konfirmasi');
+        ///$this->render('konfirmasi');
     }
     public function actionIndex(){
         $sarjana = Peserta::getFinalis(Peserta::SARJANA);
