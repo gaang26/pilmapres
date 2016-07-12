@@ -52,9 +52,6 @@
                         Sebagai upaya untuk memenuhi kriteria tersebut panitia pemilihan, selain melakukan "tracker" terkait plagiarisme, juga melakukan uji publik untuk mendapatkan masukan dan atau laporan dari masyarakat. Berikut adalah 31 karya tulis para finalis untuk mendapatkan masukan atau laporan.
                     </p>
                     <p>
-                        Berikut adalah 31 karya tulis para finalis untuk mendapatkan masukan atau laporan.
-                    </p>
-                    <p>
                         Terima kasih.
                     </p>
                     <p style="color:#999999;"><small>
