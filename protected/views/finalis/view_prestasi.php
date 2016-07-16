@@ -2,7 +2,7 @@
 $this->pageTitle = 'Detil Prestasi/Kemampuan Unggulan';
 $this->breadcrumbs = array(
     'Finalis'=>array('finalis/index'),
-    $model->Peserta->NAMA=>array('finalis/view','id'=>$model->ID_PESERTA)
+    $model->Peserta->NAMA=>array('finalis/view','id'=>$model->ID_PESERTA),
     $this->pageTitle
 );
 ?>
