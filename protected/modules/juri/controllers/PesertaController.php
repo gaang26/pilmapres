@@ -29,7 +29,8 @@ class PesertaController extends Controller
 					'prestasi',
 					'ktm','pengantar',
 					'export',
-					'sarjana','diploma'
+					'sarjana','diploma',
+					'finalis'
 				),
 				'users'=>array('@'),
 				'roles'=>array(WebUser::ROLE_JURI)
@@ -38,6 +39,24 @@ class PesertaController extends Controller
 				'users'=>array('*'),
 			),
 		);
+	}
+
+	public function actionFinalis(){
+		$dataProvider=new CActiveDataProvider('Peserta',array(
+			'criteria'=>array(
+				'condition'=>'TAHUN=:tahun AND TAHAP_AWAL=:finalis',
+				'params'=>array(
+					':tahun'=>Yii::app()->params['tahun'],
+					':finalis'=>Peserta::LOLOS
+				),
+				'order'=>'NAMA ASC'
+			),
+			'pagination'=>false
+		));
+
+		$this->render('index_datatables_finalis',array(
+			'dataProvider'=>$dataProvider
+		));
 	}
 
 	public function actionExport($jenjang='all')

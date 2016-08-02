@@ -50,6 +50,9 @@
                     <?php echo CHtml::link('<i class="icon-list"></i> <span class="title">Perguruan Tinggi</span>',array('pt/index')); ?>
                 </li>
             <?php else: ?>
+                <li class="<?php echo ($this->id=='peserta' && $this->action->id=='finalis')?'active':''?>">
+                    <?php echo CHtml::link('<i class="icon-graduation"></i> <span class="title">Finalis</span>',array('peserta/finalis')); ?>
+                </li>
                 <li class="<?php echo ($this->id=='peserta' && $this->action->id=='index')?'active':''?>">
                     <?php echo CHtml::link('<i class="icon-graduation"></i> <span class="title">Semua Peserta</span>',array('peserta/index')); ?>
                 </li>
