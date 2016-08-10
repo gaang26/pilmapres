@@ -10,7 +10,17 @@
 <div class="row-fluid">
     <div class="span8 offset2">
         <?php if(Jadwal::isPengumumanOpen()): ?>
-            <div class="well bordered-dashed-1 text-left">
+            <div class="well bordered-solid-1 text-center">
+                <h4>UNDANGAN DAN PANDUAN ACARA FINAL MAWAPRES NASIONAL TAHUN 2016</h4>
+                <p>
+                    Diperuntukkan bagi finalis yang telah lolos final mawapers nasional tahun 2016, diwajibkan mengunduh undangan dan panduan acara pada tautan dibawah ini.
+                </p>
+                <p>
+                    <a href="https://drive.google.com/open?id=0B0XuhHoroRtfZ0o1Qk9wNVFNTHc" class="btn btn-lg red" target="_blank">UNDANGAN & SPPD FINALIS</a>
+                    <a href="https://drive.google.com/open?id=0B0XuhHoroRtfSjE3UnIxanJwYl9jeGZBejlrc2pmRjJKM2RV" class="btn btn-lg red" target="_blank">PANDUAN ACARA 14-17 AGUSTUS 2016</a>
+                </p>
+            </div>
+            <!-- <div class="well bordered-dashed-1 text-left">
                 <h4>PENGUMUMAN FINALIS MAWAPRES NASIONAL TAHUN 2016</h4>
                 <p>
                     Sebagai tahapan pemilihan Mahasiswa Berprestasi Tahun 2016, Tim Juri telah melaksanakan penilaian tahap awal pada tanggal 15-20 Juni 2016 dan telah menghasilkan finalis yang akan diundang untuk mengikuti penilaian tahap akhir yang terdiri atas 16 (enam belas) mahasiswa dari Program Sarjana dan 15 (lima belas) mahasiswa dari Program Diploma sebagaimana yang tertera pada daftar peserta dibawah ini.                </p>
@@ -40,7 +50,7 @@
                 <p class="bold text-center text-error">
     				Pengisian konfirmasi kehadiran paling lambat tanggal 18 Juli 2016 Pukul 24:00 WIB
     			</p>
-            </div>
+            </div> -->
             <?php if(Jadwal::isMasukanPublicOpen()): ?>
                 <hr>
                 <div class="well text-left">
