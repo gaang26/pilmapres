@@ -10,7 +10,7 @@
 <div class="row-fluid">
     <div class="span8 offset2">
         <?php if(Jadwal::isPengumumanOpen()): ?>
-            <div class="well bordered-solid-1 text-center">
+            <!-- <div class="well bordered-solid-1 text-center">
                 <h4>UNDANGAN DAN PANDUAN ACARA FINAL MAWAPRES NASIONAL TAHUN 2016</h4>
                 <p>
                     Diperuntukkan bagi finalis yang telah lolos final mawapers nasional tahun 2016, diwajibkan mengunduh undangan dan panduan acara pada tautan dibawah ini.
@@ -19,7 +19,7 @@
                     <a href="https://drive.google.com/open?id=0B0XuhHoroRtfZ0o1Qk9wNVFNTHc" class="btn btn-lg red" target="_blank">UNDANGAN & SPPD FINALIS</a>
                     <a href="https://drive.google.com/open?id=0B0XuhHoroRtfSjE3UnIxanJwYl9jeGZBejlrc2pmRjJKM2RV" class="btn btn-lg red" target="_blank">PANDUAN ACARA 14-17 AGUSTUS 2016</a>
                 </p>
-            </div>
+            </div> -->
             <!-- <div class="well bordered-dashed-1 text-left">
                 <h4>PENGUMUMAN FINALIS MAWAPRES NASIONAL TAHUN 2016</h4>
                 <p>
