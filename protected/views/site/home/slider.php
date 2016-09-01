@@ -5,9 +5,9 @@
     <?php
     for($i=1;$i<=7;$i++){
       if($i==1){
-        echo '<div class="active item"><img src="'.Yii::app()->request->baseUrl.'/images/carousel/2015/s'.$i.'.jpg" width="100%"></div>';
+        echo '<div class="active item"><img src="'.Yii::app()->request->baseUrl.'/images/carousel/2016/s ('.$i.').JPG" width="100%"></div>';
       }else{
-        echo '<div class="item"><img src="'.Yii::app()->request->baseUrl.'/images/carousel/2015/s'.$i.'.jpg" width="100%"></div>';
+        echo '<div class="item"><img src="'.Yii::app()->request->baseUrl.'/images/carousel/2016/s ('.$i.').JPG" width="100%"></div>';
       }
     }
     ?>

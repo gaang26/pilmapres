@@ -932,6 +932,18 @@ class Peserta extends CActiveRecord
 		return self::model()->findAll($criteria);
 	}
 
+	public function getJuara($jenjang){
+		$criteria = new CDbCriteria;
+		$criteria->condition = 'TAHUN=:tahun AND JENJANG=:jenjang AND JUARA>0';
+		$criteria->params = array(
+			':tahun'=>Yii::app()->params['tahun'],
+			':jenjang'=>$jenjang,
+		);
+		$criteria->order = 'JUARA ASC';
+
+		return self::model()->findAll($criteria);
+	}
+
 	public function getKomentar($bidang){
 		$criteria = new CDbCriteria;
 		$criteria->condition = 'BIDANG=:bidang AND ID_PESERTA=:peserta AND STATUS=:status';
@@ -945,6 +957,20 @@ class Peserta extends CActiveRecord
 		$model = Komentar::model()->findAll($criteria);
 		return $model;
 	}
+
+	// public static function getJuara($tahun=false){
+	// 	$juara = array();
+	//
+	// 	$juara['2016']['sarjana']['1'] = '16017569';
+	// 	$juara['2016']['sarjana']['2'] = '16018556';
+	// 	$juara['2016']['sarjana']['3'] = '16016804';
+	//
+	// 	$juara['2016']['diploma']['1'] = '16025353';
+	// 	$juara['2016']['diploma']['2'] = '16027643';
+	// 	$juara['2016']['diploma']['3'] = '16027202';
+	//
+	// 	return $juara;
+	// }
 
 	//
 	// public function getImage(){
