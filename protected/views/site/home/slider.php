@@ -3,7 +3,7 @@
   <!-- Carousel items -->
   <div class="carousel-inner">
     <?php
-    for($i=1;$i<=7;$i++){
+    for($i=1;$i<=22;$i++){
       if($i==1){
         echo '<div class="active item"><img src="'.Yii::app()->request->baseUrl.'/images/carousel/2016/s ('.$i.').JPG" width="100%"></div>';
       }else{
@@ -23,7 +23,7 @@
     <li data-target="#myCarousel" data-slide-to="1"></li>
     <li data-target="#myCarousel" data-slide-to="2"></li> -->
     <?php
-    for($i=0;$i<7;$i++){
+    for($i=0;$i<22;$i++){
       if($i==0){
         echo '<li data-target="#myCarousel" data-slide-to="'.$i.'" class="active"></li>';
       }else{
