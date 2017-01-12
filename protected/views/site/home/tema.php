@@ -2,7 +2,7 @@
 	<div class="span6 offset3 text-center">
 		<h4>TEMA PEMILIHAN MAHASISWA BERPRESTASI TINGKAT NASIONAL TAHUN 2017</h4>
 		<p style="font-size:1.1em; font-weight:bold;">
-			“Peningkatan Produktivitas Ilmu Pengetahuan, Teknologi dan Inovasi untuk Mewujudkan Sumber Daya Manusia yang Berkarakter Unggul”
+			“Peningkatan Produktivitas Iptek dan Inovasi untuk Mewujudkan Sumber Daya Manusia yang Berkarakter Unggul”
 		</p>
 	</div>
 </div>

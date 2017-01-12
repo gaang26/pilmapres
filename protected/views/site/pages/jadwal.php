@@ -56,7 +56,7 @@
                         Penganugerahan Mahasiswa Berprestasi
                     </td>
                     <td>
-                        13 Agustuss 2017
+                        13 Juli 2017
                     </td>
                 </tr>
             </table>
