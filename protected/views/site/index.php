@@ -29,10 +29,10 @@ $this->pageTitle='Beranda';
     'diploma'=>Peserta::getFinalis(Peserta::DIPLOMA)
 ));*/ ?>
 
-<?php $this->renderPartial('home/juara',array(
+<?php /*$this->renderPartial('home/juara',array(
     'sarjana'=>Peserta::getJuara(Peserta::SARJANA),
     'diploma'=>Peserta::getJuara(Peserta::DIPLOMA)
-)); ?>
+));*/ ?>
 
 <?php $this->renderPartial('home/tema'); ?>
 
