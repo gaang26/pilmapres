@@ -1,7 +1,7 @@
 <div class="row-fluid margin-top-20">
     <div class="span8 offset2">
         <div class="well well-white bordered-dashed-1 bordered-radius-1">
-            <h5>JADWAL KEGIATAN PROGRAM PEMILIHAN MAHASISWA BERPRESTASI TINGKAT NASIONAL TAHUN 2017</h5>
+            <h5>JADWAL KEGIATAN PEMILIHAN MAHASISWA BERPRESTASI TINGKAT NASIONAL TAHUN 2017</h5>
             <table class="table table-bordered table-striped">
                 <tr>
                     <th>
