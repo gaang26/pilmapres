@@ -149,10 +149,21 @@ class Peserta extends CActiveRecord
 			array('JUDUL_KTI', 'length', 'max'=>500),
 			array('PHOTO, VIDEO_RINGKASAN, VIDEO_KESEHARIAN, SURAT_PENGANTAR, URL_FORLAP, KTM', 'length', 'max'=>255),
 			array('TANGGAL_LAHIR, ALAMAT, RINGKASAN, TANGGAL_INPUT, TANGGAL_UPDATE,FILE_KTI', 'safe'),
+			array('TANGGAL_LAHIR','validateAge','on'=>'update-profil'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('ID_PESERTA, ID_PT, ROLE, PIN, TAHUN, NIM, NAMA, ID_PRODI, JENJANG, SEMESTER, IPK, EMAIL, HP, TEMPAT_LAHIR, TANGGAL_LAHIR, ALAMAT, ID_KOTA, WEBSITE, PHOTO, JUDUL_KTI, ID_TOPIK, BIDANG, RINGKASAN, VIDEO_RINGKASAN, VIDEO_KESEHARIAN, SURAT_PENGANTAR, URL_FORLAP, KTM, ID_USER, ROLE_USER, TANGGAL_INPUT, TANGGAL_UPDATE, TAHAP_AWAL', 'safe', 'on'=>'search'),
 		);
+	}
+
+	public function validateAge($attribute,$params){
+		$max = 22;
+		$dob = new DateTime($this->TANGGAL_LAHIR);
+		$now = new DateTime('2017-01-01');
+		$age = $now->diff($dob)->y;
+		if($age > $max){
+			return $this->addError('TANGGAL_LAHIR','Usia Anda melebihi batas persyaratan yang telah ditentukan. Usia Anda: '.$age);
+		}
 	}
 
 	public function checkEmailLupaPassword(){
@@ -463,7 +474,7 @@ class Peserta extends CActiveRecord
 	}
 
 	public static function optionsSemester($jenjang){
-		$max = 8;
+		$max = 6;
 		if($jenjang==self::DIPLOMA){
 			$max = 6;
 		}
@@ -908,12 +919,18 @@ class Peserta extends CActiveRecord
 
 	public static function getJumlah($jenjang='SEMUA'){
 		if($jenjang=='SEMUA'){
-			return self::model()->count();
+			$criteria = new CDbCriteria;
+			$criteria->condition = 'TAHUN=:tahun';
+			$criteria->params = array(
+				':tahun'=>Yii::app()->params['tahun']
+			);
+			return self::model()->count($criteria);
 		}else{
 			$criteria = new CDbCriteria;
-			$criteria->condition = 'JENJANG=:jenjang';
+			$criteria->condition = 'JENJANG=:jenjang AND TAHUN=:tahun';
 			$criteria->params = array(
-				':jenjang'=>$jenjang
+				':jenjang'=>$jenjang,
+				':tahun'=>Yii::app()->params['tahun']
 			);
 			return self::model()->count($criteria);
 		}

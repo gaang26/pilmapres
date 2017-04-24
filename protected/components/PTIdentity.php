@@ -20,8 +20,8 @@ class PTIdentity extends CUserIdentity
 	public function authenticate()
 	{
         $criteria = new CDbCriteria;
-        $criteria->condition = 'EMAIL=:email AND ROLE=:role AND STATUS!=:rejected';
-        $criteria->params = array(':email'=>$this->username,':role'=>WebUser::ROLE_PT,':rejected'=>UserPT::REJECTED);
+        $criteria->condition = 'EMAIL=:email AND ROLE=:role AND STATUS!=:rejected AND TAHUN=:tahun';
+        $criteria->params = array(':email'=>$this->username,':role'=>WebUser::ROLE_PT,':rejected'=>UserPT::REJECTED,':tahun'=>Yii::app()->params['tahun']);
         $record=UserPT::model()->find($criteria);
         if($record===null)
             $this->errorCode=self::ERROR_USERNAME_INVALID;

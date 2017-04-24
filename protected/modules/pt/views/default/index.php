@@ -119,12 +119,47 @@ $peserta_diploma = Peserta::getPeserta($user,$role_user,Peserta::DIPLOMA);
 			</div>
 		<?php } ?>
 	<?php }else{ ?>
-		<div class="span4 offset4">
-			<div class="well well-smoke bordered-dashed-1 text-center">
-				<?php echo CHtml::link('<i class="icon-plus"></i> DAFTARKAN MAHASISWA DIPLOMA',array('mahasiswa/daftar','jenjang'=>Peserta::DIPLOMA),array(
-					'class'=>'btn blue'
-				)); ?>
-			</div>
-		</div>
+		<?php if($peserta_diploma!==null){ ?>
+            <div class="span4 offset4">
+                <div class="well well-smoke bordered-dashed-1 text-center">
+                    <div class="v-card text-center">
+                        <div class="image-container">
+							<?php echo $peserta_diploma->getPhoto(); ?>
+                        </div>
+
+                        <div class="profile-container">
+                            <p class="nama">
+								<?php echo $peserta_diploma->NAMA; ?>
+                            </p>
+                            <p class="pin">
+								<?php echo 'PIN: '.$peserta_diploma->PIN; ?>
+                            </p>
+                            <p class="jurusan">
+								<?php echo $peserta_diploma->JENJANG; ?> - <?php echo $peserta_diploma->Prodi->NAMA_PRODI; ?>
+                            </p>
+                            <p class="nama-pt">
+								<?php echo Yii::app()->user->getState('nama_pt'); ?>
+                            </p>
+                        </div>
+                    </div>
+					<?php echo CHtml::link('SELENGKAPNYA',array('mahasiswa/view','id'=>$peserta_diploma->ID_PESERTA),array(
+						'class'=>'btn btn-large blue btn-block'
+					)); ?>
+                </div>
+            </div>
+		<?php }else{ ?>
+            <div class="span4 offset4">
+                <div class="well well-smoke bordered-dashed-1 text-center">
+                    <div class="v-card text-center">
+                        <div class="image-container">
+                            <img src="<?php echo Yii::app()->request->baseUrl?>/images/profilethumb.png" alt="" />
+                        </div>
+                    </div>
+					<?php echo CHtml::link('<i class="icon-plus"></i> DAFTARKAN MAHASISWA DIPLOMA',array('mahasiswa/daftar','jenjang'=>Peserta::DIPLOMA),array(
+						'class'=>'btn blue btn-block'
+					)); ?>
+                </div>
+            </div>
+		<?php } ?>
 	<?php } ?>
 </div>

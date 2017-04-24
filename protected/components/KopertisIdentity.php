@@ -19,8 +19,8 @@ class KopertisIdentity extends CUserIdentity
 	public function authenticate()
 	{
         $criteria = new CDbCriteria;
-        $criteria->condition = 'EMAIL=:email AND ROLE=:role';
-        $criteria->params = array(':email'=>$this->username,':role'=>WebUser::ROLE_KOPERTIS);
+        $criteria->condition = 'EMAIL=:email AND ROLE=:role AND TAHUN=:tahun';
+        $criteria->params = array(':email'=>$this->username,':role'=>WebUser::ROLE_KOPERTIS,':tahun'=>Yii::app()->params['tahun']);
         $record=UserKopertis::model()->find($criteria);
         if($record===null)
             $this->errorCode=self::ERROR_USERNAME_INVALID;

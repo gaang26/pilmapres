@@ -36,8 +36,8 @@ $this->pageTitle='Beranda';
 
 <?php $this->renderPartial('home/tema'); ?>
 
-<?php //$this->renderPartial('home/login'); ?>
+<?php $this->renderPartial('home/login'); ?>
 
-<?php //$this->renderPartial('home/stats'); ?>
+<?php $this->renderPartial('home/stats'); ?>
 
 <?php $this->renderPartial('pages/jadwal'); ?>
