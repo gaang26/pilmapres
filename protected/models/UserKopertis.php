@@ -265,7 +265,7 @@ class UserKopertis extends CActiveRecord
 			<body>
 				<h3>Hello, ' . $this->Kopertis->NAMA.'</h3>
 				<p>Untuk reset password Anda, silahkan klik tautan berikut ini:</p>
-				<a href="http://mawapres.dikti.go.id/kopertis/default/resetpassword/ref/'.$this->TOKEN.'">RESET PASSWORD</a>
+				<a href="http://pilmapres.ristekdikti.go.id/kopertis/default/resetpassword/ref/'.$this->TOKEN.'">RESET PASSWORD</a>
 				<p>Terima kasih.</p>
 			</body>
 		</html>
