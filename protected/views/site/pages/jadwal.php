@@ -16,7 +16,7 @@
                         Pengiriman data calon Mawapres & berkas elektronik
                     </td>
                     <td>
-                        24 April 2017 - 5 Mei 2017
+                        24 April 2017 - 5 Mei 2017 Pukul 23:59 WIB
                     </td>
                 </tr>
                 <tr>
