@@ -255,8 +255,16 @@ class PesertaController extends Controller
 			'pagination'=>false
 		));
 
+		$criteria = new CDbCriteria();
+		$criteria->condition = 'TAHUN=:tahun';
+		$criteria->params = array(
+			':tahun'=>Yii::app()->params['tahun']
+		);
+		$model = Peserta::model()->findAll($criteria);
+
 		$this->render('index_datatables',array(
-			'dataProvider'=>$dataProvider
+			'dataProvider'=>$dataProvider,
+			'model'=>$model
 		));
 	}
 

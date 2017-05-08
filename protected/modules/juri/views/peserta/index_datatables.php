@@ -15,11 +15,14 @@ $this->breadcrumbs=array(
 		</div>
 		<div class="details">
 			<div class="number">
-				<?php echo Peserta::getJumlah(Peserta::SARJANA); ?>
+                136
 			</div>
 			<div class="desc">
 				Lihat Peserta Sarjana
 			</div>
+            <div class="desc">
+				<?php echo Peserta::getJumlah(Peserta::SARJANA); ?> Total
+            </div>
 		</div>
 		</a>
 	</div>
@@ -30,11 +33,14 @@ $this->breadcrumbs=array(
 		</div>
 		<div class="details">
 			<div class="number">
-				<?php echo Peserta::getJumlah(Peserta::DIPLOMA); ?>
+                73
 			</div>
 			<div class="desc">
 				Lihat Peserta Diploma
 			</div>
+            <div class="desc">
+				<?php echo Peserta::getJumlah(Peserta::DIPLOMA); ?> Total
+            </div>
 		</div>
 		</a>
 	</div>
@@ -45,11 +51,14 @@ $this->breadcrumbs=array(
 		</div>
 		<div class="details">
 			<div class="number">
-				<?php echo Peserta::getJumlah(); ?>
+				209
 			</div>
 			<div class="desc">
 				Lihat Semua Peserta
 			</div>
+            <div class="desc">
+				<?php echo Peserta::getJumlah(); ?> Total
+            </div>
 		</div>
 		</a>
 	</div>
@@ -77,11 +86,28 @@ $this->breadcrumbs=array(
                 </tr>
             </thead>
             <tbody>
-                <?php $this->widget('zii.widgets.CListView', array(
+                <?php if(count($model)>0):?>
+                    <?php foreach ($model as $data): ?>
+                        <?php $i=1; if($data->isCompleteJuri()):?>
+                        <tr>
+                            <td><?php echo $i++; ?></td>
+                            <td><?php echo $data->PIN; ?></td>
+                            <td><?php echo $data->NAMA; ?></td>
+                            <td><?php echo $data->PT->NAMA; ?></td>
+                            <td><?php echo $data->BIDANG; ?></td>
+                            <td><?php echo $data->getProdiView(); ?></td>
+                            <td><?php echo CHtml::link('<i class="fa fa-search"></i> Selengkapnya',array('peserta/view','id'=>$data->ID_PESERTA),array(
+									'class'=>'btn btn-sm blue'
+								)); ?></td>
+                        </tr>
+						<?php endif;?>
+                    <?php endforeach;?>
+                <?php endif;?>
+                <?php /*$this->widget('zii.widgets.CListView', array(
                     'dataProvider'=>$dataProvider,
                     'itemView'=>'_view',
                     'template'=>'{items}'
-                )); ?>
+                ));*/ ?>
             </tbody>
         </table>
     </div>
