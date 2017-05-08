@@ -58,8 +58,8 @@ $(document).ready(function(){
             "zeroRecords": "Peserta tidak ditemukan"
         },
         "lengthMenu": [
-            [10, 25, -1],
-            [10, 25, "All"] // change per page values here
+            [10, 20, 25, -1],
+            [10, 20, 25, "All"] // change per page values here
         ],
         "pageLength": 15, // set the initial value,
         "columnDefs": [{  // set default column settings

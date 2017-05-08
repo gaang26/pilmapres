@@ -4,7 +4,7 @@ class DefaultController extends Controller
 {
 	public function actionIndex()
 	{
-		$this->redirect(array('peserta/finalis'));
+		$this->redirect(array('peserta/index'));
 		//$this->render('index');
 	}
 

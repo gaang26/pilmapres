@@ -69,7 +69,7 @@ $this->breadcrumbs=array(
     <div class="portlet-title">
         <div class="caption">
             <i class="fa fa-graduation-cap font-blue-sharp"></i>
-            <span class="uppercase bold font-blue-sharp">Semua Peserta</span>
+            <span class="uppercase bold font-blue-sharp">Semua Peserta Melengkapi Berkas</span>
         </div>
     </div>
     <div class="portlet-body">
@@ -87,8 +87,8 @@ $this->breadcrumbs=array(
             </thead>
             <tbody>
                 <?php if(count($model)>0):?>
-                    <?php foreach ($model as $data): ?>
-                        <?php $i=1; if($data->isCompleteJuri()):?>
+                    <?php $i=1; foreach ($model as $data): ?>
+                        <?php if($data->isCompleteJuri()):?>
                         <tr>
                             <td><?php echo $i++; ?></td>
                             <td><?php echo $data->PIN; ?></td>
@@ -132,8 +132,8 @@ $(document).ready(function(){
             "zeroRecords": "Peserta tidak ditemukan"
         },
         "lengthMenu": [
-            [10, 25, -1],
-            [10, 25, "All"] // change per page values here
+            [10, 20, 25, -1],
+            [10, 20, 25, "All"] // change per page values here
         ],
         "pageLength": 15, // set the initial value,
         "columnDefs": [{  // set default column settings
