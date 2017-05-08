@@ -86,28 +86,11 @@ $this->breadcrumbs=array(
                 </tr>
             </thead>
             <tbody>
-                <?php if(count($model)>0):?>
-                    <?php $i=1; foreach ($model as $data): ?>
-                        <?php if($data->isCompleteJuri()):?>
-                        <tr>
-                            <td><?php echo $i++; ?></td>
-                            <td><?php echo $data->PIN; ?></td>
-                            <td><?php echo $data->NAMA; ?></td>
-                            <td><?php echo $data->PT->NAMA; ?></td>
-                            <td><?php echo $data->BIDANG; ?></td>
-                            <td><?php echo $data->getProdiView(); ?></td>
-                            <td><?php echo CHtml::link('<i class="fa fa-search"></i> Selengkapnya',array('peserta/view','id'=>$data->ID_PESERTA),array(
-									'class'=>'btn btn-sm blue'
-								)); ?></td>
-                        </tr>
-						<?php endif;?>
-                    <?php endforeach;?>
-                <?php endif;?>
-                <?php /*$this->widget('zii.widgets.CListView', array(
+                <?php $this->widget('zii.widgets.CListView', array(
                     'dataProvider'=>$dataProvider,
                     'itemView'=>'_view',
                     'template'=>'{items}'
-                ));*/ ?>
+                )); ?>
             </tbody>
         </table>
     </div>
