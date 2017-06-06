@@ -17,7 +17,7 @@ $this->pageTitle='Finalis Mawapres Tahun '.Yii::app()->params['tahun'];
     <div class="span8 offset2">
         <?php if(Jadwal::isPengumumanOpen()): ?>
             <div class="well bordered-dashed-1 text-left">
-                <h4>PENGUMUMAN FINALIS MAWAPRES NASIONAL TAHUN 2016</h4>
+                <h4>PENGUMUMAN FINALIS MAWAPRES NASIONAL TAHUN <?php echo Yii::app()->params['tahun'];?></h4>
                 <p>
                     Sebagai tahapan pemilihan Mahasiswa Berprestasi Tahun 2016, Tim Juri telah melaksanakan penilaian tahap awal pada tanggal 15-20 Juni 2016 dan telah menghasilkan finalis yang akan diundang untuk mengikuti penilaian tahap akhir yang terdiri atas 16 (enam belas) mahasiswa dari Program Sarjana dan 15 (lima belas) mahasiswa dari Program Diploma sebagaimana yang tertera pada daftar peserta dibawah ini.                </p>
                 <p>
@@ -31,7 +31,7 @@ $this->pageTitle='Finalis Mawapres Tahun '.Yii::app()->params['tahun'];
                     Klik tautan berikut ini untuk unduh Surat Resmi Pengumuman Finalis Mahasiswa Berprestasi Tahun 2016.
                 </p>
                 <p class="text-center">
-                    <?php echo CHtml::link('Unduh Surat Resmi Pengumuman Finalis Mawapres Nasional 2016',array('finalis/surat'),array(
+                    <?php echo CHtml::link('Unduh Surat Resmi Pengumuman Finalis Mawapres Nasional '.Yii::app()->params['tahun'],array('finalis/surat'),array(
                         'class'=>'btn red large',
                         'target'=>'_blank'
                     )); ?>
