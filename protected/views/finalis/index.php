@@ -44,7 +44,7 @@ $this->pageTitle='Finalis Mawapres Tahun '.Yii::app()->params['tahun'];
                     )); ?>
                 </p>
                 <p class="bold text-center text-error">
-    				Pengisian konfirmasi kehadiran paling lambat tanggal 20 Juni 2017 Pukul 24:00 WIB
+    				Pengisian konfirmasi kehadiran paling lambat tanggal 13 Juni 2017 Pukul 24:00 WIB
     			</p>
             </div>
 
