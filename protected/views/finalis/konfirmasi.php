@@ -23,7 +23,7 @@ $this->breadcrumbs=array(
 				<a href="https://goo.gl/forms/UqGpH702YK8oy2ap1" target="_blank" class="btn red btn-lg">Konfirmasi Kehadiran Finalis</a>
 			</p>
 			<p class="bold text-error">
-				Pengisian konfirmasi kehadiran paling lambat tanggal 20 Juni 2017 Pukul 24:00 WIB
+				Pengisian konfirmasi kehadiran paling lambat tanggal 13 Juni 2017 Pukul 24:00 WIB
 			</p>
 		</div>
 		<?php echo CHtml::link('<i class="icon-arrow-left"></i> Kembali',array('finalis/index'),array('class'=>'btn yellow','style'=>'margin-top:-3px;')); ?>
