@@ -12,6 +12,11 @@ class FinalisController extends Controller
         //$this->render('konfirmasi');
     }
     public function actionIndex(){
+        Yii::app()->clientScript->registerMetaTag('Sebagai tahapan pemilihan Mahasiswa Berprestasi Tahun 2017, Tim Juri telah melaksanakan penilaian tahap awal pada tanggal 2-3 Juni 2017 dan telah menghasilkan finalis yang akan diundang untuk mengikuti penilaian tahap akhir yang terdiri atas 17 (tujuh belas) mahasiswa dari Program Sarjana dan 9 (sembilan) mahasiswa dari Program Diploma sebagaimana yang tertera pada daftar peserta dibawah ini.', 'description');
+        Yii::app()->clientScript->registerMetaTag('Sebagai tahapan pemilihan Mahasiswa Berprestasi Tahun 2017, Tim Juri telah melaksanakan penilaian tahap awal pada tanggal 2-3 Juni 2017 dan telah menghasilkan finalis yang akan diundang untuk mengikuti penilaian tahap akhir yang terdiri atas 17 (tujuh belas) mahasiswa dari Program Sarjana dan 9 (sembilan) mahasiswa dari Program Diploma sebagaimana yang tertera pada daftar peserta dibawah ini.', 'og:description');
+        Yii::app()->clientScript->registerMetaTag('http://pilmapres.ristekdikti.go.id/images/logo_2017.png','og:image');
+        Yii::app()->clientScript->registerMetaTag('http://pilmapres.ristekdikti.go.id/finalis','og:url');
+
         $sarjana = Peserta::getFinalis(Peserta::SARJANA);
         $diploma = Peserta::getFinalis(Peserta::DIPLOMA);
         $this->render('index',array(
