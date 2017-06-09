@@ -19,19 +19,19 @@ $this->pageTitle='Finalis Mawapres Tahun '.Yii::app()->params['tahun'];
             <div class="well bordered-dashed-1 text-left">
                 <h4>PENGUMUMAN FINALIS MAWAPRES NASIONAL TAHUN <?php echo Yii::app()->params['tahun'];?></h4>
                 <p>
-                    Sebagai tahapan pemilihan Mahasiswa Berprestasi Tahun 2016, Tim Juri telah melaksanakan penilaian tahap awal pada tanggal 15-20 Juni 2016 dan telah menghasilkan finalis yang akan diundang untuk mengikuti penilaian tahap akhir yang terdiri atas 16 (enam belas) mahasiswa dari Program Sarjana dan 15 (lima belas) mahasiswa dari Program Diploma sebagaimana yang tertera pada daftar peserta dibawah ini.                </p>
+                    Sebagai tahapan pemilihan Mahasiswa Berprestasi Tahun <?php echo Yii::app()->params['tahun'];?>, Tim Juri telah melaksanakan penilaian tahap awal pada tanggal 2-3 Juni 2017 dan telah menghasilkan finalis yang akan diundang untuk mengikuti penilaian tahap akhir yang terdiri atas 17 (tujuh belas) mahasiswa dari Program Sarjana dan 9 (sembilan) mahasiswa dari Program Diploma sebagaimana yang tertera pada daftar peserta dibawah ini.</p>
                 <p>
-                    Kepada perguruan tinggi dan peserta yang telah ditetapkan sebagai Finalis Mahasiswa Berprestasi Tingkat Nasional Tahun 2016 kami ucapkan selamat, dan kepada yang belum berhasil hal ini merupakan pengalaman yang sangat berharga sebagai pembelajaran mengukir prestasi mahasiswa di masa yang akan datang.
+                    Kepada perguruan tinggi dan peserta yang telah ditetapkan sebagai Finalis Mahasiswa Berprestasi Tingkat Nasional Tahun 2017 kami ucapkan selamat, dan kepada yang belum berhasil hal ini merupakan pengalaman yang sangat berharga sebagai pembelajaran mengukir prestasi mahasiswa di masa yang akan datang.
                 </p>
                 <p>
-                    Kepada para Finalis Mahasiswa Berprestasi Tingkat Nasional Tahun 2016 agar segera mempersiapkan diri guna mengikuti pemilihan Mahasiswa Berprestasi Tingkat Nasional Tahap Akhir yang akan diselenggarakan tanggal 14 Agustus s.d. 17 Agustus 2016 di Yogyakarta. Undangan akan disampaikan dalam waktu yang tidak terlalu lama.
+                    Kepada para Finalis Mahasiswa Berprestasi Tingkat Nasional Tahun <?php echo Yii::app()->params['tahun'];?> agar segera mempersiapkan diri guna mengikuti pemilihan Mahasiswa Berprestasi Tingkat Nasional Tahap Akhir yang akan diselenggarakan tanggal <b>10 Juli 2017</b> sampai dengan <b>13 Juli 2017</b> di <b>Surabaya</b>. Undangan akan disampaikan dalam waktu yang tidak terlalu lama.
                 </p>
                 <hr>
                 <p class="text-center">
-                    Klik tautan berikut ini untuk unduh Surat Resmi Pengumuman Finalis Mahasiswa Berprestasi Tahun 2016.
+                    Klik tautan berikut ini untuk unduh Surat Resmi Pengumuman Finalis Mahasiswa Berprestasi Tahun <?php echo Yii::app()->params['tahun'];?>.
                 </p>
                 <p class="text-center">
-                    <?php echo CHtml::link('Unduh Surat Resmi Pengumuman Finalis Mawapres Nasional '.Yii::app()->params['tahun'],array('finalis/surat'),array(
+                    <?php echo CHtml::link('Unduh Surat Resmi Pengumuman Finalis Mawapres Nasional '.Yii::app()->params['tahun'],'https://drive.google.com/file/d/0B-6rFy0S6Z9jem40UU1velN1RHpIdGtwalIxZHVIUFE3M0lJ/view?usp=sharing',array(
                         'class'=>'btn red large',
                         'target'=>'_blank'
                     )); ?>
@@ -44,7 +44,7 @@ $this->pageTitle='Finalis Mawapres Tahun '.Yii::app()->params['tahun'];
                     )); ?>
                 </p>
                 <p class="bold text-center text-error">
-    				Pengisian konfirmasi kehadiran paling lambat tanggal 18 Juli 2016 Pukul 24:00 WIB
+    				Pengisian konfirmasi kehadiran paling lambat tanggal 20 Juni 2017 Pukul 24:00 WIB
     			</p>
             </div>
 
@@ -56,7 +56,7 @@ $this->pageTitle='Finalis Mawapres Tahun '.Yii::app()->params['tahun'];
                         Dalam rangka mendorong peningkatan budaya akademik khususnya kompetisi di kalangan mahasiswa, salah satu program yang dilaksanakan oleh Ditjen Pembelajaran dan Kemahasiswaan adalah Pemilihan Mahasiswa Berprestasi. Salah satu kriteria pemilihan adalah kompetensi mahasiswa dalam menulis artikel ilmiah yang salah satu syaratnya adalah "merupakan karya sendiri dan tidak mengandung plagiasi".
                     </p>
                     <p>
-                        Sebagai upaya untuk memenuhi kriteria tersebut panitia pemilihan, selain melakukan "tracker" terkait plagiarisme, juga melakukan uji publik untuk mendapatkan masukan dan atau laporan dari masyarakat. Berikut adalah 31 karya tulis para finalis untuk mendapatkan masukan atau laporan.
+                        Sebagai upaya untuk memenuhi kriteria tersebut panitia pemilihan, selain melakukan "tracker" terkait plagiarisme, juga melakukan uji publik untuk mendapatkan masukan dan atau laporan dari masyarakat. Berikut adalah 26 karya tulis para finalis untuk mendapatkan masukan atau laporan.
                     </p>
                 
                     <p>
