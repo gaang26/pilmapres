@@ -35,6 +35,10 @@ $this->pageTitle='Finalis Mawapres Tahun '.Yii::app()->params['tahun'];
                         'class'=>'btn red large',
                         'target'=>'_blank'
                     )); ?>
+
+                    <?php echo CHtml::link('Unduh Undangan Resmi Finalis '.Yii::app()->params['tahun'],'https://drive.google.com/file/d/0B-6rFy0S6Z9jNFAyYzNQSzkyX28/view?usp=sharing',array(
+                        'class'=>'btn red btn-lg'
+                    )); ?>
                 </p>
                 <hr>
                 <p class="text-center">Bagi peserta yang lolos tahap selanjutnya, silahkan melakukan konfirmasi kehadiran dan mengisi kelengkapan final pada tautan dibawah ini</p>
