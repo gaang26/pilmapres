@@ -1,7 +1,7 @@
 <div class="row-fluid margin-top-20">
     <div class="span8 offset2">
         <div class="well well-white bordered-dashed-1 bordered-radius-1">
-            <h5>JADWAL KEGIATAN PEMILIHAN MAHASISWA BERPRESTASI TINGKAT NASIONAL TAHUN 2017</h5>
+            <h5>JADWAL KEGIATAN PEMILIHAN MAHASISWA BERPRESTASI TINGKAT NASIONAL TAHUN 2018</h5>
             <table class="table table-bordered table-striped">
                 <tr>
                     <th>
@@ -16,7 +16,7 @@
                         Pengiriman data calon Mawapres & berkas elektronik
                     </td>
                     <td>
-                        24 April 2017 - 5 Mei 2017 Pukul 23:59 WIB
+                        5 April 2018 - 19 April 2018 Pukul 23:59 WIB
                     </td>
                 </tr>
                 <tr>
@@ -24,7 +24,7 @@
                         Penilaian Tahap Pertama Oleh Tim Juri
                     </td>
                     <td>
-                        6 Mei 2017 - 6 Juni 2017
+                        25 April 2018 - 21 Mei 2018
                     </td>
                 </tr>
                 <tr>
@@ -32,7 +32,7 @@
                         Pengumuman & Undangan untuk Finalis Mawapres
                     </td>
                     <td>
-                        8 Juni 2017
+                        28 Mei 2018
                     </td>
                 </tr>
                 <tr>
@@ -40,7 +40,7 @@
                         Masukan publik
                     </td>
                     <td>
-                        9 Juni 2017 - 7 Juli 2017
+                        28 Mei 2018 - 18 Juni 2018
                     </td>
                 </tr>
                 <tr>
@@ -48,7 +48,7 @@
                         Penilaian Nasional (Tahap Akhir)
                     </td>
                     <td>
-                        11 - 13 Juli 2017
+                        10 - 12 Juli 2018
                     </td>
                 </tr>
                 <tr>
@@ -56,7 +56,7 @@
                         Penganugerahan Mahasiswa Berprestasi
                     </td>
                     <td>
-                        13 Juli 2017
+                        12 Juli 2018
                     </td>
                 </tr>
             </table>
