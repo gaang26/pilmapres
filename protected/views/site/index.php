@@ -44,10 +44,11 @@ $this->pageTitle='Beranda';
     'diploma'=>Peserta::getJuara(Peserta::DIPLOMA)
 ));*/ ?>
 
+<?php $this->renderPartial('home/login'); ?>
+
 <?php $this->renderPartial('home/tema_2018'); ?>
 
-<?php //$this->renderPartial('home/login'); ?>
 
-<?php //$this->renderPartial('home/stats'); ?>
+<?php $this->renderPartial('home/stats'); ?>
 
 <?php $this->renderPartial('pages/jadwal'); ?>

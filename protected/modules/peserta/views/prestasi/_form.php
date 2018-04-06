@@ -109,6 +109,16 @@
                     </div>
                 </div>
 
+                <div class="row-fluid">
+                    <div class="span6">
+                        <div class="row">
+                            <?php echo $form->labelEx($model,'JUMLAH_PENGHARGAAN'); ?>
+                            <?php echo $form->numberField($model,'JUMLAH_PENGHARGAAN',array('class'=>'input-block-level','min'=>1)); ?>
+                            <?php echo $form->error($model,'JUMLAH_PENGHARGAAN'); ?>
+                        </div>
+                    </div>
+                </div>
+
 				<div class="row">
             		<?php echo $form->labelEx($model,'KETERANGAN'); ?>
 					<p class="hint">

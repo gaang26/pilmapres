@@ -74,8 +74,8 @@ class PesertaPrestasi extends CActiveRecord
                 'allowEmpty'=>true,
 				//'message'=>'Sertifikat tidak boleh dikosongkan',
 			),
-			array('ID_PRESTASI, ID_PESERTA, NAMA_PRESTASI, PENCAPAIAN, TAHUN, JENIS, LEMBAGA, TINGKAT, OTHERS, PRIORITAS', 'required','on'=>'new-prestasi,edit-prestasi'),
-			array('ID_PRESTASI, ID_PESERTA, JENIS, TINGKAT, PRIORITAS', 'numerical', 'integerOnly'=>true),
+			array('ID_PRESTASI, ID_PESERTA, NAMA_PRESTASI, PENCAPAIAN, TAHUN, JENIS, LEMBAGA, TINGKAT, OTHERS, PRIORITAS, JUMLAH_PENGHARGAAN', 'required','on'=>'new-prestasi,edit-prestasi'),
+			array('ID_PRESTASI, ID_PESERTA, JENIS, TINGKAT, PRIORITAS, JUMLAH_PENGHARGAAN', 'numerical', 'integerOnly'=>true),
 			array('NAMA_PRESTASI, LEMBAGA', 'length', 'max'=>100),
 			array('PENCAPAIAN', 'length', 'max'=>255),
 			array('TAHUN', 'length', 'max'=>4),
@@ -130,6 +130,7 @@ class PesertaPrestasi extends CActiveRecord
 			'PRIORITAS' => 'Prioritas',
 			'TANGGAL_INPUT' => 'Tanggal Input',
 			'KETERANGAN'=>'Keterangan Tambahan',
+            'JUMLAH_PENGHARGAAN'=>'Jumlah penghargaan yang diberikan panitia'
 		);
 	}
 
