@@ -56,17 +56,24 @@
                 <div class="well text-left">
                     <h4>Masukan Publik</h4>
                     <p>
-                        Dalam rangka mendorong peningkatan budaya akademik khususnya kompetisi di kalangan mahasiswa, salah satu program yang dilaksanakan oleh Ditjen Pembelajaran dan Kemahasiswaan adalah Pemilihan Mahasiswa Berprestasi. Salah satu kriteria pemilihan adalah kompetensi mahasiswa dalam menulis artikel ilmiah yang salah satu syaratnya adalah "merupakan karya sendiri dan tidak mengandung plagiasi".
+                        Dalam rangka mendorong peningkatan budaya akademik khususnya kompetisi di kalangan mahasiswa,
+                        salah satu program yang dilaksanakan oleh Ditjen Pembelajaran dan Kemahasiswaan adalah Pemilihan Mahasiswa Berprestasi.
+                        Salah satu kriteria pemilihan adalah kompetensi mahasiswa dalam menulis artikel ilmiah yang salah satu syaratnya
+                        adalah "merupakan karya sendiri dan tidak mengandung plagiasi".
                     </p>
                     <p>
-                        Sebagai upaya untuk memenuhi kriteria tersebut panitia pemilihan, selain melakukan "tracker" terkait plagiarisme, juga melakukan uji publik untuk mendapatkan masukan dan atau laporan dari masyarakat. Berikut adalah 26 karya tulis para finalis untuk mendapatkan masukan atau laporan.
+                        Sebagai upaya untuk memenuhi kriteria tersebut panitia pemilihan, selain melakukan "tracker" terkait plagiarisme,
+                        juga melakukan uji publik untuk mendapatkan masukan dan atau laporan dari masyarakat.
+                        Berikut adalah 26 karya tulis para finalis untuk mendapatkan masukan atau laporan.
                     </p>
+
                     <p>
                         Terima kasih.
                     </p>
                     <p style="color:#999999;"><small>
-                        Untuk memberi masukan publik, silahkan memilih menu "Review KTI" pada kolom sebelah kanan pada daftar finalis dibawah. Kemudian Anda dapat memberi masukan pada kolom komentar pada bagian bawah laman.
-                    </small></p>
+                            Untuk memberi masukan publik, silahkan memilih menu "Review KTI" pada kolom sebelah kanan pada daftar finalis
+                            dibawah. Kemudian Anda dapat memberi masukan pada kolom komentar pada bagian bawah laman.
+                        </small></p>
                 </div>
             <?php endif; ?>
             <hr>

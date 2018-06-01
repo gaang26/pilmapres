@@ -17,8 +17,8 @@ class FinalisController extends Controller
         Yii::app()->clientScript->registerMetaTag('http://pilmapres.ristekdikti.go.id/images/logo_2017.png','og:image');
         Yii::app()->clientScript->registerMetaTag('http://pilmapres.ristekdikti.go.id/finalis','og:url');
 
-        $sarjana = Peserta::getFinalis(Peserta::SARJANA);
-        $diploma = Peserta::getFinalis(Peserta::DIPLOMA);
+        $sarjana = Peserta::getPesertaFinalis(Peserta::SARJANA);
+        $diploma = Peserta::getPesertaFinalis(Peserta::DIPLOMA);
         $this->render('index',array(
             'diploma'=>$diploma,
             'sarjana'=>$sarjana
@@ -66,9 +66,10 @@ class FinalisController extends Controller
     public function loadPesertaModel($id)
 	{
         $criteria = new CDbCriteria;
-        $criteria->condition = 'ID_PESERTA=:id AND TAHAP_AWAL=1';
+        $criteria->condition = 'ID_PESERTA=:id AND TAHAP_AWAL=1 AND TAHUN=:tahun';
         $criteria->params = array(
-            ':id'=>$id
+            ':id'=>$id,
+            ':tahun'=>Yii::app()->params['tahun'],
         );
 		$model=Peserta::model()->find($criteria);
 		if($model===null)

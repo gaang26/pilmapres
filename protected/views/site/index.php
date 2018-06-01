@@ -34,17 +34,17 @@ $this->pageTitle='Beranda';
     </div>
 </div>-->
 
-<?php /*$this->renderPartial('home/finalis',array(
-    'sarjana'=>Peserta::getFinalis(Peserta::SARJANA),
-    'diploma'=>Peserta::getFinalis(Peserta::DIPLOMA)
-));*/ ?>
+<?php $this->renderPartial('home/finalis',array(
+    'sarjana'=>Peserta::getPesertaFinalis(Peserta::SARJANA),
+    'diploma'=>Peserta::getPesertaFinalis(Peserta::DIPLOMA)
+)); ?>
 
 <?php /*$this->renderPartial('home/juara',array(
     'sarjana'=>Peserta::getJuara(Peserta::SARJANA),
     'diploma'=>Peserta::getJuara(Peserta::DIPLOMA)
 ));*/ ?>
 
-<?php $this->renderPartial('home/login'); ?>
+<?php /*$this->renderPartial('home/login');*/ ?>
 
 <?php $this->renderPartial('home/tema_2018'); ?>
 
