@@ -56,6 +56,14 @@ $('.search-form form').submit(function(){
 			'pagerCssClass' => 'pagination',
 			//end bootstrap styling
 			'columns'=>array(
+				array(
+					'header'=>'Photo',
+					'type'=>'raw',
+					'htmlOptions'=>array(
+						'width'=>'50px',
+					),
+					'value'=>'$data->getPhoto("100px")'
+				),
 				'PIN',
 				'NAMA',
 				array(

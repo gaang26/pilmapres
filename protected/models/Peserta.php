@@ -688,14 +688,22 @@ class Peserta extends CActiveRecord
         }
     }
 
-	public function getPhoto(){
+	public function getPhoto($size=null){
 		$photopath = Yii::app()->basePath . '/../file/foto/' . $this->PHOTO;
 		if($this->PHOTO!=null && $this->PHOTO!='' && file_exists($photopath)){
 			$photourl = Yii::app()->request->baseUrl.'/file/foto/'.$this->PHOTO;
-			return '<img src="'.$photourl.'" alt="Photo"/>';
+			if($size!=null){
+				return '<img src="'.$photourl.'" width="'.$size.'"/>';
+			}else{
+				return '<img src="'.$photourl.'" alt="Photo"/>';
+			}
 		}else{
 			$photourl = Yii::app()->request->baseUrl.'/images/profilethumb.png';
-			return '<img src="'.$photourl.'" alt="Photo"/>';
+			if($size!=null){ 
+                                return '<img src="'.$photourl.'" width="'.$size.'"/>';
+                        }else{ 
+                                return '<img src="'.$photourl.'" alt="Photo"/>';
+                        }
 		}
 	}
 
