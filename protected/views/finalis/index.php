@@ -19,37 +19,54 @@ $this->pageTitle='Finalis Mawapres Tahun '.Yii::app()->params['tahun'];
             <div class="well bordered-dashed-1 text-left">
                 <h4>PENGUMUMAN FINALIS MAWAPRES NASIONAL TAHUN <?php echo Yii::app()->params['tahun'];?></h4>
                 <p>
-                    Sebagai tahapan pemilihan Mahasiswa Berprestasi Tahun <?php echo Yii::app()->params['tahun'];?>, Tim Juri telah melaksanakan penilaian tahap awal pada tanggal 2-3 Juni 2017 dan telah menghasilkan finalis yang akan diundang untuk mengikuti penilaian tahap akhir yang terdiri atas 17 (tujuh belas) mahasiswa dari Program Sarjana dan 9 (sembilan) mahasiswa dari Program Diploma sebagaimana yang tertera pada daftar peserta dibawah ini.</p>
+                    Sebagai tahapan pemilihan Mahasiswa Berprestasi Tahun 2018, Tim Juri telah melaksanakan
+                    penilaian tahap awal pada tanggal 24-25 Mei 2018 dan telah menghasilkan finalis yang akan
+                    diundang untuk mengikuti penilaian tahap akhir sebanyak 26 mahasiswa yang terdiri atas 17
+                    (tujuh belas) mahasiswa Program Sarjana dan 9 (sembilan) mahasiswa dari Program Diploma
+                    sebagaimana terlampir.
                 <p>
-                    Kepada perguruan tinggi dan peserta yang telah ditetapkan sebagai Finalis Mahasiswa Berprestasi Tingkat Nasional Tahun 2017 kami ucapkan selamat, dan kepada yang belum berhasil hal ini merupakan pengalaman yang sangat berharga sebagai pembelajaran mengukir prestasi mahasiswa di masa yang akan datang.
+                    Kepada perguruan tinggi dan peserta yang telah ditetapkan sebagai Finalis Pemilihan
+                    Mahasiswa Berprestasi Tingkat Nasional Tahun 2018 kami ucapkan selamat, dan kepada
+                    yang belum berhasil hal ini merupakan pengalaman yang sangat berharga sebagai
+                    pembelajaran mengukir prestasi mahasiswa di masa yang akan datang. Kepada Pimpinan
+                    Perguruan Tinggi yang tidak mengirimkan peserta, kami mohon memberi informasi tentang
+                    alasan tidak mengirim peserta ke tingkat nasional untuk kami jadikan evaluasi program.
                 </p>
                 <p>
-                    Kepada para Finalis Mahasiswa Berprestasi Tingkat Nasional Tahun <?php echo Yii::app()->params['tahun'];?> agar segera mempersiapkan diri guna mengikuti pemilihan Mahasiswa Berprestasi Tingkat Nasional Tahap Akhir yang akan diselenggarakan tanggal <b>10 Juli 2017</b> sampai dengan <b>13 Juli 2017</b> di <b>Surabaya</b>. Undangan akan disampaikan dalam waktu yang tidak terlalu lama.
+                    Kami mohon agar Saudara menyampaikan kepada para Finalis Pemilihan Mahasiswa
+                    Berprestasi Tingkat Nasional Tahun 2018 agar segera mempersiapkan diri guna mengikuti
+                    pemilihan Mahasiswa Berprestasi Tingkat Nasional Tahap Akhir yang akan diselenggarakan
+                    tanggal 09-12 Juli 2018 di Solo. Undangan akan disampaikan dalam waktu yang tidak terlalu
+                    lama
                 </p>
                 <hr>
                 <p class="text-center">
-                    Klik tautan berikut ini untuk unduh Surat Resmi Pengumuman Finalis Mahasiswa Berprestasi Tahun <?php echo Yii::app()->params['tahun'];?>.
+                    Klik tautan berikut ini untuk unduh Surat Resmi Pengumuman Finalis Mahasiswa Berprestasi
+                    Tahun <?php echo Yii::app()->params['tahun'];?>.
                 </p>
                 <p class="text-center">
-                    <?php echo CHtml::link('Unduh Surat Resmi Pengumuman Finalis Mawapres Nasional '.Yii::app()->params['tahun'],'https://drive.google.com/file/d/0B-6rFy0S6Z9jem40UU1velN1RHpIdGtwalIxZHVIUFE3M0lJ/view?usp=sharing',array(
+                    <?php echo CHtml::link('Unduh Surat Resmi Pengumuman Finalis Mawapres Nasional '.Yii::app()->params['tahun'],
+                        'http://belmawa.ristekdikti.go.id/wp-content/uploads/2018/05/Surat-Pengumuman-Finalis-Pilmapres-2018-1-2.pdf',array(
                         'class'=>'btn red large',
                         'target'=>'_blank'
                     )); ?>
 
-                    <?php echo CHtml::link('Unduh Undangan Resmi Finalis '.Yii::app()->params['tahun'],'https://drive.google.com/file/d/0B-6rFy0S6Z9jNFAyYzNQSzkyX28/view?usp=sharing',array(
+                    <?php /*echo CHtml::link('Unduh Undangan Resmi Finalis '.Yii::app()->params['tahun'],'https://drive.google.com/file/d/0B-6rFy0S6Z9jNFAyYzNQSzkyX28/view?usp=sharing',array(
                         'class'=>'btn red btn-lg'
-                    )); ?>
+                    )); */?>
                 </p>
                 <hr>
+                <!--
                 <p class="text-center">Bagi peserta yang lolos tahap selanjutnya, silahkan melakukan konfirmasi kehadiran dan mengisi kelengkapan final pada tautan dibawah ini</p>
+                -->
                 <p class="text-center">
-                    <?php echo CHtml::link('KONFIRMASI KEHADIRAN FINALIS',array('finalis/konfirmasi'),array(
+                    <?php /*echo CHtml::link('KONFIRMASI KEHADIRAN FINALIS',array('finalis/konfirmasi'),array(
                         'class'=>'btn red btn-lg'
-                    )); ?>
+                    )); */?>
                 </p>
-                <p class="bold text-center text-error">
+                <!--<p class="bold text-center text-error">
     				Pengisian konfirmasi kehadiran paling lambat tanggal 13 Juni 2017 Pukul 24:00 WIB
-    			</p>
+    			</p>-->
             </div>
 
             <?php if(Jadwal::isMasukanPublicOpen()): ?>
@@ -57,17 +74,23 @@ $this->pageTitle='Finalis Mawapres Tahun '.Yii::app()->params['tahun'];
                 <div class="well text-left">
                     <h4>Masukan Publik</h4>
                     <p>
-                        Dalam rangka mendorong peningkatan budaya akademik khususnya kompetisi di kalangan mahasiswa, salah satu program yang dilaksanakan oleh Ditjen Pembelajaran dan Kemahasiswaan adalah Pemilihan Mahasiswa Berprestasi. Salah satu kriteria pemilihan adalah kompetensi mahasiswa dalam menulis artikel ilmiah yang salah satu syaratnya adalah "merupakan karya sendiri dan tidak mengandung plagiasi".
+                        Dalam rangka mendorong peningkatan budaya akademik khususnya kompetisi di kalangan mahasiswa,
+                        salah satu program yang dilaksanakan oleh Ditjen Pembelajaran dan Kemahasiswaan adalah Pemilihan Mahasiswa Berprestasi.
+                        Salah satu kriteria pemilihan adalah kompetensi mahasiswa dalam menulis artikel ilmiah yang salah satu syaratnya
+                        adalah "merupakan karya sendiri dan tidak mengandung plagiasi".
                     </p>
                     <p>
-                        Sebagai upaya untuk memenuhi kriteria tersebut panitia pemilihan, selain melakukan "tracker" terkait plagiarisme, juga melakukan uji publik untuk mendapatkan masukan dan atau laporan dari masyarakat. Berikut adalah 26 karya tulis para finalis untuk mendapatkan masukan atau laporan.
+                        Sebagai upaya untuk memenuhi kriteria tersebut panitia pemilihan, selain melakukan "tracker" terkait plagiarisme,
+                        juga melakukan uji publik untuk mendapatkan masukan dan atau laporan dari masyarakat.
+                        Berikut adalah 26 karya tulis para finalis untuk mendapatkan masukan atau laporan.
                     </p>
                 
                     <p>
                         Terima kasih.
                     </p>
                     <p style="color:#999999;"><small>
-                        Untuk memberi masukan publik, silahkan memilih menu "Review KTI" pada kolom sebelah kanan pada daftar finalis dibawah. Kemudian Anda dapat memberi masukan pada kolom komentar pada bagian bawah laman.
+                        Untuk memberi masukan publik, silahkan memilih menu "Review KTI" pada kolom sebelah kanan pada daftar finalis
+                            dibawah. Kemudian Anda dapat memberi masukan pada kolom komentar pada bagian bawah laman.
                     </small></p>
                 </div>
             <?php endif; ?>
