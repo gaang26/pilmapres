@@ -8,7 +8,7 @@
                 <a class="brand logo-v1" href="<?php echo Yii::app()->createUrl('/site/index');?>">
                     <!-- <p style="margin-top:15px"><?php echo strtoupper(Yii::app()->name);?></p> -->
                     <!-- <p style="margin-top:17px;">SISTEM AKADEMI KOMUNITAS</p> -->
-                    <img src="<?php echo Yii::app()->request->baseUrl;?>/images/logo_2018.png" id="logoimg" alt="Pilmapres 2017" style="height:50px; margin-top:5px">
+                    <img src="<?php echo Yii::app()->request->baseUrl;?>/images/logo_2019.png" id="logoimg" alt="Pilmapres 2017" style="height:50px; margin-top:5px">
                 </a>
                 <!-- END LOGO -->
 
