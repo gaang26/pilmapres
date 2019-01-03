@@ -34,10 +34,10 @@ $this->pageTitle='Beranda';
     </div>
 </div>-->
 
-<?php $this->renderPartial('home/finalis',array(
+<?php /* $this->renderPartial('home/finalis',array(
     'sarjana'=>Peserta::getPesertaFinalis(Peserta::SARJANA),
     'diploma'=>Peserta::getPesertaFinalis(Peserta::DIPLOMA)
-)); ?>
+)); */ ?>
 
 <?php /*$this->renderPartial('home/juara',array(
     'sarjana'=>Peserta::getJuara(Peserta::SARJANA),
@@ -46,9 +46,10 @@ $this->pageTitle='Beranda';
 
 <?php /*$this->renderPartial('home/login');*/ ?>
 
-<?php $this->renderPartial('home/tema_2018'); ?>
+<?php //$this->renderPartial('home/tema_2018'); ?>
+<?php $this->renderPartial('home/tema_2019'); ?>
 
 
-<?php $this->renderPartial('home/stats'); ?>
+<?php //$this->renderPartial('home/stats'); ?>
 
 <?php $this->renderPartial('pages/jadwal'); ?>

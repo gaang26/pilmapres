@@ -1,7 +1,7 @@
 <div class="row-fluid margin-top-20">
     <div class="span8 offset2">
         <div class="well well-white bordered-dashed-1 bordered-radius-1">
-            <h5>JADWAL KEGIATAN PEMILIHAN MAHASISWA BERPRESTASI TINGKAT NASIONAL TAHUN 2018</h5>
+            <h5>JADWAL KEGIATAN PEMILIHAN MAHASISWA BERPRESTASI TINGKAT NASIONAL TAHUN 2019</h5>
             <table class="table table-bordered table-striped">
                 <tr>
                     <th>
@@ -16,23 +16,7 @@
                         Pengiriman data calon Mawapres & berkas elektronik
                     </td>
                     <td>
-                        5 April 2018 - 19 April 2018 Pukul 23:59 WIB
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Penilaian Tahap Pertama Oleh Tim Juri
-                    </td>
-                    <td>
-                        25 April 2018 - 21 Mei 2018
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Pengumuman & Undangan untuk Finalis Mawapres
-                    </td>
-                    <td>
-                        28 Mei 2018
+                        1 April 2019 - 18 April 2019 Pukul 23:59 WIB
                     </td>
                 </tr>
                 <tr>
@@ -40,7 +24,23 @@
                         Masukan publik
                     </td>
                     <td>
-                        28 Mei 2018 - 18 Juni 2018
+                        19 April 2019 - 17 Mei 2019
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Penilaian Tahap Pertama Oleh Tim Juri
+                    </td>
+                    <td>
+                        20 Mei 2019 - 19 Juni 2019
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Pengumuman & Undangan untuk Finalis Mawapres
+                    </td>
+                    <td>
+                        25 Juni 2019
                     </td>
                 </tr>
                 <tr>
@@ -48,7 +48,7 @@
                         Penilaian Nasional (Tahap Akhir)
                     </td>
                     <td>
-                        10 - 12 Juli 2018
+                        23 - 25 Juli 2019
                     </td>
                 </tr>
                 <tr>
@@ -56,7 +56,7 @@
                         Penganugerahan Mahasiswa Berprestasi
                     </td>
                     <td>
-                        12 Juli 2018
+                        25 Juli 2019
                     </td>
                 </tr>
             </table>
