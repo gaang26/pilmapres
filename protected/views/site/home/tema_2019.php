@@ -23,7 +23,7 @@
             <p>
                 Pedoman pilmapres 2019 jenjang diploma dapat diunduh melalui tautan dibawah ini
             </p>
-            <a href="http://belmawa.ristekdikti.go.id/wp-content/uploads/2018/12/PEDOMAN-PILMAPRES-DIPLOMA-20192.pdf" target="_blank" class="btn default btn-block"><i class="icon-download-alt"></i> UNDUH PEDOMAN DIPLOMA</a>
+            <a href="http://belmawa.ristekdikti.go.id/wp-content/uploads/2018/12/PEDOMAN-PILMAPRES-DIPLOMA-2019-update.pdf" target="_blank" class="btn default btn-block"><i class="icon-download-alt"></i> UNDUH PEDOMAN DIPLOMA</a>
         </div>
     </div>
 </div>
