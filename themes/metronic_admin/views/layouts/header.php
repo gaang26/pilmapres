@@ -6,7 +6,7 @@
             <div class="havbar-header">
                 <!-- BEGIN LOGO -->
                 <a id="index" class="navbar-brand" href="start.html">
-                    <img src="<?php echo Yii::app()->request->baseUrl; ?>/images/logo_2016.png" alt="Logo" style="background:#eceef1;border-radius:4px;padding:5px;">
+                    <img src="<?php echo Yii::app()->request->baseUrl; ?>/images/logo_2019.png" alt="Logo" style="background:#eceef1;border-radius:4px;padding:5px;">
                 </a>
                 <!-- END LOGO -->
 
