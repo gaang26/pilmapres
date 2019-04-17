@@ -556,11 +556,13 @@ class Peserta extends CActiveRecord
 	}
 
 	public function isComplete(){
-		return (!$this->isKTMEmpty() && !$this->isPengantarEmpty() && !$this->isVideoEmpty() && !$this->isPrestasiEmpty() && !$this->isBiodataEmpty() && !$this->isKaryaTulisEmpty());
+		//return (!$this->isKTMEmpty() && !$this->isPengantarEmpty() && !$this->isVideoEmpty() && !$this->isPrestasiEmpty() && !$this->isBiodataEmpty() && !$this->isKaryaTulisEmpty());
+		return (!$this->isKTMEmpty() && !$this->isPengantarEmpty() && !$this->isPrestasiEmpty() && !$this->isBiodataEmpty() && !$this->isKaryaTulisEmpty());
 	}
 
 	public function isCompleteJuri(){
-		return (!$this->isVideoEmpty() && !$this->isPrestasiEmpty() && !$this->isBiodataEmpty() && !$this->isKaryaTulisEmpty());
+		//return (!$this->isVideoEmpty() && !$this->isPrestasiEmpty() && !$this->isBiodataEmpty() && !$this->isKaryaTulisEmpty());
+		return (!$this->isPrestasiEmpty() && !$this->isBiodataEmpty() && !$this->isKaryaTulisEmpty());
 	}
 
 	public function getLabelKelengkapan(){

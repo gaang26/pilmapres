@@ -56,7 +56,7 @@ if(!$peserta->isVideoEmpty()){
 ?>
 
 <div class="row-fluid">
-	<div class="span2 offset2">
+	<div class="span2 offset3">
 		<a href="<?php echo Yii::app()->createUrl('peserta/biodata/index')?>">
 			<div class="step <?php echo $status_biodata; ?>">
 				<div class="step-number">
@@ -88,7 +88,7 @@ if(!$peserta->isVideoEmpty()){
 		</a>
 
 	</div>
-    <div class="span2">
+    <div class="span2 hide">
 		<a href="<?php echo Yii::app()->createUrl('peserta/video/index')?>">
 			<div class="step <?php echo $status_video; ?>">
 				<div class="step-number">
@@ -107,7 +107,7 @@ if(!$peserta->isVideoEmpty()){
 		<a href="<?php echo Yii::app()->createUrl('peserta/prestasi/index')?>">
 			<div class="step <?php echo $status_prestasi; ?>">
 				<div class="step-number">
-					4
+					3
 				</div>
 				<div class="step-title">
 					PRESTASI

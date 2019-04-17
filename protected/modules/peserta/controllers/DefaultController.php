@@ -11,9 +11,9 @@ class DefaultController extends Controller
 				$this->redirect(array('biodata/update'));
 			}else if($peserta->isKaryaTulisEmpty()){
 				$this->redirect(array('kti/update'));
-			}else if($peserta->isVideoEmpty()){
+			}/* else if($peserta->isVideoEmpty()){
 				$this->redirect(array('video/update'));
-			}
+			} */
 			$this->render('index',array('peserta'=>$peserta));
 		}
 	}
