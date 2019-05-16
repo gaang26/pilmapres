@@ -15,7 +15,7 @@ $this->breadcrumbs=array(
 		</div>
 		<div class="details">
 			<div class="number">
-                122
+                <?php echo Peserta::getJumlah(Peserta::SARJANA); ?>
 			</div>
 			<div class="desc">
 				Lihat Peserta Sarjana
@@ -33,7 +33,7 @@ $this->breadcrumbs=array(
 		</div>
 		<div class="details">
 			<div class="number">
-                78
+                <?php echo Peserta::getJumlah(Peserta::DIPLOMA); ?>
 			</div>
 			<div class="desc">
 				Lihat Peserta Diploma
@@ -51,7 +51,7 @@ $this->breadcrumbs=array(
 		</div>
 		<div class="details">
 			<div class="number">
-				200
+                <?php echo Peserta::getJumlah(); ?>
 			</div>
 			<div class="desc">
 				Lihat Semua Peserta
