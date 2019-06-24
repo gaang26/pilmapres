@@ -16,28 +16,6 @@ $this->pageTitle='Beranda';
     </div>
 </div>-->
 
- <!--<div class="row-fluid">
-    <div class="span8 offset2 margin-top-20">
-        <?php /*if(Jadwal::isPengumumanOpen()): */?>
-            <div class="well text-center">
-                <h4>PENGUMUMAN FINALIS MAWAPRES NASIONAL <?php /*echo Yii::app()->params['tahun'];*/?></h4>
-                <div class="">
-                    Peserta yang lolos tahap selanjutnya dapat dilihat pada alamat dibawah ini.
-                </div>
-                <div class="margin-top-20">
-                    <?php /*echo CHtml::link('LIHAT FINALIS MAWAPRES NASIONAL '.Yii::app()->params['tahun'],array('finalis/index'),array(
-                        'class'=>'btn red btn-lg'
-                    )); */?>
-                </div>
-            </div>
-        <?php /*endif; */?>
-    </div>
-</div>-->
-
-<?php /* $this->renderPartial('home/finalis',array(
-    'sarjana'=>Peserta::getPesertaFinalis(Peserta::SARJANA),
-    'diploma'=>Peserta::getPesertaFinalis(Peserta::DIPLOMA)
-)); */ ?>
 
 <?php /*$this->renderPartial('home/juara',array(
     'sarjana'=>Peserta::getJuara(Peserta::SARJANA),
@@ -48,8 +26,13 @@ $this->pageTitle='Beranda';
 
 <?php //$this->renderPartial('home/tema_2018'); ?>
 <?php $this->renderPartial('home/tema_2019'); ?>
+<?php echo (Jadwal::isPengumumanOpen())?$this->renderPartial('home/pengumuman_finalis'):''; ?>
 
+<?php echo $this->renderPartial('home/finalis',array(
+    'sarjana'=>Peserta::getPesertaFinalis(Peserta::SARJANA),
+    'diploma'=>Peserta::getPesertaFinalis(Peserta::DIPLOMA)
+)); ?>
 
 <?php //$this->renderPartial('home/stats'); ?>
 
-<?php $this->renderPartial('pages/jadwal'); ?>
+<?php //$this->renderPartial('pages/jadwal'); ?>

@@ -18,7 +18,7 @@ $this->pageTitle='Finalis Mawapres Tahun '.Yii::app()->params['tahun'];
         <?php if(Jadwal::isPengumumanOpen()): ?>
             <div class="well bordered-dashed-1 text-left">
                 <h4>PENGUMUMAN FINALIS MAWAPRES NASIONAL TAHUN <?php echo Yii::app()->params['tahun'];?></h4>
-                <p>
+                <!-- <p>
                     Sebagai tahapan pemilihan Mahasiswa Berprestasi Tahun 2018, Tim Juri telah melaksanakan
                     penilaian tahap awal pada tanggal 24-25 Mei 2018 dan telah menghasilkan finalis yang akan
                     diundang untuk mengikuti penilaian tahap akhir sebanyak 26 mahasiswa yang terdiri atas 17
@@ -39,7 +39,7 @@ $this->pageTitle='Finalis Mawapres Tahun '.Yii::app()->params['tahun'];
                     tanggal 09-12 Juli 2018 di Solo. Undangan akan disampaikan dalam waktu yang tidak terlalu
                     lama
                 </p>
-                <hr>
+                <hr> -->
                 <p class="text-center">
                     Klik tautan berikut ini untuk unduh Surat Resmi Pengumuman Finalis Mahasiswa Berprestasi
                     Tahun <?php echo Yii::app()->params['tahun'];?>.
@@ -69,7 +69,7 @@ $this->pageTitle='Finalis Mawapres Tahun '.Yii::app()->params['tahun'];
     			</p>-->
             </div>
 
-            <?php if(Jadwal::isMasukanPublicOpen()): ?>
+            <?php if(Jadwal::isMasukanPublicOpen() && false): ?>
                 <hr>
                 <div class="well text-left">
                     <h4>Masukan Publik</h4>
@@ -105,7 +105,7 @@ $this->pageTitle='Finalis Mawapres Tahun '.Yii::app()->params['tahun'];
                     <div class="tab-pane active" id="sarjana">
                         <div class="text-center">
                             <h4>FINALIS SARJANA</h4>
-                            <p>
+                            <p class="hide">
                                 Beri masukan untuk finalis mawapres nasional tahun <?php echo Yii::app()->params['tahun'] ?> jenjang sarjana
                             </p>
                         </div>
@@ -145,7 +145,7 @@ $this->pageTitle='Finalis Mawapres Tahun '.Yii::app()->params['tahun'];
                                                     <?php echo $data->PT->NAMA; ?>
                                                 </td>
                                                 <td>
-                                                    <?php echo CHtml::link('Review KTI <i class="icon-arrow-right"></i>',array('finalis/view','id'=>$data->ID_PESERTA),array(
+                                                    <?php echo CHtml::link('Lihat Detail <i class="icon-chevron-right"></i>',array('finalis/view','id'=>$data->ID_PESERTA),array(
                                                         'class'=>'btn mini blue'
                                                     )); ?>
                                                 </td>
@@ -163,7 +163,7 @@ $this->pageTitle='Finalis Mawapres Tahun '.Yii::app()->params['tahun'];
                     <div class="tab-pane" id="diploma">
                         <div class="text-center">
                             <h4>FINALIS DIPLOMA</h4>
-                            <p>
+                            <p class="hide">
                                 Beri masukan untuk finalis mawapres nasional tahun <?php echo Yii::app()->params['tahun'] ?> jenjang diploma
                             </p>
                         </div>
@@ -203,7 +203,7 @@ $this->pageTitle='Finalis Mawapres Tahun '.Yii::app()->params['tahun'];
                                                     <?php echo $data->PT->NAMA; ?>
                                                 </td>
                                                 <td>
-                                                    <?php echo CHtml::link('Review KTI <i class="icon-arrow-right"></i>',array('finalis/view','id'=>$data->ID_PESERTA),array(
+                                                    <?php echo CHtml::link('Lihat Detail <i class="icon-chevron-right"></i>',array('finalis/view','id'=>$data->ID_PESERTA),array(
                                                         'class'=>'btn mini blue'
                                                     )); ?>
                                                 </td>

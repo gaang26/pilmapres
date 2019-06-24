@@ -53,7 +53,7 @@
             </div> -->
             <?php if(Jadwal::isMasukanPublicOpen()): ?>
                 <hr>
-                <div class="well text-left">
+                <div class="well text-left hide">
                     <h4>Masukan Publik</h4>
                     <p>
                         Dalam rangka mendorong peningkatan budaya akademik khususnya kompetisi di kalangan mahasiswa,
@@ -86,7 +86,7 @@
                     <div class="tab-pane active" id="sarjana">
                         <div class="text-center">
                             <h4>FINALIS SARJANA</h4>
-                            <p>
+                            <p class="hide">
                                 Beri masukan untuk finalis mawapres nasional tahun <?php echo Yii::app()->params['tahun'] ?> jenjang sarjana
                             </p>
                         </div>
@@ -126,7 +126,7 @@
                                                     <?php echo $data->PT->NAMA; ?>
                                                 </td>
                                                 <td>
-                                                    <?php echo CHtml::link('Review KTI <i class="icon-arrow-right"></i>',array('finalis/view','id'=>$data->ID_PESERTA),array(
+                                                    <?php echo CHtml::link('Lihat Detail <i class="icon-chevron-right"></i>',array('finalis/view','id'=>$data->ID_PESERTA),array(
                                                         'class'=>'btn mini blue'
                                                     )); ?>
                                                 </td>
@@ -144,7 +144,7 @@
                     <div class="tab-pane" id="diploma">
                         <div class="text-center">
                             <h4>FINALIS DIPLOMA</h4>
-                            <p>
+                            <p class="hide">
                                 Beri masukan untuk finalis mawapres nasional tahun <?php echo Yii::app()->params['tahun'] ?> jenjang diploma
                             </p>
                         </div>
@@ -184,7 +184,7 @@
                                                     <?php echo $data->PT->NAMA; ?>
                                                 </td>
                                                 <td>
-                                                    <?php echo CHtml::link('Review KTI <i class="icon-arrow-right"></i>',array('finalis/view','id'=>$data->ID_PESERTA),array(
+                                                    <?php echo CHtml::link('Lihat Detail <i class="icon-chevron-right"></i>',array('finalis/view','id'=>$data->ID_PESERTA),array(
                                                         'class'=>'btn mini blue'
                                                     )); ?>
                                                 </td>
@@ -203,7 +203,7 @@
             </div>
         <?php else: ?>
             <div class="alert alert-info">
-                <h5>Peserta yang lolos tahap selanjutnya akan diumumkan pada tanggal 30 Juni 2016</h5>
+                <h5>Peserta yang lolos tahap selanjutnya akan diumumkan pada tanggal 25 Juni 2019</h5>
             </div>
         <?php endif; ?>
 
