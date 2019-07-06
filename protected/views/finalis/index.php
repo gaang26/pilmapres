@@ -46,7 +46,7 @@ $this->pageTitle='Finalis Mawapres Tahun '.Yii::app()->params['tahun'];
                 </p>
                 <p class="text-center">
                     <?php echo CHtml::link('Unduh Surat Resmi Pengumuman Finalis Mawapres Nasional '.Yii::app()->params['tahun'],
-                        'http://belmawa.ristekdikti.go.id/wp-content/uploads/2018/05/Surat-Pengumuman-Finalis-Pilmapres-2018-1-2.pdf',array(
+                        'https://belmawa.ristekdikti.go.id/wp-content/uploads/2019/06/Surat-pengumuman-finalis-Pilmpares-2019.pdf',array(
                         'class'=>'btn red large',
                         'target'=>'_blank'
                     )); ?>
